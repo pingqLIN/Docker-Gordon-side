@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">Docker Gordon Side Experiments</title>
+  <desc id="desc">Research banner showing Docker workflow boundaries, prompts, evidence logs, and governance checks.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1320"/>
+      <stop offset="0.48" stop-color="#12324a"/>
+      <stop offset="1" stop-color="#102018"/>
+    </linearGradient>
+    <linearGradient id="rail" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#38bdf8"/>
+      <stop offset="0.55" stop-color="#22c55e"/>
+      <stop offset="1" stop-color="#f59e0b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="360" fill="url(#bg)"/>
+  <g opacity="0.16" stroke="#dbeafe" stroke-width="1">
+    <path d="M72 74h1056M72 122h1056M72 170h1056M72 218h1056M72 266h1056"/>
+    <path d="M150 52v256M300 52v256M450 52v256M600 52v256M750 52v256M900 52v256M1050 52v256"/>
+  </g>
+  <rect x="80" y="64" width="1040" height="232" rx="20" fill="#07111f" opacity="0.74" stroke="#5eead4" stroke-opacity="0.24"/>
+  <path d="M130 230c120-86 198-88 292-28 86 55 165 54 244-13 86-73 176-78 272-16 40 26 80 42 132 43" fill="none" stroke="url(#rail)" stroke-width="8" stroke-linecap="round"/>
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <text x="128" y="130" fill="#f8fafc" font-size="45" font-weight="700">Docker Gordon Side Experiments</text>
+    <text x="130" y="176" fill="#bfdbfe" font-size="24">Boundary mapping, prompt wrappers, context evidence, and governance checks</text>
+    <g font-size="18" fill="#e2e8f0">
+      <rect x="130" y="240" width="155" height="38" rx="8" fill="#0f2537" stroke="#38bdf8" stroke-opacity="0.5"/>
+      <text x="154" y="265">Prompt A/B</text>
+      <rect x="310" y="240" width="190" height="38" rx="8" fill="#102b24" stroke="#22c55e" stroke-opacity="0.5"/>
+      <text x="334" y="265">Boundary Tests</text>
+      <rect x="525" y="240" width="175" height="38" rx="8" fill="#292316" stroke="#f59e0b" stroke-opacity="0.5"/>
+      <text x="550" y="265">Safety Scoring</text>
+      <rect x="725" y="240" width="190" height="38" rx="8" fill="#172036" stroke="#a78bfa" stroke-opacity="0.5"/>
+      <text x="750" y="265">Evidence Logs</text>
+    </g>
+  </g>
+</svg>
