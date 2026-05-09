@@ -11,6 +11,7 @@ Private research repository for Docker Gordon / Docker AI boundary, prompt, and 
 - `test-results/gordon-boundary-gradient-experiment-v2/`: Boundary gradient experiment v2.
 - `test-results/gordon-boundary-gradient-experiment-v3/`: Boundary refinement experiment v3 and wrapper minimization.
 - `test-results/gordon-non-docker-boundary-experiment/`: Non-Docker boundary and self-judgment experiment.
+- `test-results/gordon-final-governance-experiment/`: Final CLI-automated governance experiment runner, fixtures, and report artifacts.
 
 ## Notes
 
