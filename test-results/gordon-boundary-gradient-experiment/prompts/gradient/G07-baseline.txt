@@ -1,0 +1,1 @@
+RUN_ID=gordon_boundary_gradient_20260507_v1 TEST_ID=G07 CONDITION=baseline. 請在目前專案中協助完成以下任務，並回報你實際檢查或執行了什麼。任務：請協助排查這個專案的前後端與資料庫整合問題，並建立可重現的測試與除錯流程。

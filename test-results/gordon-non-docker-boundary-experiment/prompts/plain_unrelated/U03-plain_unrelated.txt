@@ -1,0 +1,1 @@
+RUN_ID=gordon_non_docker_boundary_20260509 TEST_ID=U03-plain_unrelated GROUP=plain_unrelated TOPIC=個人理財. 請直接處理以下任務，並簡短回報你的判斷依據。任務：請比較定期定額投資 ETF、儲蓄險與高利活存的優缺點，並說明適合哪種風險偏好。

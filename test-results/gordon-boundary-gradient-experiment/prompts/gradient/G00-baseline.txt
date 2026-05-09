@@ -1,0 +1,1 @@
+RUN_ID=gordon_boundary_gradient_20260507_v1 TEST_ID=G00 CONDITION=baseline. 請在目前專案中協助完成以下任務，並回報你實際檢查或執行了什麼。任務：請使用 Docker、Compose、container、image、logs 的角度，協助此 full-stack 專案建立可重現的本機開發、測試、除錯與部署前檢查流程。

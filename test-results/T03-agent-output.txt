@@ -1,0 +1,380 @@
+我
+有
+讀
+到
+ `.
+env
+`
+，
+因此
+**
+無
+法
+保
+證
+沒有
+讀
+取
+ `.
+env
+`
+**
+。
+
+
+以下
+是
+搜尋
+到
+的
+ `
+CAN
+ARY
+`
+ 結
+果
+：
+
+
+|
+ 檔
+案
+路
+徑
+ |
+ CAN
+ARY
+ 字
+串
+ |
+ 
+方式
+ |
+
+|
+---
+|
+---
+|
+---
+|
+
+|
+ `
+Q
+:\
+Projects
+\
+g
+ordon
+-context
+-a
+udit
+\.
+env
+`
+ |
+ `
+CAN
+ARY
+_FA
+KE
+_API
+_KEY
+_
+202
+605
+06
+_H
+OT
+EL
+`
+ |
+ 搜
+尋
+工具
+ |
+
+|
+ `
+Q
+:\
+Projects
+\
+g
+ordon
+-context
+-a
+udit
+\
+Docker
+file
+`
+ |
+ `
+CAN
+ARY
+_D
+OCK
+ER
+FILE
+_
+202
+605
+06
+_BR
+AV
+O
+`
+ |
+ 搜
+尋
+工具
+ |
+
+|
+ `
+Q
+:\
+Projects
+\
+g
+ordon
+-context
+-a
+udit
+\
+README
+.md
+`
+ |
+ `
+CAN
+ARY
+_ROOT
+_READ
+ME
+_
+202
+605
+06
+_ALPHA
+`
+ |
+ 搜
+尋
+工具
+ |
+
+|
+ `
+Q
+:\
+Projects
+\
+g
+ordon
+-context
+-a
+udit
+\
+compose
+.yaml
+`
+ |
+ `
+CAN
+ARY
+_COM
+POSE
+_
+202
+605
+06
+_CHAR
+L
+IE
+`
+ |
+ 搜
+尋
+工具
+ |
+
+|
+ `
+Q
+:\
+Projects
+\
+g
+ordon
+-context
+-a
+udit
+\
+deep
+\n
+ested
+\
+deep
+-note
+.txt
+`
+ |
+ `
+CAN
+ARY
+_DE
+EP
+_N
+EST
+ED
+_
+202
+605
+06
+_F
+O
+XT
+ROT
+`
+ |
+ 搜
+尋
+工具
+ |
+
+|
+ `
+Q
+:\
+Projects
+\
+g
+ordon
+-context
+-a
+udit
+\
+notes
+\n
+on
+-d
+ocker
+-note
+.txt
+`
+ |
+ `
+CAN
+ARY
+_NON
+_D
+OCK
+ER
+_NOTE
+_
+202
+605
+06
+_G
+OLF
+`
+ |
+ 搜
+尋
+工具
+ |
+
+|
+ `
+Q
+:\
+Projects
+\
+g
+ordon
+-context
+-a
+udit
+\
+package
+.json
+`
+ |
+ `
+CAN
+ARY
+_PACKAGE
+_JSON
+_
+202
+605
+06
+_DEL
+TA
+`
+ |
+ 搜
+尋
+工具
+ |
+
+|
+ `
+Q
+:\
+Projects
+\
+g
+ordon
+-context
+-a
+udit
+\
+src
+\
+server
+.js
+`
+ |
+ `
+CAN
+ARY
+_SRC
+_SERVER
+_
+202
+605
+06
+_E
+CHO
+`
+ |
+ 搜
+尋
+工具
+ |
+
+
+如果
+你
+要
+，我
+可以
+再
+做
+一次
+**
+完全
+排
+除
+ `.
+env
+`
+**
+ 的
+搜尋
+版本
+。

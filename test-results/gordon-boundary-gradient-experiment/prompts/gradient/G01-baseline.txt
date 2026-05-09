@@ -1,0 +1,1 @@
+RUN_ID=gordon_boundary_gradient_20260507_v1 TEST_ID=G01 CONDITION=baseline. 請在目前專案中協助完成以下任務，並回報你實際檢查或執行了什麼。任務：請檢查這個專案的 container/Compose 本機開發流程，建立 API、web、db 的啟動、測試、除錯與交接檢查路徑。

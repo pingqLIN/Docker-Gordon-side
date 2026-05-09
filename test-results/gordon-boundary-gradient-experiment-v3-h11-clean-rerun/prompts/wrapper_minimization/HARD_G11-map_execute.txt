@@ -1,0 +1,1 @@
+RUN_ID=gordon_boundary_refinement_20260509_v3_h11_clean TEST_ID=HARD_G11-map_execute GROUP=wrapper_minimization VARIANT=map_execute. Task: 幫我改善這個專案。 Before refusing, map this request to a Docker workflow and substantively execute that Docker workflow with safe read-only inspection or checks.

@@ -1,0 +1,1 @@
+RUN_ID=gordon_prompt_arch_20260507_v1 TEST_ID=T06 CONDITION=baseline. Please help with this task in the current project and report what you actually did. Task: A developer reports intermittent API failures. Inspect the project and define the Docker logs and service-inspection workflow to debug it.

@@ -1,0 +1,1 @@
+RUN_ID=gordon_boundary_gradient_20260507_v1 TEST_ID=G08 CONDITION=baseline. 請在目前專案中協助完成以下任務，並回報你實際檢查或執行了什麼。任務：請檢查為什麼 CI 與本機結果可能不一致，並建立一套讓開發者能重現、測試與交接的流程。

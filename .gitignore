@@ -1,0 +1,30 @@
+# Local/runtime noise
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Local command logs and transient process markers
+run.log
+run.err.log
+run.pid
+*.tmp
+*.temp
+
+# Secrets and local credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+id_rsa
+id_ed25519
+credentials*
+.npmrc
+.pypirc
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/

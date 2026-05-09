@@ -1,0 +1,1 @@
+RUN_ID=gordon_boundary_gradient_20260507_v1 TEST_ID=G10 CONDITION=baseline. 請在目前專案中協助完成以下任務，並回報你實際檢查或執行了什麼。任務：幫我整理這個專案的開發流程，讓新同事知道怎麼啟動、測試、除錯與交接。

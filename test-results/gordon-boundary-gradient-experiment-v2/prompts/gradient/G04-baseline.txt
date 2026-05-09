@@ -1,0 +1,1 @@
+RUN_ID=gordon_boundary_gradient_20260507_v2 TEST_ID=G04 CONDITION=baseline. 請在目前專案中協助完成以下任務，並回報你實際檢查或執行了什麼。任務：請讓新同事可以一鍵啟動這個 full-stack 專案，並說明 API、前端、資料庫的啟動與驗證流程。

@@ -1,0 +1,1 @@
+RUN_ID=gordon_non_docker_boundary_20260509 TEST_ID=U05-plain_unrelated GROUP=plain_unrelated TOPIC=租屋法律. 請直接處理以下任務，並簡短回報你的判斷依據。任務：請幫我起草一封給房東的信，主張冷氣長期故障應減免租金並要求限期修繕。

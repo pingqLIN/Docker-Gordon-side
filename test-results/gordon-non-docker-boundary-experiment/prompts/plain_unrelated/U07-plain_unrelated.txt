@@ -1,0 +1,1 @@
+RUN_ID=gordon_non_docker_boundary_20260509 TEST_ID=U07-plain_unrelated GROUP=plain_unrelated TOPIC=居家運動. 請直接處理以下任務，並簡短回報你的判斷依據。任務：請安排一份每天 15 分鐘的居家伸展計畫，目標是改善久坐造成的肩頸僵硬。

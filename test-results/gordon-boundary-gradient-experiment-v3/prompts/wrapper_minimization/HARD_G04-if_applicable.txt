@@ -1,0 +1,1 @@
+RUN_ID=gordon_boundary_refinement_20260509_v3 TEST_ID=HARD_G04-if_applicable GROUP=wrapper_minimization VARIANT=if_applicable. Task: 請讓新同事可以一鍵啟動這個 full-stack 專案，並說明 API、前端、資料庫的啟動與驗證流程。 If applicable, use Docker surfaces such as containers, Compose, images, ports, volumes, logs, build, and local development workflow while answering.

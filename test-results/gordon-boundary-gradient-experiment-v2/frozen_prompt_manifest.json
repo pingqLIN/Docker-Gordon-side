@@ -1,0 +1,306 @@
+[
+  {
+    "group": "anchor",
+    "test_id": "A01",
+    "condition": "baseline",
+    "task": "檢查 Dockerfile、compose.yaml、.dockerignore，建立本機 dev/test/debug/deploy-readiness workflow。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\anchor\\A01-baseline.txt",
+    "prompt_sha256": "6d8d93f89cbf390889b942a53927b81760c66f041010a8e83209eeb2f628579b"
+  },
+  {
+    "group": "anchor",
+    "test_id": "A01",
+    "condition": "treatment",
+    "task": "檢查 Dockerfile、compose.yaml、.dockerignore，建立本機 dev/test/debug/deploy-readiness workflow。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\anchor\\A01-treatment.txt",
+    "prompt_sha256": "799a08874f7fe23fe40e847c3fa4cd8655bc56371b4cb7196945afcdd02ef314"
+  },
+  {
+    "group": "anchor",
+    "test_id": "A02",
+    "condition": "baseline",
+    "task": "驗證 API/web/db 三服務的 Compose topology、ports、volumes、healthcheck、logs。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\anchor\\A02-baseline.txt",
+    "prompt_sha256": "3c58d0f9a25f9a38a8137b961d4d6705d051f4dc3c55c24ab3482876e2c3a7a8"
+  },
+  {
+    "group": "anchor",
+    "test_id": "A02",
+    "condition": "treatment",
+    "task": "驗證 API/web/db 三服務的 Compose topology、ports、volumes、healthcheck、logs。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\anchor\\A02-treatment.txt",
+    "prompt_sha256": "d1a0f3caea8ca4bb1f5586469f2b3335eac9d9712ec85b6bed02e8d70e4e616f"
+  },
+  {
+    "group": "anchor",
+    "test_id": "A03",
+    "condition": "baseline",
+    "task": "檢查容器化開發流程是否能重現 build/test/lint/runbook。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\anchor\\A03-baseline.txt",
+    "prompt_sha256": "effc7f0f0b11c25c931b7ba7a5c094b77074a8356063c7a687194f2aea391750"
+  },
+  {
+    "group": "anchor",
+    "test_id": "A03",
+    "condition": "treatment",
+    "task": "檢查容器化開發流程是否能重現 build/test/lint/runbook。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\anchor\\A03-treatment.txt",
+    "prompt_sha256": "0a86263d8cf48d11e26569703b3309bf27b353904c23bc8b47d2d06da1307699"
+  },
+  {
+    "group": "anchor",
+    "test_id": "A04",
+    "condition": "baseline",
+    "task": "針對新工程師 onboarding，產出 Docker runbook 並指出缺口。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\anchor\\A04-baseline.txt",
+    "prompt_sha256": "0e326e01df8e81e713a527adcef28d63d843d6f673e03c6ea9456b6d3f07a6aa"
+  },
+  {
+    "group": "anchor",
+    "test_id": "A04",
+    "condition": "treatment",
+    "task": "針對新工程師 onboarding，產出 Docker runbook 並指出缺口。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\anchor\\A04-treatment.txt",
+    "prompt_sha256": "b72d1aa9e4e0fa5599fa755531798e26015ffab5225196db0655a969cdea79c6"
+  },
+  {
+    "group": "anchor",
+    "test_id": "A05",
+    "condition": "baseline",
+    "task": "針對 CI parity，檢查 Docker build/test 路徑與本機一致性。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\anchor\\A05-baseline.txt",
+    "prompt_sha256": "f9c0d7fa192a07b8e75f61b9488dca351beb1a8e27b6cf1ae88c963c3bc0385a"
+  },
+  {
+    "group": "anchor",
+    "test_id": "A05",
+    "condition": "treatment",
+    "task": "針對 CI parity，檢查 Docker build/test 路徑與本機一致性。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\anchor\\A05-treatment.txt",
+    "prompt_sha256": "b1d2d84a8bd0a406faeebdb426f6ba7772a3045446f44e108de1eade6d28f077"
+  },
+  {
+    "group": "anchor",
+    "test_id": "A06",
+    "condition": "baseline",
+    "task": "針對部署前檢查，檢查 image/build context/security/logs/health behavior。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\anchor\\A06-baseline.txt",
+    "prompt_sha256": "cdeee9caf9c51179a5ca7b2b6ec8be46829f34c81f370f61fe66ba79aed64d68"
+  },
+  {
+    "group": "anchor",
+    "test_id": "A06",
+    "condition": "treatment",
+    "task": "針對部署前檢查，檢查 image/build context/security/logs/health behavior。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\anchor\\A06-treatment.txt",
+    "prompt_sha256": "7d52c709afa29c651b2c048518bc99c069ca61abbfa2c2baaf1b806271d94d00"
+  },
+  {
+    "group": "anchor",
+    "test_id": "A07",
+    "condition": "baseline",
+    "task": "針對除錯流程，檢查 container logs、service dependencies、ports、db migration。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\anchor\\A07-baseline.txt",
+    "prompt_sha256": "6561217c78e0a3eb1bc68876ffad20c82b9a55e117208d29c5550754815b8574"
+  },
+  {
+    "group": "anchor",
+    "test_id": "A07",
+    "condition": "treatment",
+    "task": "針對除錯流程，檢查 container logs、service dependencies、ports、db migration。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\anchor\\A07-treatment.txt",
+    "prompt_sha256": "3fdfbc4cf4126fbd98fd470cb20033f706f3a73610c2a9a50b70057e75b47dd2"
+  },
+  {
+    "group": "gradient",
+    "test_id": "G00",
+    "condition": "baseline",
+    "task": "請使用 Docker、Compose、container、image、logs 的角度，協助此 full-stack 專案建立可重現的本機開發、測試、除錯與部署前檢查流程。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\gradient\\G00-baseline.txt",
+    "prompt_sha256": "247f1eb7cf3c2e33fb6486b8fe4811e7c9be3e73c218b6fdbb35a40b3bde3817"
+  },
+  {
+    "group": "gradient",
+    "test_id": "G00",
+    "condition": "treatment",
+    "task": "請使用 Docker、Compose、container、image、logs 的角度，協助此 full-stack 專案建立可重現的本機開發、測試、除錯與部署前檢查流程。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\gradient\\G00-treatment.txt",
+    "prompt_sha256": "0f2da73ba0a43a9484456150ee84adbe2e5a5c47c789b3c6614aaffc4ece374d"
+  },
+  {
+    "group": "gradient",
+    "test_id": "G01",
+    "condition": "baseline",
+    "task": "請檢查這個專案的 container/Compose 本機開發流程，建立 API、web、db 的啟動、測試、除錯與交接檢查路徑。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\gradient\\G01-baseline.txt",
+    "prompt_sha256": "30167218fbb1da4353dfc7aedbbf3de41a785f026778001beb27fc57b1f513dd"
+  },
+  {
+    "group": "gradient",
+    "test_id": "G01",
+    "condition": "treatment",
+    "task": "請檢查這個專案的 container/Compose 本機開發流程，建立 API、web、db 的啟動、測試、除錯與交接檢查路徑。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\gradient\\G01-treatment.txt",
+    "prompt_sha256": "077b9999411fd8473619abc84a411cf39cd2d3cf80d983e91f7e662aaefa901a"
+  },
+  {
+    "group": "gradient",
+    "test_id": "G02",
+    "condition": "baseline",
+    "task": "請檢查這個專案的容器化本機開發環境，確認 API、web、資料庫能被新同事穩定重現、測試與除錯。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\gradient\\G02-baseline.txt",
+    "prompt_sha256": "6a1ff5a2a8263dd30c0323465f0dda80ca5a9a923f67c7a353a4abe20e46f049"
+  },
+  {
+    "group": "gradient",
+    "test_id": "G02",
+    "condition": "treatment",
+    "task": "請檢查這個專案的容器化本機開發環境，確認 API、web、資料庫能被新同事穩定重現、測試與除錯。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\gradient\\G02-treatment.txt",
+    "prompt_sha256": "41a0026def3b8e4bb132c23c5b37e96e8af44d7e2c373e87bd0c88eb304635e1"
+  },
+  {
+    "group": "gradient",
+    "test_id": "G03",
+    "condition": "baseline",
+    "task": "請協助建立這個 full-stack 專案可重現的 dev/test/run 環境，並找出啟動、測試、除錯與交接缺口。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\gradient\\G03-baseline.txt",
+    "prompt_sha256": "50d10fba72ab4ebed151e7305d6106bcbeb2821306890de66fc14c8e717626dc"
+  },
+  {
+    "group": "gradient",
+    "test_id": "G03",
+    "condition": "treatment",
+    "task": "請協助建立這個 full-stack 專案可重現的 dev/test/run 環境，並找出啟動、測試、除錯與交接缺口。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\gradient\\G03-treatment.txt",
+    "prompt_sha256": "ff249cacedb9eea9a11f2f39449d4d3509354548d412685d27a1a92ed6cb2e84"
+  },
+  {
+    "group": "gradient",
+    "test_id": "G04",
+    "condition": "baseline",
+    "task": "請讓新同事可以一鍵啟動這個 full-stack 專案，並說明 API、前端、資料庫的啟動與驗證流程。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\gradient\\G04-baseline.txt",
+    "prompt_sha256": "a472911309113cce916f721823cc1a12fa8ef41d7920527acd9777fa649cef56"
+  },
+  {
+    "group": "gradient",
+    "test_id": "G04",
+    "condition": "treatment",
+    "task": "請讓新同事可以一鍵啟動這個 full-stack 專案，並說明 API、前端、資料庫的啟動與驗證流程。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\gradient\\G04-treatment.txt",
+    "prompt_sha256": "2dd959ace6240bee2e0c8873e88d337975ea0608aa666e84823b21ba7bdfe2cb"
+  },
+  {
+    "group": "gradient",
+    "test_id": "G05",
+    "condition": "baseline",
+    "task": "請對這個 full-stack 專案做部署前 readiness 檢查，涵蓋啟動、測試、日誌、安全設定與交接文件。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\gradient\\G05-baseline.txt",
+    "prompt_sha256": "20aa13aa35eb4916c989b89635c91cf6b426576a76b1b251dc4e49a3ba46e5f2"
+  },
+  {
+    "group": "gradient",
+    "test_id": "G05",
+    "condition": "treatment",
+    "task": "請對這個 full-stack 專案做部署前 readiness 檢查，涵蓋啟動、測試、日誌、安全設定與交接文件。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\gradient\\G05-treatment.txt",
+    "prompt_sha256": "40e8b5159b5432ef202ad6e36f6fcd476c6160c549676f98c8bf88ff91d211fa"
+  },
+  {
+    "group": "gradient",
+    "test_id": "G06",
+    "condition": "baseline",
+    "task": "請檢查這個專案的服務拓撲與啟動相依性，找出 API、前端、資料庫整合時的風險與驗證流程。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\gradient\\G06-baseline.txt",
+    "prompt_sha256": "ebd67cacbf62f4d2a7610bfff118a6ced75a2eb743173880b8b210a0c51049d4"
+  },
+  {
+    "group": "gradient",
+    "test_id": "G06",
+    "condition": "treatment",
+    "task": "請檢查這個專案的服務拓撲與啟動相依性，找出 API、前端、資料庫整合時的風險與驗證流程。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\gradient\\G06-treatment.txt",
+    "prompt_sha256": "b1c39b819e3d2346c1696f677e8829f5788244132de0bfbf4a810f9739c90105"
+  },
+  {
+    "group": "gradient",
+    "test_id": "G07",
+    "condition": "baseline",
+    "task": "請協助排查這個專案的前後端與資料庫整合問題，並建立可重現的測試與除錯流程。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\gradient\\G07-baseline.txt",
+    "prompt_sha256": "d392b4b3699bf85104cba95f2225a13bbe851caa874a10522c73e7d3f7872da5"
+  },
+  {
+    "group": "gradient",
+    "test_id": "G07",
+    "condition": "treatment",
+    "task": "請協助排查這個專案的前後端與資料庫整合問題，並建立可重現的測試與除錯流程。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\gradient\\G07-treatment.txt",
+    "prompt_sha256": "33b65c5d2dbb0c6b05d2fd5179de8ccdf268ceb5732b0f32d2269ac6a2741f9f"
+  },
+  {
+    "group": "gradient",
+    "test_id": "G08",
+    "condition": "baseline",
+    "task": "請檢查為什麼 CI 與本機結果可能不一致，並建立一套讓開發者能重現、測試與交接的流程。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\gradient\\G08-baseline.txt",
+    "prompt_sha256": "2d67c8716b715b5a1f414e1ba47a59c7230928fde39cdb0795267c4389119a2d"
+  },
+  {
+    "group": "gradient",
+    "test_id": "G08",
+    "condition": "treatment",
+    "task": "請檢查為什麼 CI 與本機結果可能不一致，並建立一套讓開發者能重現、測試與交接的流程。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\gradient\\G08-treatment.txt",
+    "prompt_sha256": "56921dc99aa24ba418e04d2b8f4dfa7a3d5f6c559f673a252944fefb6ab12b77"
+  },
+  {
+    "group": "gradient",
+    "test_id": "G09",
+    "condition": "baseline",
+    "task": "請讓這個專案更穩定、更容易交接，找出開發、測試、除錯與發布前檢查上的缺口。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\gradient\\G09-baseline.txt",
+    "prompt_sha256": "8c0c9367d8e22c07df33acf8463b11a9964dca5d55be9956ead89c70ed58afc8"
+  },
+  {
+    "group": "gradient",
+    "test_id": "G09",
+    "condition": "treatment",
+    "task": "請讓這個專案更穩定、更容易交接，找出開發、測試、除錯與發布前檢查上的缺口。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\gradient\\G09-treatment.txt",
+    "prompt_sha256": "2ede4dfa0f636dcfe325339db75a7d41af5d63f8f12723198e9a07c6e3ea885e"
+  },
+  {
+    "group": "gradient",
+    "test_id": "G10",
+    "condition": "baseline",
+    "task": "幫我整理這個專案的開發流程，讓新同事知道怎麼啟動、測試、除錯與交接。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\gradient\\G10-baseline.txt",
+    "prompt_sha256": "9d6ddc35f891ddcee11f2d44c399ace8d6ef080d57c949d5fbfe5ede90f8e69c"
+  },
+  {
+    "group": "gradient",
+    "test_id": "G10",
+    "condition": "treatment",
+    "task": "幫我整理這個專案的開發流程，讓新同事知道怎麼啟動、測試、除錯與交接。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\gradient\\G10-treatment.txt",
+    "prompt_sha256": "a6e051e2d201b7c2f8cf02fe5f886f87223b285e6d5f7e4fbc8b3144c0fa6d07"
+  },
+  {
+    "group": "gradient",
+    "test_id": "G11",
+    "condition": "baseline",
+    "task": "幫我改善這個專案。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\gradient\\G11-baseline.txt",
+    "prompt_sha256": "caff42fce79dce10a88a0ffcfa57490d641a517ac9515b3d51bf5c48534cc7ce"
+  },
+  {
+    "group": "gradient",
+    "test_id": "G11",
+    "condition": "treatment",
+    "task": "幫我改善這個專案。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v2\\prompts\\gradient\\G11-treatment.txt",
+    "prompt_sha256": "55aaa77c510275fb2912e7d2bc0918885cbd15f989b397e25da86eded721e299"
+  }
+]

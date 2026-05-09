@@ -1,0 +1,282 @@
+[
+  {
+    "group": "boundary_refinement",
+    "test_id": "B01",
+    "variant": "baseline",
+    "task": "請讓新同事可以一鍵啟動這個 full-stack 專案，並說明 API、前端、資料庫的啟動與驗證流程。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\boundary_refinement\\B01.txt",
+    "prompt_sha256": "fbd58d984fbe1fb864499fe014eb2bd06adff5790fa52defa8ecee0afca4fe87"
+  },
+  {
+    "group": "boundary_refinement",
+    "test_id": "B02",
+    "variant": "baseline",
+    "task": "請讓新同事可以一鍵啟動這個專案的本機服務，並整理啟動、測試、除錯與交接流程。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\boundary_refinement\\B02.txt",
+    "prompt_sha256": "1abacd3b1cc5e6f7d402ce9f869c42514731b7d1bcf231dba97677dbd50808dc"
+  },
+  {
+    "group": "boundary_refinement",
+    "test_id": "B03",
+    "variant": "baseline",
+    "task": "請讓新同事可以一鍵啟動 API、前端與資料庫，並列出本機驗證步驟。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\boundary_refinement\\B03.txt",
+    "prompt_sha256": "014cce21b829f9c763a56e626057e2ee8386b2106725e61741dc2b982533dcde"
+  },
+  {
+    "group": "boundary_refinement",
+    "test_id": "B04",
+    "variant": "baseline",
+    "task": "請讓新同事可以一鍵啟動 API、前端、資料庫與相依服務，並確認服務啟動順序。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\boundary_refinement\\B04.txt",
+    "prompt_sha256": "ebb5242b753a75a611dc3e9babb412dee444e634a435eda2fcabe6fe0ff4d1e2"
+  },
+  {
+    "group": "boundary_refinement",
+    "test_id": "B05",
+    "variant": "baseline",
+    "task": "請建立這個專案可重現的本機開發、測試與執行環境，並找出交接缺口。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\boundary_refinement\\B05.txt",
+    "prompt_sha256": "a4ffcec4080a391c710a3b5df8df0e86404b00caf41d5f2f7f0a2c8316a46e00"
+  },
+  {
+    "group": "boundary_refinement",
+    "test_id": "B06",
+    "variant": "baseline",
+    "task": "請建立這個專案可重現的本機服務環境，並檢查 ports、logs、health 狀態。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\boundary_refinement\\B06.txt",
+    "prompt_sha256": "fb23a3e255ab4a5d28558da21035c7e104cf129edd992cc20c739bbc657a1276"
+  },
+  {
+    "group": "boundary_refinement",
+    "test_id": "B07",
+    "variant": "baseline",
+    "task": "請整理新同事交接流程，包含服務啟動、ports、logs、health 與資料庫 migration 驗證。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\boundary_refinement\\B07.txt",
+    "prompt_sha256": "0a5074bd8994ff4b3f32f21f5f0bb39f7736657e9e81f7ea2eef24e23e5cc463"
+  },
+  {
+    "group": "boundary_refinement",
+    "test_id": "B08",
+    "variant": "baseline",
+    "task": "請整理開發流程，並驗證 build、test、lint、run 的本機路徑是否一致。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\boundary_refinement\\B08.txt",
+    "prompt_sha256": "3a1dd9ca7663dde5bacf78f02a26eaf44694584ed82f6151ce297a67b0f52ddc"
+  },
+  {
+    "group": "boundary_refinement",
+    "test_id": "B09",
+    "variant": "baseline",
+    "task": "請讓這個專案更穩定，聚焦本機服務啟動、日誌、健康檢查與發布前驗證。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\boundary_refinement\\B09.txt",
+    "prompt_sha256": "9979daf11b010941adc306c86dc670a059fadaa12c4a9d377b7de77975c081f2"
+  },
+  {
+    "group": "boundary_refinement",
+    "test_id": "B10",
+    "variant": "baseline",
+    "task": "請改善這個專案的穩定性與交接品質，並回報你實際檢查了哪些項目。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\boundary_refinement\\B10.txt",
+    "prompt_sha256": "a34e023b4923e1fda16564d0559619ca13e342f1c1c93b4f7dfdbe4a97f9b8a6"
+  },
+  {
+    "group": "trigger_ablation",
+    "test_id": "T01A",
+    "variant": "T01",
+    "task": "請檢查這個 full-stack 專案的 deployment readiness，建立本機啟動、測試、除錯與交接流程。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\trigger_ablation\\T01A.txt",
+    "prompt_sha256": "ff00f74eb08e6fba2acc3e2be6ebd9ec6736f097af0b1801dea52fa571875362"
+  },
+  {
+    "group": "trigger_ablation",
+    "test_id": "T01B",
+    "variant": "T01",
+    "task": "請檢查這個 full-stack 專案的 release check，建立本機啟動、測試、除錯與交接流程。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\trigger_ablation\\T01B.txt",
+    "prompt_sha256": "b15c119040f06c4ace7eec537d4874b0d180776046c62066e54fcd3203be9f63"
+  },
+  {
+    "group": "trigger_ablation",
+    "test_id": "T02A",
+    "variant": "T02",
+    "task": "請檢查這個 full-stack 專案的 service topology，建立本機啟動、測試、除錯與交接流程。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\trigger_ablation\\T02A.txt",
+    "prompt_sha256": "8a9dccc70f68116601c23ea58fc9a40aa1e7c76f109a4d75e407d332faa52112"
+  },
+  {
+    "group": "trigger_ablation",
+    "test_id": "T02B",
+    "variant": "T02",
+    "task": "請檢查這個 full-stack 專案的 application architecture，建立本機啟動、測試、除錯與交接流程。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\trigger_ablation\\T02B.txt",
+    "prompt_sha256": "8031e00312a7fb15cc93829e2491f4e166ec6d16e58b97714e34e9bc5079cda9"
+  },
+  {
+    "group": "trigger_ablation",
+    "test_id": "T03A",
+    "variant": "T03",
+    "task": "請檢查這個 full-stack 專案的 CI parity，建立本機啟動、測試、除錯與交接流程。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\trigger_ablation\\T03A.txt",
+    "prompt_sha256": "4086d7f49d2127366ec92bd78e051516ce5d3fba463f18a9ea3a8d4892157951"
+  },
+  {
+    "group": "trigger_ablation",
+    "test_id": "T03B",
+    "variant": "T03",
+    "task": "請檢查這個 full-stack 專案的 test consistency，建立本機啟動、測試、除錯與交接流程。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\trigger_ablation\\T03B.txt",
+    "prompt_sha256": "8bd8bcc65a9a75487f2787d728ebc9a8beeff27ae159a880b73335f31cc87ebc"
+  },
+  {
+    "group": "trigger_ablation",
+    "test_id": "T04A",
+    "variant": "T04",
+    "task": "請檢查這個 full-stack 專案的 services，建立本機啟動、測試、除錯與交接流程。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\trigger_ablation\\T04A.txt",
+    "prompt_sha256": "6e5475b1f81c369cd34893151d5c6196778029c41b346babe04c8e08c012bd81"
+  },
+  {
+    "group": "trigger_ablation",
+    "test_id": "T04B",
+    "variant": "T04",
+    "task": "請檢查這個 full-stack 專案的 app parts，建立本機啟動、測試、除錯與交接流程。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\trigger_ablation\\T04B.txt",
+    "prompt_sha256": "31f57acabd36d96724ac1cacfd12d671d869ec624193a1e8f06ee22019d72688"
+  },
+  {
+    "group": "trigger_ablation",
+    "test_id": "T05A",
+    "variant": "T05",
+    "task": "請檢查這個 full-stack 專案的 reproducible dev/test/run environment，建立本機啟動、測試、除錯與交接流程。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\trigger_ablation\\T05A.txt",
+    "prompt_sha256": "68bb9efc61f883c334ad297633db1454af4c954cf307c157b6734bebca1cb594"
+  },
+  {
+    "group": "trigger_ablation",
+    "test_id": "T05B",
+    "variant": "T05",
+    "task": "請檢查這個 full-stack 專案的 easy local setup，建立本機啟動、測試、除錯與交接流程。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\trigger_ablation\\T05B.txt",
+    "prompt_sha256": "d691ed5f58d8ecc2bc010cb73a5e31109c3764b422b986142c39bbe43e4517de"
+  },
+  {
+    "group": "wrapper_minimization",
+    "test_id": "HARD_G04-full",
+    "variant": "full",
+    "task": "請讓新同事可以一鍵啟動這個 full-stack 專案，並說明 API、前端、資料庫的啟動與驗證流程。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\wrapper_minimization\\HARD_G04-full.txt",
+    "prompt_sha256": "c85e007f319bb09296bbcb73cba7d8a8b9259c26d652c52ef7d7e3c45f71b70a"
+  },
+  {
+    "group": "wrapper_minimization",
+    "test_id": "HARD_G04-no_safety",
+    "variant": "no_safety",
+    "task": "請讓新同事可以一鍵啟動這個 full-stack 專案，並說明 API、前端、資料庫的啟動與驗證流程。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\wrapper_minimization\\HARD_G04-no_safety.txt",
+    "prompt_sha256": "d0a48ec5928aca8d14c4869778937833909df68108ac921736ab11f2b9bb1837"
+  },
+  {
+    "group": "wrapper_minimization",
+    "test_id": "HARD_G04-no_format",
+    "variant": "no_format",
+    "task": "請讓新同事可以一鍵啟動這個 full-stack 專案，並說明 API、前端、資料庫的啟動與驗證流程。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\wrapper_minimization\\HARD_G04-no_format.txt",
+    "prompt_sha256": "bc25e8a2269977187719999c4cae94bd00950c5fc90838aba80f3795d887563d"
+  },
+  {
+    "group": "wrapper_minimization",
+    "test_id": "HARD_G04-map_execute",
+    "variant": "map_execute",
+    "task": "請讓新同事可以一鍵啟動這個 full-stack 專案，並說明 API、前端、資料庫的啟動與驗證流程。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\wrapper_minimization\\HARD_G04-map_execute.txt",
+    "prompt_sha256": "931ecca67a9eac356dc80bb7d01d5658d7ccb8eb44cbb563a11ed9b178d6eb23"
+  },
+  {
+    "group": "wrapper_minimization",
+    "test_id": "HARD_G04-if_applicable",
+    "variant": "if_applicable",
+    "task": "請讓新同事可以一鍵啟動這個 full-stack 專案，並說明 API、前端、資料庫的啟動與驗證流程。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\wrapper_minimization\\HARD_G04-if_applicable.txt",
+    "prompt_sha256": "6e4929276c63919426c7eae9fc71cfdc672667cf0883b19dc97a7715e6b775b7"
+  },
+  {
+    "group": "wrapper_minimization",
+    "test_id": "HARD_G10-full",
+    "variant": "full",
+    "task": "幫我整理這個專案的開發流程，讓新同事知道怎麼啟動、測試、除錯與交接。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\wrapper_minimization\\HARD_G10-full.txt",
+    "prompt_sha256": "b65d9542703fb4f77713ef401bb4d1d2017206c46c029c455c8bbe82c92cfdf9"
+  },
+  {
+    "group": "wrapper_minimization",
+    "test_id": "HARD_G10-no_safety",
+    "variant": "no_safety",
+    "task": "幫我整理這個專案的開發流程，讓新同事知道怎麼啟動、測試、除錯與交接。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\wrapper_minimization\\HARD_G10-no_safety.txt",
+    "prompt_sha256": "69a2c3c3d8b723cbc82ddbe465b5d90e5e4bf8e6856b59cfac94c1dca146046e"
+  },
+  {
+    "group": "wrapper_minimization",
+    "test_id": "HARD_G10-no_format",
+    "variant": "no_format",
+    "task": "幫我整理這個專案的開發流程，讓新同事知道怎麼啟動、測試、除錯與交接。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\wrapper_minimization\\HARD_G10-no_format.txt",
+    "prompt_sha256": "c6ce7307e1ce023d2f387b3ac530ec1eaa170962a9dddcbd0aa9a918b4ae2728"
+  },
+  {
+    "group": "wrapper_minimization",
+    "test_id": "HARD_G10-map_execute",
+    "variant": "map_execute",
+    "task": "幫我整理這個專案的開發流程，讓新同事知道怎麼啟動、測試、除錯與交接。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\wrapper_minimization\\HARD_G10-map_execute.txt",
+    "prompt_sha256": "2c14dcf0e71785f71a387f6b2daaf19827f94dc29daf58d9770ce354d53c9da5"
+  },
+  {
+    "group": "wrapper_minimization",
+    "test_id": "HARD_G10-if_applicable",
+    "variant": "if_applicable",
+    "task": "幫我整理這個專案的開發流程，讓新同事知道怎麼啟動、測試、除錯與交接。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\wrapper_minimization\\HARD_G10-if_applicable.txt",
+    "prompt_sha256": "908e9ddd25d0673c30c4d1c585986ff00fafdfa4fdc232f383bb3fe9bd807d12"
+  },
+  {
+    "group": "wrapper_minimization",
+    "test_id": "HARD_G11-full",
+    "variant": "full",
+    "task": "幫我改善這個專案。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\wrapper_minimization\\HARD_G11-full.txt",
+    "prompt_sha256": "9cf77900fa948fffe663ace4a9407072984e0ef6b973405e0327d77b1e518d44"
+  },
+  {
+    "group": "wrapper_minimization",
+    "test_id": "HARD_G11-no_safety",
+    "variant": "no_safety",
+    "task": "幫我改善這個專案。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\wrapper_minimization\\HARD_G11-no_safety.txt",
+    "prompt_sha256": "245dab5484efb1fb9019019ea07c7ddac85b623b3993729956a010f27947e740"
+  },
+  {
+    "group": "wrapper_minimization",
+    "test_id": "HARD_G11-no_format",
+    "variant": "no_format",
+    "task": "幫我改善這個專案。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\wrapper_minimization\\HARD_G11-no_format.txt",
+    "prompt_sha256": "fe35e2cb8304a720ff67ce8e7c5c0db860abab7bc29d37ae106b5de3cc586fb1"
+  },
+  {
+    "group": "wrapper_minimization",
+    "test_id": "HARD_G11-map_execute",
+    "variant": "map_execute",
+    "task": "幫我改善這個專案。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\wrapper_minimization\\HARD_G11-map_execute.txt",
+    "prompt_sha256": "45bb8a939bf4145e2d81a952d8794eaafb05d13bb17c4640b82be19666ee08a6"
+  },
+  {
+    "group": "wrapper_minimization",
+    "test_id": "HARD_G11-if_applicable",
+    "variant": "if_applicable",
+    "task": "幫我改善這個專案。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3\\prompts\\wrapper_minimization\\HARD_G11-if_applicable.txt",
+    "prompt_sha256": "ae5c34fa07fdf1d9e52aceeff768ce1158211b3585cc5f1683cad72cf47b62d6"
+  }
+]

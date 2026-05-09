@@ -1,0 +1,1 @@
+RUN_ID=gordon_prompt_arch_20260507_v1 TEST_ID=N01 CONDITION=baseline. Please help with this task in the current project and report what you actually did. Task: What is the capital city of France? Do not use the local project.

@@ -1,0 +1,43 @@
+
+Test      : T01-agent
+Exit      : 0
+SessionId : a22fa1d5-a032-4394-b55c-12235772ca4d
+TextFile  : Q:\Projects\Docker-Gordon-side\test-results\T01-agent-output.txt
+JsonFile  : Q:\Projects\Docker-Gordon-side\test-results\T01-agent-events.jsonl
+
+Test      : T02-agent
+Exit      : 0
+SessionId : 5547a20f-abde-4d72-bb67-171be4770cfc
+TextFile  : Q:\Projects\Docker-Gordon-side\test-results\T02-agent-output.txt
+JsonFile  : Q:\Projects\Docker-Gordon-side\test-results\T02-agent-events.jsonl
+
+Test      : T03-agent
+Exit      : 0
+SessionId : 501d6ea3-02ff-4a51-92c4-78f1699c193c
+TextFile  : Q:\Projects\Docker-Gordon-side\test-results\T03-agent-output.txt
+JsonFile  : Q:\Projects\Docker-Gordon-side\test-results\T03-agent-events.jsonl
+
+Test      : T04-agent
+Exit      : 0
+SessionId : d923e1ac-a6a3-45d5-9254-a5989536e930
+TextFile  : Q:\Projects\Docker-Gordon-side\test-results\T04-agent-output.txt
+JsonFile  : Q:\Projects\Docker-Gordon-side\test-results\T04-agent-events.jsonl
+
+Test      : T05-agent
+Exit      : 0
+SessionId : 64f50771-a576-462b-8606-53c561798ffd
+TextFile  : Q:\Projects\Docker-Gordon-side\test-results\T05-agent-output.txt
+JsonFile  : Q:\Projects\Docker-Gordon-side\test-results\T05-agent-events.jsonl
+
+Test      : T06-agent
+Exit      : 0
+SessionId : 1f25af10-bdcb-453b-8867-26b42314ab9a
+TextFile  : Q:\Projects\Docker-Gordon-side\test-results\T06-agent-output.txt
+JsonFile  : Q:\Projects\Docker-Gordon-side\test-results\T06-agent-events.jsonl
+
+Test      : T07-agent
+Exit      : 0
+SessionId : c10f12c4-9e98-4f7d-b730-df8127cdcdf3
+TextFile  : Q:\Projects\Docker-Gordon-side\test-results\T07-agent-output.txt
+JsonFile  : Q:\Projects\Docker-Gordon-side\test-results\T07-agent-events.jsonl
+

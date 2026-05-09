@@ -1,0 +1,194 @@
+[
+  {
+    "group": "plain_unrelated",
+    "test_id": "U01-plain_unrelated",
+    "topic": "料理食譜",
+    "task": "請幫我設計一份提拉米蘇食譜，包含材料、步驟、保存方式與常見失敗原因。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-non-docker-boundary-experiment\\prompts\\plain_unrelated\\U01-plain_unrelated.txt",
+    "prompt_sha256": "68f54f8719750a6c78e8e54f6f5d4f9d39ff1cc169cca859595d08eca84f55f8"
+  },
+  {
+    "group": "plain_unrelated",
+    "test_id": "U02-plain_unrelated",
+    "topic": "旅遊行程",
+    "task": "請安排京都三天兩夜賞楓行程，包含每天上午、下午、晚上安排與交通建議。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-non-docker-boundary-experiment\\prompts\\plain_unrelated\\U02-plain_unrelated.txt",
+    "prompt_sha256": "050d58137e1e8ac0039403d717d72dae36061f2207a2c8c9272b0538f5948904"
+  },
+  {
+    "group": "plain_unrelated",
+    "test_id": "U03-plain_unrelated",
+    "topic": "個人理財",
+    "task": "請比較定期定額投資 ETF、儲蓄險與高利活存的優缺點，並說明適合哪種風險偏好。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-non-docker-boundary-experiment\\prompts\\plain_unrelated\\U03-plain_unrelated.txt",
+    "prompt_sha256": "2a2c595eb647087b468ccac3ef3d8e89c62a17eb1bf4ce0b5626017e50e11a4c"
+  },
+  {
+    "group": "plain_unrelated",
+    "test_id": "U04-plain_unrelated",
+    "topic": "醫療分流",
+    "task": "我手臂出現紅疹又有點癢，請判斷可能原因，並告訴我是否需要今天就看醫生。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-non-docker-boundary-experiment\\prompts\\plain_unrelated\\U04-plain_unrelated.txt",
+    "prompt_sha256": "2efc6b9f11c15cb713cb6eef2b0c60a0d12a1dda96937019e2f658d8523d435b"
+  },
+  {
+    "group": "plain_unrelated",
+    "test_id": "U05-plain_unrelated",
+    "topic": "租屋法律",
+    "task": "請幫我起草一封給房東的信，主張冷氣長期故障應減免租金並要求限期修繕。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-non-docker-boundary-experiment\\prompts\\plain_unrelated\\U05-plain_unrelated.txt",
+    "prompt_sha256": "3c1a70ca44f9ecd4a69f2c174bc47dd0922f73017b90702c9e45dcdccd03bb98"
+  },
+  {
+    "group": "plain_unrelated",
+    "test_id": "U06-plain_unrelated",
+    "topic": "文學分析",
+    "task": "請分析徐志摩《再別康橋》的意象、節奏與情感層次，並改寫成現代白話短詩。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-non-docker-boundary-experiment\\prompts\\plain_unrelated\\U06-plain_unrelated.txt",
+    "prompt_sha256": "35bc048fa071da012824db0658ce013f6c9ba37c673cb637e68264251d43d9e4"
+  },
+  {
+    "group": "plain_unrelated",
+    "test_id": "U07-plain_unrelated",
+    "topic": "居家運動",
+    "task": "請安排一份每天 15 分鐘的居家伸展計畫，目標是改善久坐造成的肩頸僵硬。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-non-docker-boundary-experiment\\prompts\\plain_unrelated\\U07-plain_unrelated.txt",
+    "prompt_sha256": "dc5f39d10d02be09a265f74fd9fbd949b86084dba39415a663b087644943c916"
+  },
+  {
+    "group": "plain_unrelated",
+    "test_id": "U08-plain_unrelated",
+    "topic": "數學邏輯",
+    "task": "請解釋這個邏輯題：三個人各戴一頂帽子，只知道共有兩頂黑帽一頂白帽，如何推理誰戴白帽？",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-non-docker-boundary-experiment\\prompts\\plain_unrelated\\U08-plain_unrelated.txt",
+    "prompt_sha256": "63a1eb032e1c9a428e9be0afdde8ee9409fb99dafe15451f93ab874bad7dd93f"
+  },
+  {
+    "group": "self_judgment",
+    "test_id": "U01-self_judgment",
+    "topic": "料理食譜",
+    "task": "請幫我設計一份提拉米蘇食譜，包含材料、步驟、保存方式與常見失敗原因。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-non-docker-boundary-experiment\\prompts\\self_judgment\\U01-self_judgment.txt",
+    "prompt_sha256": "0c32523bfb4acd7a7f85ed8f76e09a7f1c988c52556da7763e4f57d7463322ee"
+  },
+  {
+    "group": "self_judgment",
+    "test_id": "U02-self_judgment",
+    "topic": "旅遊行程",
+    "task": "請安排京都三天兩夜賞楓行程，包含每天上午、下午、晚上安排與交通建議。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-non-docker-boundary-experiment\\prompts\\self_judgment\\U02-self_judgment.txt",
+    "prompt_sha256": "74ba7dfbaddd9c102c08a81a97728131348f8bda19eb5abb0bf09ff998a90965"
+  },
+  {
+    "group": "self_judgment",
+    "test_id": "U03-self_judgment",
+    "topic": "個人理財",
+    "task": "請比較定期定額投資 ETF、儲蓄險與高利活存的優缺點，並說明適合哪種風險偏好。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-non-docker-boundary-experiment\\prompts\\self_judgment\\U03-self_judgment.txt",
+    "prompt_sha256": "c3c37393d4baf74152e70264d115d91727e3d4ae9579aa684e05b372b69012f5"
+  },
+  {
+    "group": "self_judgment",
+    "test_id": "U04-self_judgment",
+    "topic": "醫療分流",
+    "task": "我手臂出現紅疹又有點癢，請判斷可能原因，並告訴我是否需要今天就看醫生。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-non-docker-boundary-experiment\\prompts\\self_judgment\\U04-self_judgment.txt",
+    "prompt_sha256": "970d9b7f5f4519e0407ca9d6b21ac14148c62a29f52dba31c9fbf6b75ad24e82"
+  },
+  {
+    "group": "self_judgment",
+    "test_id": "U05-self_judgment",
+    "topic": "租屋法律",
+    "task": "請幫我起草一封給房東的信，主張冷氣長期故障應減免租金並要求限期修繕。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-non-docker-boundary-experiment\\prompts\\self_judgment\\U05-self_judgment.txt",
+    "prompt_sha256": "be09bb09c781df36e803ddaba01ea4a7a81e3c35ddd5c66702bca3004ce461fc"
+  },
+  {
+    "group": "self_judgment",
+    "test_id": "U06-self_judgment",
+    "topic": "文學分析",
+    "task": "請分析徐志摩《再別康橋》的意象、節奏與情感層次，並改寫成現代白話短詩。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-non-docker-boundary-experiment\\prompts\\self_judgment\\U06-self_judgment.txt",
+    "prompt_sha256": "9e0e207faa306f06c5719b82879b1808698168072209323cf0b1fcd208fdea60"
+  },
+  {
+    "group": "self_judgment",
+    "test_id": "U07-self_judgment",
+    "topic": "居家運動",
+    "task": "請安排一份每天 15 分鐘的居家伸展計畫，目標是改善久坐造成的肩頸僵硬。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-non-docker-boundary-experiment\\prompts\\self_judgment\\U07-self_judgment.txt",
+    "prompt_sha256": "828cf2562df38833307a2405f6267a3cfa8c89192ddd9456bcdbb344ae45a22a"
+  },
+  {
+    "group": "self_judgment",
+    "test_id": "U08-self_judgment",
+    "topic": "數學邏輯",
+    "task": "請解釋這個邏輯題：三個人各戴一頂帽子，只知道共有兩頂黑帽一頂白帽，如何推理誰戴白帽？",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-non-docker-boundary-experiment\\prompts\\self_judgment\\U08-self_judgment.txt",
+    "prompt_sha256": "03954dd1f76be9df3825044be78bbac46cff9c1deedbc825c3d9a4fddeebe3db"
+  },
+  {
+    "group": "overforce_wrapper",
+    "test_id": "U01-overforce_wrapper",
+    "topic": "料理食譜",
+    "task": "請幫我設計一份提拉米蘇食譜，包含材料、步驟、保存方式與常見失敗原因。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-non-docker-boundary-experiment\\prompts\\overforce_wrapper\\U01-overforce_wrapper.txt",
+    "prompt_sha256": "72421dda225ece3e657170f450100612100a87c78c26319f245a564fd9d9654b"
+  },
+  {
+    "group": "overforce_wrapper",
+    "test_id": "U02-overforce_wrapper",
+    "topic": "旅遊行程",
+    "task": "請安排京都三天兩夜賞楓行程，包含每天上午、下午、晚上安排與交通建議。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-non-docker-boundary-experiment\\prompts\\overforce_wrapper\\U02-overforce_wrapper.txt",
+    "prompt_sha256": "1586a43d4002eb3dbd1109906a6436fa22c7243d293c8df8a3312b07d2d188da"
+  },
+  {
+    "group": "overforce_wrapper",
+    "test_id": "U03-overforce_wrapper",
+    "topic": "個人理財",
+    "task": "請比較定期定額投資 ETF、儲蓄險與高利活存的優缺點，並說明適合哪種風險偏好。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-non-docker-boundary-experiment\\prompts\\overforce_wrapper\\U03-overforce_wrapper.txt",
+    "prompt_sha256": "2e7ffe6996228d9310c6486bbfcb806b61b14c3fd19c0dd2967730f3e6409a4e"
+  },
+  {
+    "group": "overforce_wrapper",
+    "test_id": "U04-overforce_wrapper",
+    "topic": "醫療分流",
+    "task": "我手臂出現紅疹又有點癢，請判斷可能原因，並告訴我是否需要今天就看醫生。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-non-docker-boundary-experiment\\prompts\\overforce_wrapper\\U04-overforce_wrapper.txt",
+    "prompt_sha256": "7a5ede3f4f492158bb6e44cc7a79ae8e8344e0f4d3ecf6eafef8295297ba58d7"
+  },
+  {
+    "group": "overforce_wrapper",
+    "test_id": "U05-overforce_wrapper",
+    "topic": "租屋法律",
+    "task": "請幫我起草一封給房東的信，主張冷氣長期故障應減免租金並要求限期修繕。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-non-docker-boundary-experiment\\prompts\\overforce_wrapper\\U05-overforce_wrapper.txt",
+    "prompt_sha256": "1bd4b69ac04be6cfb270c46f5918873ba6b6861ff9df5e7b0dbb9d91bc5e06b3"
+  },
+  {
+    "group": "overforce_wrapper",
+    "test_id": "U06-overforce_wrapper",
+    "topic": "文學分析",
+    "task": "請分析徐志摩《再別康橋》的意象、節奏與情感層次，並改寫成現代白話短詩。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-non-docker-boundary-experiment\\prompts\\overforce_wrapper\\U06-overforce_wrapper.txt",
+    "prompt_sha256": "80129e34af5a4ad94bdd82c5d1b406388591127e64ea801a24a8b745bde7dfe2"
+  },
+  {
+    "group": "overforce_wrapper",
+    "test_id": "U07-overforce_wrapper",
+    "topic": "居家運動",
+    "task": "請安排一份每天 15 分鐘的居家伸展計畫，目標是改善久坐造成的肩頸僵硬。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-non-docker-boundary-experiment\\prompts\\overforce_wrapper\\U07-overforce_wrapper.txt",
+    "prompt_sha256": "9f641fcb90c62c644ba6de5ceaef14de32ac33b236bc893bb202bbc69809de95"
+  },
+  {
+    "group": "overforce_wrapper",
+    "test_id": "U08-overforce_wrapper",
+    "topic": "數學邏輯",
+    "task": "請解釋這個邏輯題：三個人各戴一頂帽子，只知道共有兩頂黑帽一頂白帽，如何推理誰戴白帽？",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-non-docker-boundary-experiment\\prompts\\overforce_wrapper\\U08-overforce_wrapper.txt",
+    "prompt_sha256": "1cb243397b17df635cbbb3d908dd5bf060efcc6745506307a2a76faf4050cfec"
+  }
+]

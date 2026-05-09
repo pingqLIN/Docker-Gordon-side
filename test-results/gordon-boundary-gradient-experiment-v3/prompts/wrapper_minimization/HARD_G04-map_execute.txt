@@ -1,0 +1,1 @@
+RUN_ID=gordon_boundary_refinement_20260509_v3 TEST_ID=HARD_G04-map_execute GROUP=wrapper_minimization VARIANT=map_execute. Task: 請讓新同事可以一鍵啟動這個 full-stack 專案，並說明 API、前端、資料庫的啟動與驗證流程。 Before refusing, map this request to a Docker workflow and substantively execute that Docker workflow with safe read-only inspection or checks.

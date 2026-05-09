@@ -1,0 +1,11 @@
+===== T04 START 2026-05-06T17:20:38.1393376+08:00 =====
+I appreciate the detailed constraints, but I need to clarify: you're asking me to identify the project type without reading files, exploring directories, or running commands. However, I don't have any context about your project yet—no file names, URLs, or descriptions have been provided.
+
+To help you, I need at least one of the following:
+- A project name or description you can tell me
+- A URL or GitHub link
+- A brief summary of what the project does
+- Any details you'd like to share about it
+
+Could you provide that context so I can analyze the project type for you?
+===== T04 EXIT 0 END 2026-05-06T17:20:49.9046422+08:00 =====

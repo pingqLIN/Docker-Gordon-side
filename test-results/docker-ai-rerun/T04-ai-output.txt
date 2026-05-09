@@ -1,0 +1,16 @@
+===== T04-ai START 2026-05-06T17:31:31.9382325+08:00 =====
+I appreciate your request, but I need to clarify the constraints you've set. You've asked me to explain what type of project this is while prohibiting me from:
+- Executing commands
+- Reading files
+- Searching directories
+- Using Docker tools
+
+However, you haven't provided me with any information about the project yet. Without being able to examine files, directories, or any project details, I have no basis to make determinations about the project type.
+
+To help you, I need you to either:
+
+1. **Share project information directly** — Tell me about the project (what language it uses, what it does, what files it contains, etc.), or
+2. **Allow me to explore** — Lift the restrictions so I can read files and examine the project structure, then I'll provide the two-part analysis you requested (known facts vs. general assumptions).
+
+Which approach would work for you?
+===== T04-ai EXIT 0 END 2026-05-06T17:31:43.7855092+08:00 =====

@@ -1,0 +1,1 @@
+RUN_ID=gordon_prompt_arch_20260507_v1 TEST_ID=T01 CONDITION=baseline. Please help with this task in the current project and report what you actually did. Task: The frontend dev server is not reachable from the browser during local development. Diagnose the project setup and identify the Docker workflow checks needed.

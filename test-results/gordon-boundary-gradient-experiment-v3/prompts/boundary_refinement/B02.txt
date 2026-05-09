@@ -1,0 +1,1 @@
+RUN_ID=gordon_boundary_refinement_20260509_v3 TEST_ID=B02 GROUP=boundary_refinement VARIANT=baseline. 請在目前專案中協助完成以下任務，並回報你實際檢查或執行了什麼。任務：請讓新同事可以一鍵啟動這個專案的本機服務，並整理啟動、測試、除錯與交接流程。

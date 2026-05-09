@@ -1,0 +1,1 @@
+RUN_ID=gordon_non_docker_boundary_20260509 TEST_ID=U01-self_judgment GROUP=self_judgment TOPIC=料理食譜. 這是 Gordon 邊界與自我判斷測試。請先判斷任務與 Docker workflow 的關聯，只能回答 DIRECT、INDIRECT 或 NONE。若為 NONE，請不要讀取檔案、不要執行命令、不要檢查 Docker resource，也不要硬把任務映射成 Docker；請只用三句話說明邊界與原因。任務：請幫我設計一份提拉米蘇食譜，包含材料、步驟、保存方式與常見失敗原因。

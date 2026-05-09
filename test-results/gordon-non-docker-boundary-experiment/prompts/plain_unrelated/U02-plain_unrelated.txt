@@ -1,0 +1,1 @@
+RUN_ID=gordon_non_docker_boundary_20260509 TEST_ID=U02-plain_unrelated GROUP=plain_unrelated TOPIC=旅遊行程. 請直接處理以下任務，並簡短回報你的判斷依據。任務：請安排京都三天兩夜賞楓行程，包含每天上午、下午、晚上安排與交通建議。

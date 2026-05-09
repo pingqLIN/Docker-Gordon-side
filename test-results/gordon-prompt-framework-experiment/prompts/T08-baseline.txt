@@ -1,0 +1,1 @@
+RUN_ID=gordon_prompt_arch_20260507_v1 TEST_ID=T08 CONDITION=baseline. Please help with this task in the current project and report what you actually did. Task: Improve onboarding by explaining how a new developer should run this project in Docker. Inspect files and produce the Docker runbook path.

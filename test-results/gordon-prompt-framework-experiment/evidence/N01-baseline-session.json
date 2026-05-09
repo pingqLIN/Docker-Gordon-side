@@ -1,0 +1,58 @@
+[
+  {
+    "position": 0,
+    "item_type": "message",
+    "agent_name": "",
+    "payload": {
+      "role": "user",
+      "content": "RUN_ID=gordon_prompt_arch_20260507_v1 TEST_ID=N01 CONDITION=baseline. Please help with this task in the current project and report what you actually did. Task: What is the capital city of France? Do not use the local project.",
+      "created_at": "2026-05-07T04:15:19+08:00"
+    }
+  },
+  {
+    "position": 1,
+    "item_type": "message",
+    "agent_name": "root",
+    "payload": {
+      "role": "assistant",
+      "content": "The capital city of France is Paris.\n\nThis is a straightforward factual question with no need to interact with the local project or use any tools.",
+      "created_at": "2026-05-07T04:15:22+08:00",
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cached_input_tokens": 0,
+        "cached_write_tokens": 0
+      },
+      "model": "anthropic/claude-haiku-4-5-20251001",
+      "finish_reason": "stop"
+    }
+  },
+  {
+    "position": 2,
+    "item_type": "message",
+    "agent_name": "",
+    "payload": {
+      "role": "user",
+      "content": "y",
+      "created_at": "2026-05-07T04:15:24+08:00"
+    }
+  },
+  {
+    "position": 3,
+    "item_type": "message",
+    "agent_name": "root",
+    "payload": {
+      "role": "assistant",
+      "content": "I'm ready to help. What would you like assistance with?",
+      "created_at": "2026-05-07T04:15:27+08:00",
+      "usage": {
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cached_input_tokens": 0,
+        "cached_write_tokens": 0
+      },
+      "model": "anthropic/claude-haiku-4-5-20251001",
+      "finish_reason": "stop"
+    }
+  }
+]

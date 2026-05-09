@@ -1,0 +1,1 @@
+RUN_ID=gordon_prompt_arch_20260507_v1 TEST_ID=T02 CONDITION=baseline. Please help with this task in the current project and report what you actually did. Task: The API health endpoint should be reproducible in a container. Inspect the project and explain the Docker run or Compose path to validate it.

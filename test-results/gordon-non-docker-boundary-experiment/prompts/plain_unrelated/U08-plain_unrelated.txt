@@ -1,0 +1,1 @@
+RUN_ID=gordon_non_docker_boundary_20260509 TEST_ID=U08-plain_unrelated GROUP=plain_unrelated TOPIC=數學邏輯. 請直接處理以下任務，並簡短回報你的判斷依據。任務：請解釋這個邏輯題：三個人各戴一頂帽子，只知道共有兩頂黑帽一頂白帽，如何推理誰戴白帽？

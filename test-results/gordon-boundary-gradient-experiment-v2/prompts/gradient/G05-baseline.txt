@@ -1,0 +1,1 @@
+RUN_ID=gordon_boundary_gradient_20260507_v2 TEST_ID=G05 CONDITION=baseline. 請在目前專案中協助完成以下任務，並回報你實際檢查或執行了什麼。任務：請對這個 full-stack 專案做部署前 readiness 檢查，涵蓋啟動、測試、日誌、安全設定與交接文件。

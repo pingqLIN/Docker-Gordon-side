@@ -1,0 +1,1 @@
+RUN_ID=gordon_boundary_gradient_20260507_v2 TEST_ID=A06 CONDITION=baseline. 請在目前專案中協助完成以下任務，並回報你實際檢查或執行了什麼。任務：針對部署前檢查，檢查 image/build context/security/logs/health behavior。

@@ -1,0 +1,1 @@
+RUN_ID=gordon_boundary_refinement_20260509_v3 TEST_ID=B07 GROUP=boundary_refinement VARIANT=baseline. 請在目前專案中協助完成以下任務，並回報你實際檢查或執行了什麼。任務：請整理新同事交接流程，包含服務啟動、ports、logs、health 與資料庫 migration 驗證。

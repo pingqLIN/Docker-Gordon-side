@@ -1,0 +1,1 @@
+RUN_ID=gordon_prompt_arch_20260507_v1 TEST_ID=T11 CONDITION=baseline. Please help with this task in the current project and report what you actually did. Task: Local frontend changes should reflect quickly while the API stays containerized. Inspect the Compose setup and explain the Docker dev workflow.

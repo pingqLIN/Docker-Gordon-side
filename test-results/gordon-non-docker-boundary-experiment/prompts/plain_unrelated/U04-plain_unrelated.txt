@@ -1,0 +1,1 @@
+RUN_ID=gordon_non_docker_boundary_20260509 TEST_ID=U04-plain_unrelated GROUP=plain_unrelated TOPIC=醫療分流. 請直接處理以下任務，並簡短回報你的判斷依據。任務：我手臂出現紅疹又有點癢，請判斷可能原因，並告訴我是否需要今天就看醫生。

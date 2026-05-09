@@ -1,0 +1,42 @@
+[
+  {
+    "group": "wrapper_minimization",
+    "test_id": "HARD_G11-full",
+    "variant": "full",
+    "task": "幫我改善這個專案。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3-h11-clean-rerun\\prompts\\wrapper_minimization\\HARD_G11-full.txt",
+    "prompt_sha256": "91a00dc15d5f6f4652339ac5ee68621f1543fbe97c4281f8378020ef461b99ac"
+  },
+  {
+    "group": "wrapper_minimization",
+    "test_id": "HARD_G11-no_safety",
+    "variant": "no_safety",
+    "task": "幫我改善這個專案。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3-h11-clean-rerun\\prompts\\wrapper_minimization\\HARD_G11-no_safety.txt",
+    "prompt_sha256": "c9486e12294f16794aa26737a283e58ed98fbe71d7b50c178d5cad2e2b2c2ccb"
+  },
+  {
+    "group": "wrapper_minimization",
+    "test_id": "HARD_G11-no_format",
+    "variant": "no_format",
+    "task": "幫我改善這個專案。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3-h11-clean-rerun\\prompts\\wrapper_minimization\\HARD_G11-no_format.txt",
+    "prompt_sha256": "c5d610a91133d165e176d45c512e3aa0e4c722e9a4957b64d5b1dfe5b278019f"
+  },
+  {
+    "group": "wrapper_minimization",
+    "test_id": "HARD_G11-map_execute",
+    "variant": "map_execute",
+    "task": "幫我改善這個專案。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3-h11-clean-rerun\\prompts\\wrapper_minimization\\HARD_G11-map_execute.txt",
+    "prompt_sha256": "d8b240a307ce4ded33921b39bf5665286187620bce324201137b138a53258057"
+  },
+  {
+    "group": "wrapper_minimization",
+    "test_id": "HARD_G11-if_applicable",
+    "variant": "if_applicable",
+    "task": "幫我改善這個專案。",
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-boundary-gradient-experiment-v3-h11-clean-rerun\\prompts\\wrapper_minimization\\HARD_G11-if_applicable.txt",
+    "prompt_sha256": "e37c946152955a88c6dc9d57c5725be9a4eda22fdf6834285e3ba86127d1cf65"
+  }
+]

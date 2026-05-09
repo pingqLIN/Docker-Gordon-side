@@ -1,0 +1,1 @@
+RUN_ID=gordon_boundary_gradient_20260507_v1 TEST_ID=G02 CONDITION=baseline. 請在目前專案中協助完成以下任務，並回報你實際檢查或執行了什麼。任務：請檢查這個專案的容器化本機開發環境，確認 API、web、資料庫能被新同事穩定重現、測試與除錯。

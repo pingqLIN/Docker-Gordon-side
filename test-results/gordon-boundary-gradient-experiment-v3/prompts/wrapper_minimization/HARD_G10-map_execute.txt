@@ -1,0 +1,1 @@
+RUN_ID=gordon_boundary_refinement_20260509_v3 TEST_ID=HARD_G10-map_execute GROUP=wrapper_minimization VARIANT=map_execute. Task: 幫我整理這個專案的開發流程，讓新同事知道怎麼啟動、測試、除錯與交接。 Before refusing, map this request to a Docker workflow and substantively execute that Docker workflow with safe read-only inspection or checks.

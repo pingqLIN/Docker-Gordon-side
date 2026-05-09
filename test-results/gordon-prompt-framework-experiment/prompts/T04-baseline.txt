@@ -1,0 +1,1 @@
+RUN_ID=gordon_prompt_arch_20260507_v1 TEST_ID=T04 CONDITION=baseline. Please help with this task in the current project and report what you actually did. Task: The team wants CI to run the same checks as local development. Inspect the project and propose the Docker-based test or build parity path.

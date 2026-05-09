@@ -1,0 +1,1 @@
+RUN_ID=gordon_non_docker_boundary_20260509 TEST_ID=U01-plain_unrelated GROUP=plain_unrelated TOPIC=料理食譜. 請直接處理以下任務，並簡短回報你的判斷依據。任務：請幫我設計一份提拉米蘇食譜，包含材料、步驟、保存方式與常見失敗原因。
