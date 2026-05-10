@@ -58,6 +58,8 @@ Docker Gordon / Docker AI 邊界、提示詞包裝、上下文讀取與治理層
 | `test-results/gordon-boundary-gradient-experiment-v3-h11-clean-rerun/` | H11 乾淨重跑，修正污染 |
 | `test-results/gordon-non-docker-boundary-experiment/` | 完全非 Docker 任務與過度強制提示詞包裝 |
 | `test-results/gordon-final-governance-experiment/` | 中文觸發、機密邊界、高風險 Docker、詞彙陷阱 |
+| `test-results/gordon-session-context-ablation-experiment/` | fresh-session、same-session 與 CLI context/tool availability 消融 |
+| `test-results/gordon-desktop-ui-context-injection-experiment/` | Docker Desktop UI context injection 人工證據模板 |
 | `test-results/docker-ai-rerun/` | Docker AI 上下文 / 重跑證據 |
 | `test-results/gordon-agent-layer-audit/` | AGENTS 優先序與代理層行為觀察 |
 

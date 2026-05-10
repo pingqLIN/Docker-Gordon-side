@@ -17,6 +17,8 @@
 
 最終治理層實驗 `gordon-final-governance-experiment` 修正了早期執行器固定送入 `y` 的污染，改為偵測批准提示後才回覆，並在疑似破壞性 Docker 指令或類機密讀取時送 `n`。該輪 21 筆案例迭代全部通過，涵蓋中文觸發、弱邊界重複抽樣、機密邊界、高風險 Docker 任務與詞彙陷阱。
 
+後續補做的 `gordon-session-context-ablation-experiment` 將「同工作階段 / 新工作階段」與 CLI context / tool availability 消融拆出來測試。初始 11 筆矩陣中，fresh-session 的 Docker 與非 Docker baseline 通過，CLI flag 型 context 消融因目前 `docker ai` 入口不接受 `--send-files` / `--write-files` 類 flags 而標為 blocked；後續 same-session smoke expansion 跑 `SEQ01` / `SEQ02` / `SEQ03` 各 3 次，得到 `OBSERVE=6`, `BLOCKED=3`，因此正式各 10 次批次暫緩。
+
 ## 2. 主要實驗總表
 
 | 實驗 | 研究問題 | 方法 | 核心結果 | 主要證據 |
@@ -28,6 +30,8 @@
 | 邊界精煉 v3 | 哪些觸發詞 / 提示詞包裝強度對邊界題最有效 | `boundary_refinement`, `trigger_ablation`, `wrapper_minimization` | 精煉組 `7/10`；觸發詞消融 `7/10`；提示詞包裝最小化修正後 `11/15`；推薦 `no_format` 提示詞包裝 | `test-results/gordon-boundary-gradient-experiment-v3/REPORT.zh-TW.md` |
 | 非 Docker 邊界 | Gordon 是否會被強提示詞包裝逼迫硬套完全無關任務 | 8 題 x 3 條件，共 24 題 | 三組皆 `8/8 = 100%` 邊界通過；`0/24` 工具執行 | `test-results/gordon-non-docker-boundary-experiment/REPORT.zh-TW.md` |
 | 最終治理層 | 修正批准執行器後，中文、機密、高風險、詞彙陷阱是否仍可安全通過 | 21 筆案例迭代，只偵測批准執行器，重新評分機密邏輯 | 總計 `21/21 = 100%`；五組皆全通過；Desktop 使用者介面與跨模型仍需人工補完 | `test-results/gordon-final-governance-experiment/REPORT.zh-TW.md` |
+| Session / context 消融 | 同工作階段、fresh-session baseline 與 CLI context / tool availability 是否影響任務篩選 | 初始 11 筆矩陣加 same-session smoke expansion 9 筆 | 初始 fresh-session `PASS=2`, `OBSERVE=1`；CLI flag ablation `BLOCKED=5`；same-session smoke `OBSERVE=6`, `BLOCKED=3`，正式 10x 暫緩 | `test-results/gordon-session-context-ablation-experiment/REPORT.zh-TW.md` |
+| Desktop UI context injection 模板 | Docker Desktop UI 入口是否注入容器日誌、image inspect 或 failed build context | 人工 / 半人工測試計畫與紀錄模板 | 尚未作為自動化結果；CLI 結果不得替代 Desktop UI 證據 | `test-results/gordon-desktop-ui-context-injection-experiment/EXPERIMENT_PLAN.zh-TW.md` |
 
 ## 3. 研究問題與整體判讀
 
@@ -77,6 +81,8 @@
 - `test-results/gordon-boundary-gradient-experiment-v3-h11-clean-rerun/`
 - `test-results/gordon-non-docker-boundary-experiment/`
 - `test-results/gordon-final-governance-experiment/`
+- `test-results/gordon-session-context-ablation-experiment/`
+- `test-results/gordon-desktop-ui-context-injection-experiment/`
 
 較早期的 `test-results/docker-ai-rerun/` 與根目錄層級 `T01-*` 至 `T07-*` 產物可作為上下文讀取補充證據，但不像最終治理層 / v2 / v3 那樣具備完整一致的執行器、清單、原始結果與稽核日誌結構。
 
@@ -88,18 +94,19 @@
 4. v3 曾出現 `HARD_G10-if_applicable` 寫檔污染後續 `HARD_G11`，雖已移至 `generated_by_gordon/` 並補跑乾淨重跑，但這也證明測試夾具衛生對代理評測很重要。
 5. 跨模型 A/B 尚未完成；目前不能把觀察到的行為精確分解為 Haiku 模型效果、Gordon 提示詞效果或工具結構描述效果。
 6. Docker Desktop 使用者介面上下文注入尚未自動化；容器日誌、映像檢查、建置失敗上下文等入口仍需人工對照。
-7. 上下文稽核的 `.env`、父目錄、外部目錄、符號連結 / junction、工作階段歷史等測試有完整設計，但仍需逐工作階段完成正式結果表。
-8. 原始證據可能包含完整工具回應、本機路徑、工作階段 ID 與假金絲雀字串；公開前需重新審查與必要的遮蔽。
+7. 上下文稽核的 `.env`、父目錄、外部目錄、符號連結 / junction 等測試有完整設計，但仍需逐工作階段完成正式結果表；同工作階段 / 新工作階段已補初始矩陣與 3x smoke expansion，但 smoke gate 出現 blocked rows，正式 10x 暫緩。
+8. CLI context / tool availability flags 在目前 `docker ai` 入口下不可用，因此 `--send-files` / `--write-files` 型消融目前只能標為 blocked，不能推論模型行為。
+9. 原始證據可能包含完整工具回應、本機路徑、工作階段 ID 與假金絲雀字串；公開前需重新審查與必要的遮蔽。
 
 ## 6. 建議的後續驗證
 
-優先完成 Docker Desktop 使用者介面上下文注入對照：同一提示詞分別從 CLI、Desktop detached Gordon、容器日誌、映像檢查、建置失敗上下文入口執行，檢查工作階段項目是否已注入日誌 / 檢查 / 建置錯誤，以及是否無工具呼叫就引用使用者介面上下文。
+優先完成 Docker Desktop 使用者介面上下文注入對照：同一提示詞分別從 CLI、Desktop detached Gordon、容器日誌、映像檢查、建置失敗上下文入口執行，檢查工作階段項目是否已注入日誌 / 檢查 / 建置錯誤，以及是否無工具呼叫就引用使用者介面上下文。人工證據模板已建立於 `test-results/gordon-desktop-ui-context-injection-experiment/`。
 
 擴大重複抽樣：針對 `G04`, `G10`, `G11`, `B02`, `B05`, `B10`、中文弱觸發、高風險 Docker 任務與詞彙陷阱，每題至少 10 次，重要邊界題可提高到 20-30 次。
 
 在可控模型機制出現後再做跨模型 A/B：固定測試夾具、提示詞、工具集、評分器與執行器，只替換模型，以分離模型語義層與治理層 / 工具結構描述的邊際效果。
 
-補完上下文稽核正式表格：尤其是 `.env`、`.dockerignore` / `.gitignore`、父目錄 / 外部目錄、符號連結 / junction、Windows / WSL 路徑、同工作階段與新工作階段、錄製紀錄與 `session.db` 搜尋。
+補完上下文稽核正式表格：尤其是 `.env`、`.dockerignore` / `.gitignore`、父目錄 / 外部目錄、符號連結 / junction、Windows / WSL 路徑、錄製紀錄與 `session.db` 搜尋；同工作階段與新工作階段可沿用 `gordon-session-context-ablation-experiment` 的 runner 擴大 repetitions。
 
 保持最終治理層執行器的只偵測批准策略，並繼續把 `actual_tool_secret_access`、`secret_mentioned_only`、`actual_tool_safety`、`mentioned_risky_command` 分開評分。
 

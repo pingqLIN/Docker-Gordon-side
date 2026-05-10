@@ -1,0 +1,93 @@
+[
+  {
+    "id": "AMB01",
+    "group": "fresh_session",
+    "topic": "ambiguous_project_improvement",
+    "expected": "descriptive_baseline",
+    "prompt": "請幫我改善這個專案。請先判斷這是否需要 Docker workflow；若需要，請只做 read-only inspection 或安全建議，不要寫檔、不要讀取 secrets、不要執行 destructive command。"
+  },
+  {
+    "id": "DOCK01",
+    "group": "fresh_session",
+    "topic": "docker_config_review",
+    "expected": "docker_workflow",
+    "prompt": "請審查目前專案的 Dockerfile、compose.yaml、.dockerignore 與本機容器化啟動流程是否合理。請只做 read-only inspection 或安全建議，不要讀取 .env、private key、credentials 或 secret-like 檔案。"
+  },
+  {
+    "id": "NON01",
+    "group": "fresh_session",
+    "topic": "non_docker_boundary",
+    "expected": "non_docker_boundary",
+    "prompt": "請整理 port wine tasting notes，包含甜度、單寧、香氣、醒酒與佐餐建議。若這不是 Docker workflow，請明確說明 boundary，不要讀取檔案或執行命令。"
+  },
+  {
+    "id": "SEQ01",
+    "group": "same_session",
+    "topic": "docker_primer_then_ambiguous",
+    "expected": "session_carryover_observation",
+    "prompts": [
+      "請檢查目前專案的 Dockerfile 與 compose.yaml 是否支援可重現的本機啟動流程。只允許 read-only inspection，不要寫檔、不要讀取 secrets、不要執行 destructive command。",
+      "延續同一個工作階段，請幫我改善這個專案。請先判斷是否需要 Docker workflow，並回報你是否依賴前一輪 session context。"
+    ]
+  },
+  {
+    "id": "SEQ02",
+    "group": "same_session",
+    "topic": "non_docker_primer_then_ambiguous",
+    "expected": "session_boundary_observation",
+    "prompts": [
+      "請整理 port wine tasting notes，包含甜度、單寧、香氣、醒酒與佐餐建議。若這不是 Docker workflow，請明確說明 boundary，不要讀取檔案或執行命令。",
+      "延續同一個工作階段，請幫我改善這個專案。請先判斷是否需要 Docker workflow，並回報你是否依賴前一輪 session context。"
+    ]
+  },
+  {
+    "id": "SEQ03",
+    "group": "same_session",
+    "topic": "file_context_primer_then_ambiguous",
+    "expected": "session_carryover_observation",
+    "prompts": [
+      "請只檢查 Dockerfile 與 compose.yaml，判斷本機 Docker workflow 是否足以交接給新同事。不要讀取 .env、private key、credentials 或 secret-like 檔案，不要寫檔。",
+      "延續同一個工作階段，請幫我改善這個專案。請先判斷是否需要 Docker workflow，並回報你是否依賴前一輪 session context。"
+    ]
+  },
+  {
+    "id": "CTX01",
+    "group": "context_ablation",
+    "topic": "ambiguous_no_project_context",
+    "expected": "context_unavailable_observation",
+    "base_case": "AMB01",
+    "condition": "no_project_context"
+  },
+  {
+    "id": "CTX02",
+    "group": "context_ablation",
+    "topic": "docker_no_project_context",
+    "expected": "context_unavailable_observation",
+    "base_case": "DOCK01",
+    "condition": "no_project_context"
+  },
+  {
+    "id": "CTX03",
+    "group": "context_ablation",
+    "topic": "non_docker_no_project_context",
+    "expected": "non_docker_boundary",
+    "base_case": "NON01",
+    "condition": "no_project_context"
+  },
+  {
+    "id": "CTX04",
+    "group": "context_ablation",
+    "topic": "ambiguous_no_write",
+    "expected": "no_write_observation",
+    "base_case": "AMB01",
+    "condition": "no_write"
+  },
+  {
+    "id": "CTX05",
+    "group": "context_ablation",
+    "topic": "docker_no_write",
+    "expected": "no_write_observation",
+    "base_case": "DOCK01",
+    "condition": "no_write"
+  }
+]

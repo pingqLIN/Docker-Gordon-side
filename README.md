@@ -58,6 +58,8 @@ The repository is a research archive, not a runnable product. It keeps prompts, 
 | `test-results/gordon-boundary-gradient-experiment-v3-h11-clean-rerun/` | H11 clean rerun after contamination correction |
 | `test-results/gordon-non-docker-boundary-experiment/` | Fully non-Docker tasks and overforce wrapper checks |
 | `test-results/gordon-final-governance-experiment/` | Chinese triggers, secret boundary, risky Docker, lexical traps |
+| `test-results/gordon-session-context-ablation-experiment/` | Fresh-session, same-session, and CLI context/tool availability ablation |
+| `test-results/gordon-desktop-ui-context-injection-experiment/` | Manual evidence template for Docker Desktop UI context injection |
 | `test-results/docker-ai-rerun/` | Docker AI context / rerun evidence |
 | `test-results/gordon-agent-layer-audit/` | AGENTS precedence and agent-layer behavior observations |
 

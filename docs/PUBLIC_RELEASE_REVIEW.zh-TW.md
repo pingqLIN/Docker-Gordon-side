@@ -1,11 +1,13 @@
 # GitHub 公開發布檢查報告
 
-日期：2026-05-10
-範圍：準備公開推送的已追蹤儲存庫內容，以及本次新增 / 修改文件。
+日期：2026-05-11
+範圍：準備公開推送的已追蹤儲存庫內容、本次新增 / 修改文件，以及 curated evidence package。
 
 ## 結論
 
 本次可推送公開，但需附帶資料性質說明：儲存庫中包含大量 Docker Gordon / Docker AI 測試逐字稿、工作階段證據、本機路徑與假金絲雀 / 假機密字串。README 已加入警示，總報告也明確標註限制。
+
+本次採用 curated evidence 策略：公開可驗證的報告、prompt、fixtures、raw / rescored results、session evidence 與 transcript evidence；排除 `__pycache__/` 與 `run-smoke-*.out.log` / `run-smoke-*.err.log` transient logs。
 
 ## 檢查項目
 
@@ -15,10 +17,13 @@
 | 橫幅圖 | PASS | 新增 `docs/assets/gordon-research-banner.svg` |
 | 授權 | PASS | 新增 MIT `LICENSE` |
 | AI 輔助開發揭露 | PASS | README 與 README.zh-TW 均加入 |
+| 新增 evidence 路徑 | PASS | README / 總報告引用的 session/context 消融與 Desktop UI context injection 資料夾已納入 curated evidence |
 | 機密衛生 | WARNING | 掃描會命中假金絲雀、提示詞、逐字稿中的機密 / 權杖 / 金鑰字樣；這些是實驗資料，但公開前仍需保留警示 |
 | 規劃詞彙 | WARNING | `docs/gordon-docker-next-tests-and-governance-assessment.zh-TW.md` 含後續研究方向；因本儲存庫目標是公開研究脈絡，本次保留 |
 | 本機路徑暴露 | WARNING | 多份既有報告與證據含 `Q:\Projects\...`、`C:\Users\miles\...` 等本機路徑；屬可重現性證據，但也是環境資訊 |
 | 原始證據體積 | WARNING | `test-results/` 包含大量工作階段 / 逐字稿，公開後儲存庫可讀性與體積成本較高 |
+| Session/context 消融 | WARNING | `gordon-session-context-ablation-experiment` 包含 `OBSERVE=6`, `BLOCKED=3` 的 smoke matrix；不可升格為正式 10x 結論 |
+| Desktop UI context injection | WARNING | `gordon-desktop-ui-context-injection-experiment` 目前是 manual / semi-manual 測試計畫與模板，不是已完成自動化結果 |
 
 ## 命中內容判讀
 
@@ -27,6 +32,8 @@
 | `secret`, `token`, `key`, `.env` | 多為假金絲雀、測試限制、提示詞文字或模型回覆；README 已標示不應提交真實機密 |
 | `roadmap`, `timeline`, `開發計畫`, `開發時程` | 未發現要保密的產品開發時程；既有文件含後續工作 / 後續測試方向，視為研究報告內容 |
 | 本機 Windows 路徑 | 有，且大量存在於既有證據；公開風險是暴露作者本機資料夾命名，不是憑證 |
+| `BLOCKED` / `OBSERVE` | session/context 消融仍是方向性 evidence；`BLOCKED` rows 表示 prompt/session evidence gate 不完整，不是模型行為失敗 |
+| Desktop UI template | 只代表人工測試入口與判讀規則已建立；尚未提供 Docker Desktop UI context injection 的實測結論 |
 
 ## 公開前規則處置
 
@@ -35,6 +42,7 @@
 - 已掃描規劃相關詞：`roadmap`, `development priorities`, `timeline`, `開發計畫`, `開發時程`。
 - 已掃描機密相關詞：`secret`, `token`, `api_key`, `password`, `credential`, private key pattern。
 - 未刪除既有已追蹤證據，因使用者要求整理完整專案實驗報告並公開推送；這些證據是研究儲存庫的主要內容。
+- 本次新增 evidence 採 curated evidence：納入 session/context 消融與 Desktop UI context injection 測試資料，排除 transient run-smoke logs 與 Python cache。
 - 已在 README 與總報告中揭露假金絲雀、本機路徑、原始證據與統計限制。
 
 ## 外部稽核標準化報告
@@ -45,7 +53,7 @@ same-provider-subagent
 
 ### Scope
 
-本次 documentation/publication change：`README.md`, `README.zh-TW.md`, `LICENSE`, `docs/assets/gordon-research-banner.svg`, `docs/PROJECT_EXPERIMENT_REPORT.zh-TW.md`, `docs/gordon-research-synthesis.zh-TW.md`, `docs/PUBLIC_RELEASE_REVIEW.zh-TW.md`。
+本次 documentation/publication change：`README.md`, `README.zh-TW.md`, `.gitignore`, `LICENSE`, `docs/assets/gordon-research-banner.svg`, `docs/PROJECT_EXPERIMENT_REPORT.zh-TW.md`, `docs/gordon-research-synthesis.zh-TW.md`, `docs/PUBLIC_RELEASE_REVIEW.zh-TW.md`，以及 curated evidence paths `test-results/gordon-session-context-ablation-experiment/`、`test-results/gordon-desktop-ui-context-injection-experiment/`。
 
 ### 參考輸入
 
@@ -70,9 +78,19 @@ same-provider-subagent
    風險：讀者可能期待標準安裝指令。
    建議行動：保留「How to Read」與「Reproduce」章節，不虛構安裝流程。
 
+4. Warning：session/context 消融 evidence 尚未形成正式穩定性結論。
+   位置或範圍：`test-results/gordon-session-context-ablation-experiment/`
+   風險：讀者可能把 `OBSERVE` rows 或 3x smoke matrix 誤讀為統計結論。
+   建議行動：保留 `BLOCKED` / `OBSERVE` 標示，並在總報告中維持「正式 10x 暫緩」限制。
+
+5. Warning：Desktop UI context injection 目前是人工 / 半人工模板。
+   位置或範圍：`test-results/gordon-desktop-ui-context-injection-experiment/`
+   風險：讀者可能把測試計畫誤讀為已完成的 Desktop UI evidence。
+   建議行動：維持 manual / semi-manual 標示，不以 CLI 結果替代 Desktop UI 結果。
+
 ### Assumptions
 
-- 使用者意圖是公開研究證據與既有已追蹤實驗檔案，不只公開新的摘要文件。
+- 使用者意圖是公開研究證據與 curated evidence，不只公開新的摘要文件。
 - 假金絲雀 / 假機密標記是刻意設計的測試資料。
 - 遠端 `origin` 是預定公開的 GitHub 儲存庫。
 
@@ -82,4 +100,4 @@ accept
 
 ### Next Action
 
-完成最終差異審查與 Git 狀態檢查後，提交文件 / 發布更新並推送到 `origin/main`。
+完成最終差異審查與 Git 狀態檢查後，提交文件 / evidence 發布更新；若使用者接著要求推送，再推送到 `origin/main`。

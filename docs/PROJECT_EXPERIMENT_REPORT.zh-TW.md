@@ -27,6 +27,8 @@ Repository：`Docker-Gordon-side`
 | 邊界精煉 v3 | 弱邊界題細切、觸發詞消融、提示詞包裝最小化 | `RESULTS.md`, `REPORT.zh-TW.md`, 乾淨重跑 |
 | 非 Docker 邊界 | 料理、旅遊、理財、醫療、法律、文學、運動、邏輯題 | `RESULTS.rescored.md`, `REPORT.zh-TW.md` |
 | 最終治理層 | 中文觸發、重複抽樣、機密邊界、高風險 Docker、詞彙陷阱 | `RESULTS.md`, `REPORT.zh-TW.md`, 重新評分後的原始結果 |
+| Session / context 消融 | fresh-session、same-session、CLI context / tool availability flags | `RESULTS.md`, `REPORT.zh-TW.md`, session evidence |
+| Desktop UI context injection 模板 | Docker Desktop UI detached / container logs / image inspect / failed build context 入口 | 人工測試計畫、prompt、紀錄模板 |
 
 ## 3. 單元報告
 
@@ -98,6 +100,18 @@ Repository：`Docker-Gordon-side`
 
 本輪最重要的修正是批准執行器改成只偵測模式，不再固定注入尾端 `y`。機密評分也拆分成「文字提到機密」與「工具實際讀取類機密檔案」，降低誤判。
 
+### 3.7 Session / Context Availability Ablation
+
+位置：`test-results/gordon-session-context-ablation-experiment/REPORT.zh-TW.md`
+
+| Group | 結果 | 主要用途 |
+|---|---:|---|
+| `fresh_session` | `PASS=2`, `OBSERVE=1` | 新工作階段 baseline：ambiguous、Docker、非 Docker prompt |
+| `same_session` | 初始 `OBSERVE=3`；smoke expansion `OBSERVE=6`, `BLOCKED=3` | 同一工作階段內 primer prompt 對後續 ambiguous task 的影響 |
+| `context_ablation` | `BLOCKED=5` | 測試 CLI context / tool availability flags，但目前 `docker ai` 入口不接受相關 flags |
+
+判讀：同工作階段組已取得多筆 `session_id` 與 session evidence，但 3x smoke expansion 有 3 筆因 prompt marker / interactive evidence 不完整而標為 `BLOCKED`，因此正式 `SEQ01` / `SEQ02` / `SEQ03` 各 10 次批次暫緩。CLI context / tool availability flags 在目前入口下不可用，相關 case 被標為 `cli_flag_unavailable`，不能作為模型行為結論。
+
 ## 4. 跨實驗結論
 
 1. 明確 Docker 任務與 Docker-rich 測試夾具下，Gordon 基本可穩定進入 Docker 工作流程。
@@ -114,6 +128,8 @@ Repository：`Docker-Gordon-side`
 | 多數早期題目每題只跑一次 | 不能宣稱統計顯著性 | Final governance 補部分重複抽樣，但仍有限 |
 | 早期固定節奏 `y` 批准污染 | 可能干擾最後訊息判讀 | 後續評分器改看第一個實質回應；最終執行器改為只偵測模式 |
 | Docker Desktop 使用者介面上下文注入未完整自動化 | CLI 結論不可直接外推到 Desktop 資源畫面 | 在 README 與報告標註仍需人工補完 |
+| CLI context / tool availability flags 不可用 | 無法用目前 `docker ai` 入口直接自動化 `--send-files` / `--write-files` 消融 | Session / context 消融報告將這些 case 標為 blocked，而非模型失敗 |
+| Same-session 10x 正式批次尚未執行 | 3x smoke expansion 已出現 evidence blocked rows，不宜擴大成正式穩定性結論 | 修正互動式 prompt/session evidence gate 後再執行 |
 | 原始證據可能包含本機路徑、工作階段逐字稿與假金絲雀字串 | 公開時需標註資料性質 | README 與公開發布審查明確警示 |
 | 專案包含大量證據逐字稿 | GitHub 儲存庫體積與可讀性成本較高 | README 提供索引，總報告保留摘要 |
 

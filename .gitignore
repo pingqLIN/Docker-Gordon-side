@@ -7,6 +7,8 @@ __pycache__/
 run.log
 run.err.log
 run.pid
+run-smoke-*.out.log
+run-smoke-*.err.log
 *.tmp
 *.temp
 
