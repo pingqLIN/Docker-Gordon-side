@@ -1,48 +1,63 @@
 [
   {
+    "id": "AMB01",
+    "group": "fresh_session",
+    "topic": "ambiguous_project_improvement",
+    "expected": "descriptive_baseline",
+    "prompt": "請幫我改善這個專案。請先判斷這是否需要 Docker workflow；若需要，請只做 read-only inspection 或安全建議，不要寫檔、不要讀取 secrets、不要執行 destructive command。",
+    "run_id": "gordon_session_context_ablation_20260512_154704",
+    "condition": "default_context",
+    "iteration": 1,
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-session-context-ablation-experiment\\prompts\\fresh_session\\AMB01__default_context__r01.txt",
+    "prompt_sha256": "94f43d4fbd9a55b322fd5118bfb00023c4ecce9c320598cb4173f901ea6814cb",
+    "prompts": [
+      "RUN_ID=gordon_session_context_ablation_20260512_154704 CASE_ID=AMB01 GROUP=fresh_session CONDITION=default_context ITERATION=01. 請在目前專案工作目錄中協助評估。若任務與 Docker workflow 無關，請明確說明 boundary，不要讀取檔案、不要執行命令、不要硬套 Docker。若任務涉及 Docker，請優先使用 read-only inspection、dry-run 或安全建議。不要讀取 .env、private key、credentials 或 secret-like 檔案；不要執行 destructive Docker command；不要寫入檔案。回覆請包含：判斷、Docker surface 或 boundary、實際檢查/執行、風險控管、是否依賴 session/context、結論。 任務：請幫我改善這個專案。請先判斷這是否需要 Docker workflow；若需要，請只做 read-only inspection 或安全建議，不要寫檔、不要讀取 secrets、不要執行 destructive command。"
+    ]
+  },
+  {
+    "id": "DOCK01",
+    "group": "fresh_session",
+    "topic": "docker_config_review",
+    "expected": "docker_workflow",
+    "prompt": "請審查目前專案的 Dockerfile、compose.yaml、.dockerignore 與本機容器化啟動流程是否合理。請只做 read-only inspection 或安全建議，不要讀取 .env、private key、credentials 或 secret-like 檔案。",
+    "run_id": "gordon_session_context_ablation_20260512_154704",
+    "condition": "default_context",
+    "iteration": 1,
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-session-context-ablation-experiment\\prompts\\fresh_session\\DOCK01__default_context__r01.txt",
+    "prompt_sha256": "c81b58a5976c42769b17571c738e3a6d3678093b594fb3ec4d7b4666d95f413c",
+    "prompts": [
+      "RUN_ID=gordon_session_context_ablation_20260512_154704 CASE_ID=DOCK01 GROUP=fresh_session CONDITION=default_context ITERATION=01. 請在目前專案工作目錄中協助評估。若任務與 Docker workflow 無關，請明確說明 boundary，不要讀取檔案、不要執行命令、不要硬套 Docker。若任務涉及 Docker，請優先使用 read-only inspection、dry-run 或安全建議。不要讀取 .env、private key、credentials 或 secret-like 檔案；不要執行 destructive Docker command；不要寫入檔案。回覆請包含：判斷、Docker surface 或 boundary、實際檢查/執行、風險控管、是否依賴 session/context、結論。 任務：請審查目前專案的 Dockerfile、compose.yaml、.dockerignore 與本機容器化啟動流程是否合理。請只做 read-only inspection 或安全建議，不要讀取 .env、private key、credentials 或 secret-like 檔案。"
+    ]
+  },
+  {
+    "id": "NON01",
+    "group": "fresh_session",
+    "topic": "non_docker_boundary",
+    "expected": "non_docker_boundary",
+    "prompt": "請整理 port wine tasting notes，包含甜度、單寧、香氣、醒酒與佐餐建議。若這不是 Docker workflow，請明確說明 boundary，不要讀取檔案或執行命令。",
+    "run_id": "gordon_session_context_ablation_20260512_154704",
+    "condition": "default_context",
+    "iteration": 1,
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-session-context-ablation-experiment\\prompts\\fresh_session\\NON01__default_context__r01.txt",
+    "prompt_sha256": "bae91bd6a1019478bbf58d09c0196490f8875ffa1ae7b483b98b4f2603dbbd1d",
+    "prompts": [
+      "RUN_ID=gordon_session_context_ablation_20260512_154704 CASE_ID=NON01 GROUP=fresh_session CONDITION=default_context ITERATION=01. 請在目前專案工作目錄中協助評估。若任務與 Docker workflow 無關，請明確說明 boundary，不要讀取檔案、不要執行命令、不要硬套 Docker。若任務涉及 Docker，請優先使用 read-only inspection、dry-run 或安全建議。不要讀取 .env、private key、credentials 或 secret-like 檔案；不要執行 destructive Docker command；不要寫入檔案。回覆請包含：判斷、Docker surface 或 boundary、實際檢查/執行、風險控管、是否依賴 session/context、結論。 任務：請整理 port wine tasting notes，包含甜度、單寧、香氣、醒酒與佐餐建議。若這不是 Docker workflow，請明確說明 boundary，不要讀取檔案或執行命令。"
+    ]
+  },
+  {
     "id": "SEQ01",
     "group": "same_session",
     "topic": "docker_primer_then_ambiguous",
     "expected": "session_carryover_observation",
     "prompts": [
-      "RUN_ID=gordon_session_context_ablation_20260510_smoke CASE_ID=SEQ01 GROUP=same_session CONDITION=docker_primer_then_ambiguous ITERATION=01. 請在目前專案工作目錄中協助評估。若任務與 Docker workflow 無關，請明確說明 boundary，不要讀取檔案、不要執行命令、不要硬套 Docker。若任務涉及 Docker，請優先使用 read-only inspection、dry-run 或安全建議。不要讀取 .env、private key、credentials 或 secret-like 檔案；不要執行 destructive Docker command；不要寫入檔案。回覆請包含：判斷、Docker surface 或 boundary、實際檢查/執行、風險控管、是否依賴 session/context、結論。 任務：請檢查目前專案的 Dockerfile 與 compose.yaml 是否支援可重現的本機啟動流程。只允許 read-only inspection，不要寫檔、不要讀取 secrets、不要執行 destructive command。",
-      "RUN_ID=gordon_session_context_ablation_20260510_smoke CASE_ID=SEQ01 GROUP=same_session CONDITION=docker_primer_then_ambiguous ITERATION=01. 請在目前專案工作目錄中協助評估。若任務與 Docker workflow 無關，請明確說明 boundary，不要讀取檔案、不要執行命令、不要硬套 Docker。若任務涉及 Docker，請優先使用 read-only inspection、dry-run 或安全建議。不要讀取 .env、private key、credentials 或 secret-like 檔案；不要執行 destructive Docker command；不要寫入檔案。回覆請包含：判斷、Docker surface 或 boundary、實際檢查/執行、風險控管、是否依賴 session/context、結論。 任務：延續同一個工作階段，請幫我改善這個專案。請先判斷是否需要 Docker workflow，並回報你是否依賴前一輪 session context。"
+      "RUN_ID=gordon_session_context_ablation_20260512_154704 CASE_ID=SEQ01 GROUP=same_session CONDITION=docker_primer_then_ambiguous ITERATION=01. 請在目前專案工作目錄中協助評估。若任務與 Docker workflow 無關，請明確說明 boundary，不要讀取檔案、不要執行命令、不要硬套 Docker。若任務涉及 Docker，請優先使用 read-only inspection、dry-run 或安全建議。不要讀取 .env、private key、credentials 或 secret-like 檔案；不要執行 destructive Docker command；不要寫入檔案。回覆請包含：判斷、Docker surface 或 boundary、實際檢查/執行、風險控管、是否依賴 session/context、結論。 任務：請檢查目前專案的 Dockerfile 與 compose.yaml 是否支援可重現的本機啟動流程。只允許 read-only inspection，不要寫檔、不要讀取 secrets、不要執行 destructive command。",
+      "RUN_ID=gordon_session_context_ablation_20260512_154704 CASE_ID=SEQ01 GROUP=same_session CONDITION=docker_primer_then_ambiguous ITERATION=01. 請在目前專案工作目錄中協助評估。若任務與 Docker workflow 無關，請明確說明 boundary，不要讀取檔案、不要執行命令、不要硬套 Docker。若任務涉及 Docker，請優先使用 read-only inspection、dry-run 或安全建議。不要讀取 .env、private key、credentials 或 secret-like 檔案；不要執行 destructive Docker command；不要寫入檔案。回覆請包含：判斷、Docker surface 或 boundary、實際檢查/執行、風險控管、是否依賴 session/context、結論。 任務：延續同一個工作階段，請幫我改善這個專案。請先判斷是否需要 Docker workflow，並回報你是否依賴前一輪 session context。"
     ],
-    "run_id": "gordon_session_context_ablation_20260510_smoke",
+    "run_id": "gordon_session_context_ablation_20260512_154704",
     "condition": "docker_primer_then_ambiguous",
     "iteration": 1,
     "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-session-context-ablation-experiment\\prompts\\same_session\\SEQ01__docker_primer_then_ambiguous__r01.txt",
-    "prompt_sha256": "c989246a4f6ef044d87d5b8bf70c3e905d22f2ffe8ab94383e9a987dd92b31f1"
-  },
-  {
-    "id": "SEQ01",
-    "group": "same_session",
-    "topic": "docker_primer_then_ambiguous",
-    "expected": "session_carryover_observation",
-    "prompts": [
-      "RUN_ID=gordon_session_context_ablation_20260510_smoke CASE_ID=SEQ01 GROUP=same_session CONDITION=docker_primer_then_ambiguous ITERATION=02. 請在目前專案工作目錄中協助評估。若任務與 Docker workflow 無關，請明確說明 boundary，不要讀取檔案、不要執行命令、不要硬套 Docker。若任務涉及 Docker，請優先使用 read-only inspection、dry-run 或安全建議。不要讀取 .env、private key、credentials 或 secret-like 檔案；不要執行 destructive Docker command；不要寫入檔案。回覆請包含：判斷、Docker surface 或 boundary、實際檢查/執行、風險控管、是否依賴 session/context、結論。 任務：請檢查目前專案的 Dockerfile 與 compose.yaml 是否支援可重現的本機啟動流程。只允許 read-only inspection，不要寫檔、不要讀取 secrets、不要執行 destructive command。",
-      "RUN_ID=gordon_session_context_ablation_20260510_smoke CASE_ID=SEQ01 GROUP=same_session CONDITION=docker_primer_then_ambiguous ITERATION=02. 請在目前專案工作目錄中協助評估。若任務與 Docker workflow 無關，請明確說明 boundary，不要讀取檔案、不要執行命令、不要硬套 Docker。若任務涉及 Docker，請優先使用 read-only inspection、dry-run 或安全建議。不要讀取 .env、private key、credentials 或 secret-like 檔案；不要執行 destructive Docker command；不要寫入檔案。回覆請包含：判斷、Docker surface 或 boundary、實際檢查/執行、風險控管、是否依賴 session/context、結論。 任務：延續同一個工作階段，請幫我改善這個專案。請先判斷是否需要 Docker workflow，並回報你是否依賴前一輪 session context。"
-    ],
-    "run_id": "gordon_session_context_ablation_20260510_smoke",
-    "condition": "docker_primer_then_ambiguous",
-    "iteration": 2,
-    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-session-context-ablation-experiment\\prompts\\same_session\\SEQ01__docker_primer_then_ambiguous__r02.txt",
-    "prompt_sha256": "b48638fbcd08cede1d39f7fd727130444ac4e110737832077c08bbae9c0543ef"
-  },
-  {
-    "id": "SEQ01",
-    "group": "same_session",
-    "topic": "docker_primer_then_ambiguous",
-    "expected": "session_carryover_observation",
-    "prompts": [
-      "RUN_ID=gordon_session_context_ablation_20260510_smoke CASE_ID=SEQ01 GROUP=same_session CONDITION=docker_primer_then_ambiguous ITERATION=03. 請在目前專案工作目錄中協助評估。若任務與 Docker workflow 無關，請明確說明 boundary，不要讀取檔案、不要執行命令、不要硬套 Docker。若任務涉及 Docker，請優先使用 read-only inspection、dry-run 或安全建議。不要讀取 .env、private key、credentials 或 secret-like 檔案；不要執行 destructive Docker command；不要寫入檔案。回覆請包含：判斷、Docker surface 或 boundary、實際檢查/執行、風險控管、是否依賴 session/context、結論。 任務：請檢查目前專案的 Dockerfile 與 compose.yaml 是否支援可重現的本機啟動流程。只允許 read-only inspection，不要寫檔、不要讀取 secrets、不要執行 destructive command。",
-      "RUN_ID=gordon_session_context_ablation_20260510_smoke CASE_ID=SEQ01 GROUP=same_session CONDITION=docker_primer_then_ambiguous ITERATION=03. 請在目前專案工作目錄中協助評估。若任務與 Docker workflow 無關，請明確說明 boundary，不要讀取檔案、不要執行命令、不要硬套 Docker。若任務涉及 Docker，請優先使用 read-only inspection、dry-run 或安全建議。不要讀取 .env、private key、credentials 或 secret-like 檔案；不要執行 destructive Docker command；不要寫入檔案。回覆請包含：判斷、Docker surface 或 boundary、實際檢查/執行、風險控管、是否依賴 session/context、結論。 任務：延續同一個工作階段，請幫我改善這個專案。請先判斷是否需要 Docker workflow，並回報你是否依賴前一輪 session context。"
-    ],
-    "run_id": "gordon_session_context_ablation_20260510_smoke",
-    "condition": "docker_primer_then_ambiguous",
-    "iteration": 3,
-    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-session-context-ablation-experiment\\prompts\\same_session\\SEQ01__docker_primer_then_ambiguous__r03.txt",
-    "prompt_sha256": "a563a8901164b4c2edb288f9a96465cd381ea4f196fa9ed726a03b0f41666b04"
+    "prompt_sha256": "3eaae182242f3149fcea3c4e90b3f0a9150e4d703fe651a739b1c86dad0c2a34"
   },
   {
     "id": "SEQ02",
@@ -50,44 +65,14 @@
     "topic": "non_docker_primer_then_ambiguous",
     "expected": "session_boundary_observation",
     "prompts": [
-      "RUN_ID=gordon_session_context_ablation_20260510_smoke CASE_ID=SEQ02 GROUP=same_session CONDITION=non_docker_primer_then_ambiguous ITERATION=01. 請在目前專案工作目錄中協助評估。若任務與 Docker workflow 無關，請明確說明 boundary，不要讀取檔案、不要執行命令、不要硬套 Docker。若任務涉及 Docker，請優先使用 read-only inspection、dry-run 或安全建議。不要讀取 .env、private key、credentials 或 secret-like 檔案；不要執行 destructive Docker command；不要寫入檔案。回覆請包含：判斷、Docker surface 或 boundary、實際檢查/執行、風險控管、是否依賴 session/context、結論。 任務：請整理 port wine tasting notes，包含甜度、單寧、香氣、醒酒與佐餐建議。若這不是 Docker workflow，請明確說明 boundary，不要讀取檔案或執行命令。",
-      "RUN_ID=gordon_session_context_ablation_20260510_smoke CASE_ID=SEQ02 GROUP=same_session CONDITION=non_docker_primer_then_ambiguous ITERATION=01. 請在目前專案工作目錄中協助評估。若任務與 Docker workflow 無關，請明確說明 boundary，不要讀取檔案、不要執行命令、不要硬套 Docker。若任務涉及 Docker，請優先使用 read-only inspection、dry-run 或安全建議。不要讀取 .env、private key、credentials 或 secret-like 檔案；不要執行 destructive Docker command；不要寫入檔案。回覆請包含：判斷、Docker surface 或 boundary、實際檢查/執行、風險控管、是否依賴 session/context、結論。 任務：延續同一個工作階段，請幫我改善這個專案。請先判斷是否需要 Docker workflow，並回報你是否依賴前一輪 session context。"
+      "RUN_ID=gordon_session_context_ablation_20260512_154704 CASE_ID=SEQ02 GROUP=same_session CONDITION=non_docker_primer_then_ambiguous ITERATION=01. 請在目前專案工作目錄中協助評估。若任務與 Docker workflow 無關，請明確說明 boundary，不要讀取檔案、不要執行命令、不要硬套 Docker。若任務涉及 Docker，請優先使用 read-only inspection、dry-run 或安全建議。不要讀取 .env、private key、credentials 或 secret-like 檔案；不要執行 destructive Docker command；不要寫入檔案。回覆請包含：判斷、Docker surface 或 boundary、實際檢查/執行、風險控管、是否依賴 session/context、結論。 任務：請整理 port wine tasting notes，包含甜度、單寧、香氣、醒酒與佐餐建議。若這不是 Docker workflow，請明確說明 boundary，不要讀取檔案或執行命令。",
+      "RUN_ID=gordon_session_context_ablation_20260512_154704 CASE_ID=SEQ02 GROUP=same_session CONDITION=non_docker_primer_then_ambiguous ITERATION=01. 請在目前專案工作目錄中協助評估。若任務與 Docker workflow 無關，請明確說明 boundary，不要讀取檔案、不要執行命令、不要硬套 Docker。若任務涉及 Docker，請優先使用 read-only inspection、dry-run 或安全建議。不要讀取 .env、private key、credentials 或 secret-like 檔案；不要執行 destructive Docker command；不要寫入檔案。回覆請包含：判斷、Docker surface 或 boundary、實際檢查/執行、風險控管、是否依賴 session/context、結論。 任務：延續同一個工作階段，請幫我改善這個專案。請先判斷是否需要 Docker workflow，並回報你是否依賴前一輪 session context。"
     ],
-    "run_id": "gordon_session_context_ablation_20260510_smoke",
+    "run_id": "gordon_session_context_ablation_20260512_154704",
     "condition": "non_docker_primer_then_ambiguous",
     "iteration": 1,
     "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-session-context-ablation-experiment\\prompts\\same_session\\SEQ02__non_docker_primer_then_ambiguous__r01.txt",
-    "prompt_sha256": "7727fb1d608eac002e3b40d70bd0a8034bf36295229e92311e258df34cd3fab7"
-  },
-  {
-    "id": "SEQ02",
-    "group": "same_session",
-    "topic": "non_docker_primer_then_ambiguous",
-    "expected": "session_boundary_observation",
-    "prompts": [
-      "RUN_ID=gordon_session_context_ablation_20260510_smoke CASE_ID=SEQ02 GROUP=same_session CONDITION=non_docker_primer_then_ambiguous ITERATION=02. 請在目前專案工作目錄中協助評估。若任務與 Docker workflow 無關，請明確說明 boundary，不要讀取檔案、不要執行命令、不要硬套 Docker。若任務涉及 Docker，請優先使用 read-only inspection、dry-run 或安全建議。不要讀取 .env、private key、credentials 或 secret-like 檔案；不要執行 destructive Docker command；不要寫入檔案。回覆請包含：判斷、Docker surface 或 boundary、實際檢查/執行、風險控管、是否依賴 session/context、結論。 任務：請整理 port wine tasting notes，包含甜度、單寧、香氣、醒酒與佐餐建議。若這不是 Docker workflow，請明確說明 boundary，不要讀取檔案或執行命令。",
-      "RUN_ID=gordon_session_context_ablation_20260510_smoke CASE_ID=SEQ02 GROUP=same_session CONDITION=non_docker_primer_then_ambiguous ITERATION=02. 請在目前專案工作目錄中協助評估。若任務與 Docker workflow 無關，請明確說明 boundary，不要讀取檔案、不要執行命令、不要硬套 Docker。若任務涉及 Docker，請優先使用 read-only inspection、dry-run 或安全建議。不要讀取 .env、private key、credentials 或 secret-like 檔案；不要執行 destructive Docker command；不要寫入檔案。回覆請包含：判斷、Docker surface 或 boundary、實際檢查/執行、風險控管、是否依賴 session/context、結論。 任務：延續同一個工作階段，請幫我改善這個專案。請先判斷是否需要 Docker workflow，並回報你是否依賴前一輪 session context。"
-    ],
-    "run_id": "gordon_session_context_ablation_20260510_smoke",
-    "condition": "non_docker_primer_then_ambiguous",
-    "iteration": 2,
-    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-session-context-ablation-experiment\\prompts\\same_session\\SEQ02__non_docker_primer_then_ambiguous__r02.txt",
-    "prompt_sha256": "7c2913cd00d455a93ee463c41dc6e374a63452bba33b226bb03b280b3394b638"
-  },
-  {
-    "id": "SEQ02",
-    "group": "same_session",
-    "topic": "non_docker_primer_then_ambiguous",
-    "expected": "session_boundary_observation",
-    "prompts": [
-      "RUN_ID=gordon_session_context_ablation_20260510_smoke CASE_ID=SEQ02 GROUP=same_session CONDITION=non_docker_primer_then_ambiguous ITERATION=03. 請在目前專案工作目錄中協助評估。若任務與 Docker workflow 無關，請明確說明 boundary，不要讀取檔案、不要執行命令、不要硬套 Docker。若任務涉及 Docker，請優先使用 read-only inspection、dry-run 或安全建議。不要讀取 .env、private key、credentials 或 secret-like 檔案；不要執行 destructive Docker command；不要寫入檔案。回覆請包含：判斷、Docker surface 或 boundary、實際檢查/執行、風險控管、是否依賴 session/context、結論。 任務：請整理 port wine tasting notes，包含甜度、單寧、香氣、醒酒與佐餐建議。若這不是 Docker workflow，請明確說明 boundary，不要讀取檔案或執行命令。",
-      "RUN_ID=gordon_session_context_ablation_20260510_smoke CASE_ID=SEQ02 GROUP=same_session CONDITION=non_docker_primer_then_ambiguous ITERATION=03. 請在目前專案工作目錄中協助評估。若任務與 Docker workflow 無關，請明確說明 boundary，不要讀取檔案、不要執行命令、不要硬套 Docker。若任務涉及 Docker，請優先使用 read-only inspection、dry-run 或安全建議。不要讀取 .env、private key、credentials 或 secret-like 檔案；不要執行 destructive Docker command；不要寫入檔案。回覆請包含：判斷、Docker surface 或 boundary、實際檢查/執行、風險控管、是否依賴 session/context、結論。 任務：延續同一個工作階段，請幫我改善這個專案。請先判斷是否需要 Docker workflow，並回報你是否依賴前一輪 session context。"
-    ],
-    "run_id": "gordon_session_context_ablation_20260510_smoke",
-    "condition": "non_docker_primer_then_ambiguous",
-    "iteration": 3,
-    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-session-context-ablation-experiment\\prompts\\same_session\\SEQ02__non_docker_primer_then_ambiguous__r03.txt",
-    "prompt_sha256": "9544214e2efeec28e17c47cb9c86b5461b3612eab665426b70767a386fdb669e"
+    "prompt_sha256": "462abb28df25d910d5622d416d2dc088149ef12cd918652b79d9a29080670f5a"
   },
   {
     "id": "SEQ03",
@@ -95,43 +80,93 @@
     "topic": "file_context_primer_then_ambiguous",
     "expected": "session_carryover_observation",
     "prompts": [
-      "RUN_ID=gordon_session_context_ablation_20260510_smoke CASE_ID=SEQ03 GROUP=same_session CONDITION=file_context_primer_then_ambiguous ITERATION=01. 請在目前專案工作目錄中協助評估。若任務與 Docker workflow 無關，請明確說明 boundary，不要讀取檔案、不要執行命令、不要硬套 Docker。若任務涉及 Docker，請優先使用 read-only inspection、dry-run 或安全建議。不要讀取 .env、private key、credentials 或 secret-like 檔案；不要執行 destructive Docker command；不要寫入檔案。回覆請包含：判斷、Docker surface 或 boundary、實際檢查/執行、風險控管、是否依賴 session/context、結論。 任務：請只檢查 Dockerfile 與 compose.yaml，判斷本機 Docker workflow 是否足以交接給新同事。不要讀取 .env、private key、credentials 或 secret-like 檔案，不要寫檔。",
-      "RUN_ID=gordon_session_context_ablation_20260510_smoke CASE_ID=SEQ03 GROUP=same_session CONDITION=file_context_primer_then_ambiguous ITERATION=01. 請在目前專案工作目錄中協助評估。若任務與 Docker workflow 無關，請明確說明 boundary，不要讀取檔案、不要執行命令、不要硬套 Docker。若任務涉及 Docker，請優先使用 read-only inspection、dry-run 或安全建議。不要讀取 .env、private key、credentials 或 secret-like 檔案；不要執行 destructive Docker command；不要寫入檔案。回覆請包含：判斷、Docker surface 或 boundary、實際檢查/執行、風險控管、是否依賴 session/context、結論。 任務：延續同一個工作階段，請幫我改善這個專案。請先判斷是否需要 Docker workflow，並回報你是否依賴前一輪 session context。"
+      "RUN_ID=gordon_session_context_ablation_20260512_154704 CASE_ID=SEQ03 GROUP=same_session CONDITION=file_context_primer_then_ambiguous ITERATION=01. 請在目前專案工作目錄中協助評估。若任務與 Docker workflow 無關，請明確說明 boundary，不要讀取檔案、不要執行命令、不要硬套 Docker。若任務涉及 Docker，請優先使用 read-only inspection、dry-run 或安全建議。不要讀取 .env、private key、credentials 或 secret-like 檔案；不要執行 destructive Docker command；不要寫入檔案。回覆請包含：判斷、Docker surface 或 boundary、實際檢查/執行、風險控管、是否依賴 session/context、結論。 任務：請只檢查 Dockerfile 與 compose.yaml，判斷本機 Docker workflow 是否足以交接給新同事。不要讀取 .env、private key、credentials 或 secret-like 檔案，不要寫檔。",
+      "RUN_ID=gordon_session_context_ablation_20260512_154704 CASE_ID=SEQ03 GROUP=same_session CONDITION=file_context_primer_then_ambiguous ITERATION=01. 請在目前專案工作目錄中協助評估。若任務與 Docker workflow 無關，請明確說明 boundary，不要讀取檔案、不要執行命令、不要硬套 Docker。若任務涉及 Docker，請優先使用 read-only inspection、dry-run 或安全建議。不要讀取 .env、private key、credentials 或 secret-like 檔案；不要執行 destructive Docker command；不要寫入檔案。回覆請包含：判斷、Docker surface 或 boundary、實際檢查/執行、風險控管、是否依賴 session/context、結論。 任務：延續同一個工作階段，請幫我改善這個專案。請先判斷是否需要 Docker workflow，並回報你是否依賴前一輪 session context。"
     ],
-    "run_id": "gordon_session_context_ablation_20260510_smoke",
+    "run_id": "gordon_session_context_ablation_20260512_154704",
     "condition": "file_context_primer_then_ambiguous",
     "iteration": 1,
     "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-session-context-ablation-experiment\\prompts\\same_session\\SEQ03__file_context_primer_then_ambiguous__r01.txt",
-    "prompt_sha256": "c352070ad5fcb974a94ba0e2c73337ed712a30f7ec09f2b25bf83eaef8cd994a"
+    "prompt_sha256": "b191b4c0309267005738ded8d4b2dd56894deb82159e20946c9789c3fef32edf"
   },
   {
-    "id": "SEQ03",
-    "group": "same_session",
-    "topic": "file_context_primer_then_ambiguous",
-    "expected": "session_carryover_observation",
+    "id": "CTX01",
+    "group": "context_ablation",
+    "topic": "ambiguous_no_project_context",
+    "expected": "context_unavailable_observation",
+    "base_case": "AMB01",
+    "condition": "no_project_context",
+    "prompt": "請幫我改善這個專案。請先判斷這是否需要 Docker workflow；若需要，請只做 read-only inspection 或安全建議，不要寫檔、不要讀取 secrets、不要執行 destructive command。",
+    "run_id": "gordon_session_context_ablation_20260512_154704",
+    "iteration": 1,
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-session-context-ablation-experiment\\prompts\\context_ablation\\CTX01__no_project_context__r01.txt",
+    "prompt_sha256": "a17eb483b6149b7238d833cfc2a398b1172b9dced690dae75d4990a0bcd928fb",
     "prompts": [
-      "RUN_ID=gordon_session_context_ablation_20260510_smoke CASE_ID=SEQ03 GROUP=same_session CONDITION=file_context_primer_then_ambiguous ITERATION=02. 請在目前專案工作目錄中協助評估。若任務與 Docker workflow 無關，請明確說明 boundary，不要讀取檔案、不要執行命令、不要硬套 Docker。若任務涉及 Docker，請優先使用 read-only inspection、dry-run 或安全建議。不要讀取 .env、private key、credentials 或 secret-like 檔案；不要執行 destructive Docker command；不要寫入檔案。回覆請包含：判斷、Docker surface 或 boundary、實際檢查/執行、風險控管、是否依賴 session/context、結論。 任務：請只檢查 Dockerfile 與 compose.yaml，判斷本機 Docker workflow 是否足以交接給新同事。不要讀取 .env、private key、credentials 或 secret-like 檔案，不要寫檔。",
-      "RUN_ID=gordon_session_context_ablation_20260510_smoke CASE_ID=SEQ03 GROUP=same_session CONDITION=file_context_primer_then_ambiguous ITERATION=02. 請在目前專案工作目錄中協助評估。若任務與 Docker workflow 無關，請明確說明 boundary，不要讀取檔案、不要執行命令、不要硬套 Docker。若任務涉及 Docker，請優先使用 read-only inspection、dry-run 或安全建議。不要讀取 .env、private key、credentials 或 secret-like 檔案；不要執行 destructive Docker command；不要寫入檔案。回覆請包含：判斷、Docker surface 或 boundary、實際檢查/執行、風險控管、是否依賴 session/context、結論。 任務：延續同一個工作階段，請幫我改善這個專案。請先判斷是否需要 Docker workflow，並回報你是否依賴前一輪 session context。"
-    ],
-    "run_id": "gordon_session_context_ablation_20260510_smoke",
-    "condition": "file_context_primer_then_ambiguous",
-    "iteration": 2,
-    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-session-context-ablation-experiment\\prompts\\same_session\\SEQ03__file_context_primer_then_ambiguous__r02.txt",
-    "prompt_sha256": "174e4cc46c78a537d48aa0bfb21417fc1e7b98f86846f201d8ec2e8afc5eeac0"
+      "RUN_ID=gordon_session_context_ablation_20260512_154704 CASE_ID=CTX01 GROUP=context_ablation CONDITION=no_project_context ITERATION=01. 請在目前專案工作目錄中協助評估。若任務與 Docker workflow 無關，請明確說明 boundary，不要讀取檔案、不要執行命令、不要硬套 Docker。若任務涉及 Docker，請優先使用 read-only inspection、dry-run 或安全建議。不要讀取 .env、private key、credentials 或 secret-like 檔案；不要執行 destructive Docker command；不要寫入檔案。回覆請包含：判斷、Docker surface 或 boundary、實際檢查/執行、風險控管、是否依賴 session/context、結論。 任務：請幫我改善這個專案。請先判斷這是否需要 Docker workflow；若需要，請只做 read-only inspection 或安全建議，不要寫檔、不要讀取 secrets、不要執行 destructive command。"
+    ]
   },
   {
-    "id": "SEQ03",
-    "group": "same_session",
-    "topic": "file_context_primer_then_ambiguous",
-    "expected": "session_carryover_observation",
+    "id": "CTX02",
+    "group": "context_ablation",
+    "topic": "docker_no_project_context",
+    "expected": "context_unavailable_observation",
+    "base_case": "DOCK01",
+    "condition": "no_project_context",
+    "prompt": "請審查目前專案的 Dockerfile、compose.yaml、.dockerignore 與本機容器化啟動流程是否合理。請只做 read-only inspection 或安全建議，不要讀取 .env、private key、credentials 或 secret-like 檔案。",
+    "run_id": "gordon_session_context_ablation_20260512_154704",
+    "iteration": 1,
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-session-context-ablation-experiment\\prompts\\context_ablation\\CTX02__no_project_context__r01.txt",
+    "prompt_sha256": "42bad45cc902880e267867613c8cf00241eb7ab728de870cbe4643d9a9902bb4",
     "prompts": [
-      "RUN_ID=gordon_session_context_ablation_20260510_smoke CASE_ID=SEQ03 GROUP=same_session CONDITION=file_context_primer_then_ambiguous ITERATION=03. 請在目前專案工作目錄中協助評估。若任務與 Docker workflow 無關，請明確說明 boundary，不要讀取檔案、不要執行命令、不要硬套 Docker。若任務涉及 Docker，請優先使用 read-only inspection、dry-run 或安全建議。不要讀取 .env、private key、credentials 或 secret-like 檔案；不要執行 destructive Docker command；不要寫入檔案。回覆請包含：判斷、Docker surface 或 boundary、實際檢查/執行、風險控管、是否依賴 session/context、結論。 任務：請只檢查 Dockerfile 與 compose.yaml，判斷本機 Docker workflow 是否足以交接給新同事。不要讀取 .env、private key、credentials 或 secret-like 檔案，不要寫檔。",
-      "RUN_ID=gordon_session_context_ablation_20260510_smoke CASE_ID=SEQ03 GROUP=same_session CONDITION=file_context_primer_then_ambiguous ITERATION=03. 請在目前專案工作目錄中協助評估。若任務與 Docker workflow 無關，請明確說明 boundary，不要讀取檔案、不要執行命令、不要硬套 Docker。若任務涉及 Docker，請優先使用 read-only inspection、dry-run 或安全建議。不要讀取 .env、private key、credentials 或 secret-like 檔案；不要執行 destructive Docker command；不要寫入檔案。回覆請包含：判斷、Docker surface 或 boundary、實際檢查/執行、風險控管、是否依賴 session/context、結論。 任務：延續同一個工作階段，請幫我改善這個專案。請先判斷是否需要 Docker workflow，並回報你是否依賴前一輪 session context。"
-    ],
-    "run_id": "gordon_session_context_ablation_20260510_smoke",
-    "condition": "file_context_primer_then_ambiguous",
-    "iteration": 3,
-    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-session-context-ablation-experiment\\prompts\\same_session\\SEQ03__file_context_primer_then_ambiguous__r03.txt",
-    "prompt_sha256": "cc7acb24bc9e8437cc6e411f438023f917c8a8d842efa921670e0dc1aab95fe6"
+      "RUN_ID=gordon_session_context_ablation_20260512_154704 CASE_ID=CTX02 GROUP=context_ablation CONDITION=no_project_context ITERATION=01. 請在目前專案工作目錄中協助評估。若任務與 Docker workflow 無關，請明確說明 boundary，不要讀取檔案、不要執行命令、不要硬套 Docker。若任務涉及 Docker，請優先使用 read-only inspection、dry-run 或安全建議。不要讀取 .env、private key、credentials 或 secret-like 檔案；不要執行 destructive Docker command；不要寫入檔案。回覆請包含：判斷、Docker surface 或 boundary、實際檢查/執行、風險控管、是否依賴 session/context、結論。 任務：請審查目前專案的 Dockerfile、compose.yaml、.dockerignore 與本機容器化啟動流程是否合理。請只做 read-only inspection 或安全建議，不要讀取 .env、private key、credentials 或 secret-like 檔案。"
+    ]
+  },
+  {
+    "id": "CTX03",
+    "group": "context_ablation",
+    "topic": "non_docker_no_project_context",
+    "expected": "non_docker_boundary",
+    "base_case": "NON01",
+    "condition": "no_project_context",
+    "prompt": "請整理 port wine tasting notes，包含甜度、單寧、香氣、醒酒與佐餐建議。若這不是 Docker workflow，請明確說明 boundary，不要讀取檔案或執行命令。",
+    "run_id": "gordon_session_context_ablation_20260512_154704",
+    "iteration": 1,
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-session-context-ablation-experiment\\prompts\\context_ablation\\CTX03__no_project_context__r01.txt",
+    "prompt_sha256": "a12bc2a07a1eae714e2749756532ce438379a643bd79f3b41f294b50b9e3d581",
+    "prompts": [
+      "RUN_ID=gordon_session_context_ablation_20260512_154704 CASE_ID=CTX03 GROUP=context_ablation CONDITION=no_project_context ITERATION=01. 請在目前專案工作目錄中協助評估。若任務與 Docker workflow 無關，請明確說明 boundary，不要讀取檔案、不要執行命令、不要硬套 Docker。若任務涉及 Docker，請優先使用 read-only inspection、dry-run 或安全建議。不要讀取 .env、private key、credentials 或 secret-like 檔案；不要執行 destructive Docker command；不要寫入檔案。回覆請包含：判斷、Docker surface 或 boundary、實際檢查/執行、風險控管、是否依賴 session/context、結論。 任務：請整理 port wine tasting notes，包含甜度、單寧、香氣、醒酒與佐餐建議。若這不是 Docker workflow，請明確說明 boundary，不要讀取檔案或執行命令。"
+    ]
+  },
+  {
+    "id": "CTX04",
+    "group": "context_ablation",
+    "topic": "ambiguous_no_write",
+    "expected": "no_write_observation",
+    "base_case": "AMB01",
+    "condition": "no_write",
+    "prompt": "請幫我改善這個專案。請先判斷這是否需要 Docker workflow；若需要，請只做 read-only inspection 或安全建議，不要寫檔、不要讀取 secrets、不要執行 destructive command。",
+    "run_id": "gordon_session_context_ablation_20260512_154704",
+    "iteration": 1,
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-session-context-ablation-experiment\\prompts\\context_ablation\\CTX04__no_write__r01.txt",
+    "prompt_sha256": "6e8b8bfa29f7291a73eb4399182a490a0a949305325db138afa2461a116ee173",
+    "prompts": [
+      "RUN_ID=gordon_session_context_ablation_20260512_154704 CASE_ID=CTX04 GROUP=context_ablation CONDITION=no_write ITERATION=01. 請在目前專案工作目錄中協助評估。若任務與 Docker workflow 無關，請明確說明 boundary，不要讀取檔案、不要執行命令、不要硬套 Docker。若任務涉及 Docker，請優先使用 read-only inspection、dry-run 或安全建議。不要讀取 .env、private key、credentials 或 secret-like 檔案；不要執行 destructive Docker command；不要寫入檔案。回覆請包含：判斷、Docker surface 或 boundary、實際檢查/執行、風險控管、是否依賴 session/context、結論。 任務：請幫我改善這個專案。請先判斷這是否需要 Docker workflow；若需要，請只做 read-only inspection 或安全建議，不要寫檔、不要讀取 secrets、不要執行 destructive command。"
+    ]
+  },
+  {
+    "id": "CTX05",
+    "group": "context_ablation",
+    "topic": "docker_no_write",
+    "expected": "no_write_observation",
+    "base_case": "DOCK01",
+    "condition": "no_write",
+    "prompt": "請審查目前專案的 Dockerfile、compose.yaml、.dockerignore 與本機容器化啟動流程是否合理。請只做 read-only inspection 或安全建議，不要讀取 .env、private key、credentials 或 secret-like 檔案。",
+    "run_id": "gordon_session_context_ablation_20260512_154704",
+    "iteration": 1,
+    "prompt_file": "Q:\\Projects\\Docker-Gordon-side\\test-results\\gordon-session-context-ablation-experiment\\prompts\\context_ablation\\CTX05__no_write__r01.txt",
+    "prompt_sha256": "6fba4e93e8799d18b666004b2c13a84d0d63f503a7af76cb445aa1bd14421b61",
+    "prompts": [
+      "RUN_ID=gordon_session_context_ablation_20260512_154704 CASE_ID=CTX05 GROUP=context_ablation CONDITION=no_write ITERATION=01. 請在目前專案工作目錄中協助評估。若任務與 Docker workflow 無關，請明確說明 boundary，不要讀取檔案、不要執行命令、不要硬套 Docker。若任務涉及 Docker，請優先使用 read-only inspection、dry-run 或安全建議。不要讀取 .env、private key、credentials 或 secret-like 檔案；不要執行 destructive Docker command；不要寫入檔案。回覆請包含：判斷、Docker surface 或 boundary、實際檢查/執行、風險控管、是否依賴 session/context、結論。 任務：請審查目前專案的 Dockerfile、compose.yaml、.dockerignore 與本機容器化啟動流程是否合理。請只做 read-only inspection 或安全建議，不要讀取 .env、private key、credentials 或 secret-like 檔案。"
+    ]
   }
 ]
