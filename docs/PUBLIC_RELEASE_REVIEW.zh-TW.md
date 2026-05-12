@@ -98,6 +98,19 @@ same-provider-subagent
 
 accept
 
+### Post-push Verification
+
+發布 commit：`d50c177 docs: publish curated Gordon evidence`
+
+推送狀態：已推送至 `origin/main`，本機 `HEAD` 與 `origin/main` 相同。
+
+推送前後已確認：
+
+- README / README.zh-TW 相對連結存在。
+- `origin/main..HEAD` 未納入 `__pycache__`、`run-smoke-*.out.log` / `run-smoke-*.err.log`、`.env`、private key 或 credential 類路徑。
+- 高信度 private key / token pattern 未命中。
+- `OBSERVE` / `BLOCKED` 與 Desktop UI template 限制已保留，不升格為完成結論。
+
 ### Next Action
 
-完成最終差異審查與 Git 狀態檢查後，提交文件 / evidence 發布更新；若使用者接著要求推送，再推送到 `origin/main`。
+下一輪優先補 Docker Desktop UI context injection 人工實測表；其次修 same-session smoke 的 prompt/session evidence gate，再評估是否重跑正式 10x。
