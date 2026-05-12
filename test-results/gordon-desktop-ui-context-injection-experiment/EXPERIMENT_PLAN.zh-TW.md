@@ -4,6 +4,9 @@
 - Date: 2026-05-10
 - Status: manual / semi-manual evidence package
 - Scope: Docker Desktop Gordon UI 入口是否注入目前畫面、容器、映像或建置失敗上下文
+- Manual run sheet: `MANUAL_TEST_TEMPLATE.zh-TW.md`
+- Default run ID: `gordon_desktop_ui_context_injection_20260512`
+- Planned evidence root: `evidence/gordon_desktop_ui_context_injection_20260512/`
 
 ## 目的
 
