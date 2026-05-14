@@ -5,188 +5,296 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Docker Gordon 操作邊界地圖</title>
 <meta name="description" content="Docker Desktop Gordon AI 服務的操作邊界實驗記錄與分層防護線視覺化">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg-primary:#0a0e1a;--bg-secondary:#111827;--bg-card:#1a2035;--bg-card-hover:#1e2642;
-  --text-primary:#e2e8f0;--text-secondary:#94a3b8;--text-muted:#64748b;
-  --accent-blue:#3b82f6;--accent-cyan:#06b6d4;--accent-green:#10b981;--accent-amber:#f59e0b;
-  --accent-red:#ef4444;--accent-purple:#8b5cf6;--accent-pink:#ec4899;--accent-teal:#14b8a6;
-  --border-subtle:rgba(255,255,255,0.06);--border-active:rgba(255,255,255,0.12);
-  --glass:rgba(17,24,39,0.7);--radius:12px;--radius-lg:16px;
+  color-scheme:light;
+  --bg-rgb:245 243 240;--paper-rgb:252 249 244;--paper-cool-rgb:246 242 236;--ink-rgb:40 38 35;--shadow-rgb:77 65 55;
+  --text-primary:rgb(var(--ink-rgb) / .98);--text-secondary:rgb(var(--ink-rgb) / .84);--text-muted:rgb(var(--ink-rgb) / .62);--text-faint:rgb(var(--ink-rgb) / .40);
+  --draft-line:rgb(var(--ink-rgb) / .62);--draft-line-heavy:rgb(var(--ink-rgb) / .24);
+  --bg-primary:rgb(var(--bg-rgb));--bg-secondary:rgb(var(--paper-cool-rgb) / .55);--bg-card:rgb(255 255 255 / .42);--bg-card-hover:rgb(255 255 255 / .68);
+  --print-accent:#6e7884;--accent-blue:var(--print-accent);--accent-cyan:var(--print-accent);--accent-green:var(--print-accent);--accent-amber:var(--print-accent);--accent-red:var(--print-accent);--accent-purple:var(--print-accent);--accent-pink:var(--print-accent);--accent-teal:var(--print-accent);
+  --border-subtle:var(--draft-line);--border-active:var(--draft-line-heavy);
+  --font-serif:"Noto Serif TC","Shippori Mincho","Yu Mincho","PingFang TC",serif;
+  --font-sans:"Noto Sans TC","Hiragino Kaku Gothic ProN","PingFang TC",sans-serif;
+  --font-mono:"JetBrains Mono","SFMono-Regular",Consolas,monospace;
+  --step--1:.75rem;--step-0:.875rem;--step-1:1.125rem;--step-2:1.5rem;--step-3:2rem;--step-4:3rem;
+  --paper-blur:16px;
+  --paper-shadow:0 24px 48px rgb(var(--shadow-rgb) / .08),0 8px 16px rgb(var(--shadow-rgb) / .04),0 1px 2px rgb(var(--shadow-rgb) / .02);
+  --paper-edge:inset 0 1px 0 rgb(255 255 255 / .8),inset 0 -1px 0 rgb(145 129 113 / .15);
+  --ink-relief:.015em .025em 0 rgb(95 78 63 / .08),.04em .06em .10em rgb(95 78 63 / .05);
+  --light:1;--dynamic-light-x:68%;--dynamic-light-y:22%;--tilt-x:0deg;--tilt-y:0deg;
+  --radius:0;--radius-lg:0;
 }
 html{scroll-behavior:smooth}
-body{font-family:'Inter',system-ui,sans-serif;background:var(--bg-primary);color:var(--text-primary);line-height:1.6;min-height:100vh}
-code,.mono{font-family:'JetBrains Mono',monospace}
+body{font-family:var(--font-sans);background-color:var(--bg-primary);background-image:linear-gradient(rgb(var(--ink-rgb) / .04) 1px,transparent 1px),linear-gradient(90deg,rgb(var(--ink-rgb) / .04) 1px,transparent 1px),linear-gradient(rgb(var(--ink-rgb) / .02) 1px,transparent 1px),linear-gradient(90deg,rgb(var(--ink-rgb) / .02) 1px,transparent 1px);background-size:100px 100px,100px 100px,10px 10px,10px 10px;background-position:-1px -1px;color:var(--text-primary);line-height:1.85;min-height:100vh;font-weight:300;-webkit-font-smoothing:antialiased}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;opacity:.045;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");mix-blend-mode:multiply;z-index:9999}
+code,.mono{font-family:var(--font-mono)}
+.draft-edge-label{position:fixed;left:16px;top:0;bottom:0;width:24px;writing-mode:vertical-rl;text-orientation:mixed;display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;color:var(--text-faint);border-right:1px solid var(--draft-line);z-index:10}
+.decor-paper{position:fixed;z-index:0;width:112px;height:76px;background:rgb(var(--paper-rgb));border:1px solid rgb(var(--ink-rgb) / .18);box-shadow:0 10px 24px rgb(var(--shadow-rgb) / .08);transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s ease;pointer-events:auto}
+.decor-paper::before{content:"";position:absolute;left:18px;right:18px;top:22px;border-top:1px solid rgb(var(--ink-rgb) / .42)}
+.decor-paper::after{content:"";position:absolute;left:18px;right:36px;top:38px;border-top:1px solid var(--print-accent)}
+.decor-paper:hover{transform:translateY(-18px) rotate(var(--lift-rot,4deg));box-shadow:0 22px 36px rgb(var(--shadow-rgb) / .13)}
+.decor-paper.p1{right:5vw;top:132px;transform:rotate(5deg)}
+.decor-paper.p1:hover{--lift-rot:9deg}
+.decor-paper.p2{left:7vw;top:48vh;width:92px;height:64px;transform:rotate(-7deg)}
+.decor-paper.p2:hover{--lift-rot:-13deg}
+.decor-paper.p3{right:10vw;bottom:90px;width:128px;height:86px;transform:rotate(-3deg)}
+.decor-paper.p3:hover{--lift-rot:5deg}
+@media(max-width:900px){.decor-paper{display:none}}
 
 /* Header */
-.hero{position:relative;padding:3rem 2rem 2rem;text-align:center;overflow:hidden;border-bottom:1px solid var(--border-subtle)}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 50% -20%,rgba(59,130,246,0.15),transparent),radial-gradient(ellipse 60% 40% at 80% 100%,rgba(139,92,246,0.1),transparent);pointer-events:none}
-.hero h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;background:linear-gradient(135deg,#60a5fa,#a78bfa,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.5rem;position:relative}
-.hero .subtitle{color:var(--text-secondary);font-size:.95rem;max-width:640px;margin:0 auto .8rem}
-.hero .meta{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;font-size:.78rem;color:var(--text-muted)}
-.meta-tag{background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.2);padding:.2rem .6rem;border-radius:20px}
+.hero{position:relative;width:min(1400px,calc(100% - 100px));margin:56px auto 24px;padding:84px 56px 96px;text-align:left;overflow:hidden;background:linear-gradient(145deg,rgb(var(--paper-rgb)),rgb(var(--paper-cool-rgb) / .72));display:grid;grid-template-columns:minmax(0,1fr) 360px;grid-template-rows:auto auto 1fr;gap:0 54px;min-height:45svh;align-items:start;z-index:120;box-shadow:var(--paper-edge),var(--paper-shadow);transition:min-height .58s cubic-bezier(.2,.8,.2,1),padding .58s cubic-bezier(.2,.8,.2,1),margin .58s cubic-bezier(.2,.8,.2,1),transform .18s ease,opacity .38s ease}
+.hero::before,section::before,.layer-card::after{content:"";position:absolute;inset:0;background:radial-gradient(300px 200px at var(--dynamic-light-x) var(--dynamic-light-y),rgb(255 255 255 / calc(.30 * var(--light))),transparent 52%),linear-gradient(180deg,rgb(255 255 255 / .16),transparent 28%);pointer-events:none;z-index:0}
+.hero.dynamic-paper,section.dynamic-paper,.flow-page.dynamic-paper{transform:perspective(1200px) rotateX(var(--tilt-y)) rotateY(var(--tilt-x)) rotate(var(--base-rot,0deg))}
+.hero > *,section > *,.flow-page > *,.layer-card > *{position:relative;z-index:1}
+.hero h1{grid-column:1;grid-row:1;font-family:var(--font-serif);font-size:var(--step-4);font-weight:500;color:var(--text-primary);letter-spacing:.02em;line-height:1.2;padding:0;margin:0;text-shadow:.026em .045em 0 rgb(95 78 63 / .14),.07em .09em .14em rgb(95 78 63 / .12),0 0 .08em rgb(255 252 248 / .28)}
+.hero h1::before{content:"Docker Gordon Boundary Map";display:block;font-family:var(--font-mono);font-size:10px;color:var(--print-accent);letter-spacing:.15em;margin-bottom:8px;text-shadow:none;text-transform:uppercase}
+.hero .mark{display:inline-flex;align-items:center;justify-content:center;width:1.3rem;height:1.3rem;margin-right:.35rem;color:var(--accent-cyan);vertical-align:-.18rem}
+.hero .subtitle{grid-column:1;grid-row:2;color:var(--text-secondary);font-size:var(--step-0);line-height:2;padding:0;margin-top:18px;max-width:none;white-space:nowrap;text-shadow:var(--ink-relief)}
+.hero .subtitle::before{content:"";display:none}
+.hero-banner{grid-column:1 / -1;grid-row:3;margin:44px 0 -26px;align-self:end;overflow:hidden;aspect-ratio:2385 / 941;background:rgb(var(--ink-rgb) / .08);box-shadow:0 18px 34px rgb(var(--shadow-rgb) / .12);opacity:.9;transition:opacity .36s ease,transform .58s cubic-bezier(.2,.8,.2,1),max-height .58s cubic-bezier(.2,.8,.2,1)}
+.hero-banner img{display:block;width:100%;height:100%;object-fit:cover;user-select:none;-webkit-user-drag:none}
+.hero-whale{display:none;grid-column:1;grid-row:3;align-self:end;justify-self:start;width:min(690px,100%);margin:48px 0 -20px -12px;pointer-events:none;mix-blend-mode:multiply;opacity:.9;will-change:left,top;transition:width .58s cubic-bezier(.2,.8,.2,1),opacity .38s ease,filter .38s ease}
+.hero-whale-art{display:block;animation:whaleSwim 18s ease-in-out infinite alternate;will-change:transform}
+.hero-whale img{display:block;width:100%;height:auto;transform:scaleX(-1);user-select:none;-webkit-user-drag:none}
+@keyframes whaleSwim{0%{transform:translateX(-18px) translateY(4px) rotate(-.45deg)}50%{transform:translateX(8px) translateY(-3px) rotate(.2deg)}100%{transform:translateX(34px) translateY(2px) rotate(.5deg)}}
+@keyframes whaleRoam{0%{transform:translate3d(-12vw,-10px,0) rotate(-1deg)}28%{transform:translate3d(6vw,18px,0) rotate(.8deg)}56%{transform:translate3d(14vw,-18px,0) rotate(-.3deg)}82%{transform:translate3d(-4vw,22px,0) rotate(.9deg)}100%{transform:translate3d(-15vw,4px,0) rotate(-.6deg)}}
+@keyframes whaleNudge{0%{transform:translate3d(-8px,-4px,0) rotate(-.35deg)}100%{transform:translate3d(8px,6px,0) rotate(.35deg)}}
+.hero .meta{grid-column:2;grid-row:1 / 4;align-self:start;justify-self:end;width:360px;min-height:0;display:grid;grid-template-columns:1fr;font-size:11px;line-height:1.58;color:var(--text-secondary);border:1px solid var(--draft-line);padding:16px 18px;background:linear-gradient(180deg,transparent,rgb(0 0 0 / .018));position:relative;transform:translate(18px,-14px);transition:width .58s cubic-bezier(.2,.8,.2,1),padding .58s cubic-bezier(.2,.8,.2,1),font-size .58s cubic-bezier(.2,.8,.2,1),line-height .58s cubic-bezier(.2,.8,.2,1),opacity .38s ease,transform .58s cubic-bezier(.2,.8,.2,1)}
+.hero .meta::before{content:"";position:absolute;left:18px;right:18px;top:0;border-top:2px solid var(--draft-line-heavy)}
+.meta-tag{display:flex;align-items:center;border:0;border-bottom:1px dotted var(--draft-line);padding:0 0 5px;margin-bottom:5px;font-family:var(--font-mono);letter-spacing:.04em;background:transparent}
+.meta-tag:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+.meta-tag a,.project-link{display:inline-flex;align-items:center;gap:6px;color:var(--text-secondary);text-decoration:none}
+.meta-tag a:hover,.project-link:hover{color:var(--print-accent)}
+.meta-tag .line-icon,.project-link .line-icon{width:.85rem;height:.85rem}
+.content-mode .hero{position:sticky;top:10px;margin:14px auto 10px;padding:24px 42px 34px;grid-template-columns:minmax(0,1fr) 280px;grid-template-rows:auto auto;min-height:150px;overflow:visible;z-index:140}
+.content-mode .hero.dynamic-paper{transform:none}
+.content-mode .hero h1{font-size:var(--step-3);line-height:1.2}
+.content-mode .hero h1::before{margin-bottom:5px}
+.content-mode .hero .subtitle{font-size:var(--step--1);line-height:1.7;margin-top:9px}
+.content-mode .hero-banner{display:none}
+.content-mode .hero .meta{position:absolute;right:28px;top:18px;width:280px;padding:11px 14px;font-size:9.5px;line-height:1.36;opacity:0;transform:translate(16px,-18px) scale(.92);pointer-events:none}
+.content-mode .hero .meta::before{left:14px;right:14px}
+.content-mode .meta-tag{padding-bottom:3px;margin-bottom:3px}
+.content-mode .hero-whale{display:block;position:fixed;left:var(--whale-left,50vw);top:var(--whale-top,126px);width:min(180px,18vw);margin:0;z-index:180;pointer-events:auto;cursor:grab;mix-blend-mode:multiply;opacity:.86;touch-action:none}
+.content-mode .hero-whale-art{animation:none;transform:none}
+.content-mode .hero-whale.dragging{animation:none;cursor:grabbing;filter:drop-shadow(0 12px 16px rgb(var(--shadow-rgb) / .16))}
+.content-mode .hero-whale.user-positioned{animation:none}
+@media(max-width:900px){.hero{grid-template-columns:1fr;padding:56px 32px}.hero .subtitle{white-space:normal}.hero-banner{grid-column:1;grid-row:auto;margin:32px 0 -8px}.hero-whale{grid-column:1;grid-row:auto;width:min(560px,100%);margin:32px 0 -8px}.hero .meta{grid-column:1;grid-row:auto;justify-self:stretch;width:auto;margin-top:32px;transform:none}.hero h1{font-size:var(--step-3)}.content-mode .hero{grid-template-columns:1fr;padding:24px 28px 32px}.content-mode .hero .meta{display:none}.content-mode .hero-whale{width:150px;top:132px}}
+@media(max-width:760px){.draft-edge-label{display:none}.hero{width:calc(100% - 24px)}}
+@media(prefers-reduced-motion:reduce){.hero-whale-art{animation:none}}
 
 /* Nav */
-.nav{position:sticky;top:0;z-index:100;background:rgba(10,14,26,0.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border-subtle);padding:.6rem 1rem;display:flex;gap:.5rem;overflow-x:auto;justify-content:center;flex-wrap:wrap}
-.nav button{background:var(--bg-card);border:1px solid var(--border-subtle);color:var(--text-secondary);padding:.4rem 1rem;border-radius:20px;cursor:pointer;font-size:.8rem;font-family:inherit;transition:all .2s;white-space:nowrap}
-.nav button:hover,.nav button.active{background:rgba(59,130,246,0.15);border-color:var(--accent-blue);color:var(--text-primary)}
+.nav{position:sticky;top:12px;z-index:130;width:min(1400px,calc(100% - 100px));margin:0 auto 40px;background:rgb(var(--paper-rgb));padding:12px;display:flex;gap:8px;overflow-x:auto;justify-content:center;flex-wrap:nowrap;box-shadow:0 12px 24px rgb(var(--shadow-rgb) / .08);transition:top .58s cubic-bezier(.2,.8,.2,1),margin .58s cubic-bezier(.2,.8,.2,1),box-shadow .38s ease,opacity .38s ease,transform .38s ease}
+.nav button{flex:1;background:transparent;border:0;color:var(--text-secondary);padding:8px;cursor:pointer;font-size:var(--step--1);font-family:var(--font-mono);letter-spacing:.1em;transition:color .2s ease,background-color .2s ease;white-space:nowrap;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:8px}
+.nav button:hover,.nav button.active{background:rgb(var(--paper-cool-rgb) / .72);color:var(--text-primary)}
+.content-mode .nav{top:174px;margin-bottom:28px;z-index:135;box-shadow:0 16px 32px rgb(var(--shadow-rgb) / .10)}
+@media(max-width:900px){.content-mode .nav{top:166px}}
+@media(max-width:760px){.nav,.container{width:calc(100% - 24px)}.nav{justify-content:flex-start}.nav button{flex:0 0 auto}.content-mode .nav{top:158px}}
 
 /* Layout */
-.container{max-width:1200px;margin:0 auto;padding:1.5rem 1rem}
-section{margin-bottom:2rem}
-section h2{font-size:1.3rem;font-weight:700;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
-section h2 .icon{font-size:1.4rem}
+.container{width:min(1400px,calc(100% - 100px));margin:0 auto;padding:0 0 100px;position:relative;z-index:1;overflow:hidden;opacity:1;transition:opacity .42s ease,transform .42s cubic-bezier(.2,.8,.2,1)}
+.home-mode .container{opacity:0;transform:translateY(12px);max-height:0;padding-bottom:0;pointer-events:none}
+.content-mode .container{opacity:1;transform:translateY(0);max-height:none;pointer-events:auto}
+section{position:relative;margin-bottom:82px;padding:60px 56px;overflow:hidden;background:linear-gradient(145deg,rgb(var(--paper-rgb)),rgb(var(--paper-cool-rgb) / .66));box-shadow:var(--paper-edge),var(--paper-shadow);transition:transform 140ms ease,opacity .32s ease}
+section.section-active{display:block}
+section.slide-from-right{animation:paperSlideFromRight .42s cubic-bezier(.2,.8,.2,1)}
+section.slide-from-left{animation:paperSlideFromLeft .42s cubic-bezier(.2,.8,.2,1)}
+section.section-fade-out{animation:paperFadeOut .24s ease forwards}
+@keyframes paperSlideFromRight{from{opacity:0;transform:translateX(7%) rotate(.3deg)}to{opacity:1;transform:translateX(0) rotate(0deg)}}
+@keyframes paperSlideFromLeft{from{opacity:0;transform:translateX(-7%) rotate(-.3deg)}to{opacity:1;transform:translateX(0) rotate(0deg)}}
+@keyframes paperFadeOut{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(-3%)}}
+section h2{font-family:var(--font-serif);font-size:var(--step-2);font-weight:500;letter-spacing:.05em;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--draft-line);display:flex;align-items:center;gap:.75rem}
+section h2::before{content:"FIG.";font-family:var(--font-mono);font-size:10px;color:var(--print-accent);letter-spacing:.15em;margin-right:.25rem;text-shadow:none}
+section h2 .icon{color:var(--accent-cyan)}
+.line-icon{display:inline-flex;width:1.15rem;height:1.15rem;align-items:center;justify-content:center;flex:0 0 auto;color:currentColor}
+.line-icon svg{width:100%;height:100%;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.click-mark{display:inline-flex;color:var(--print-accent);align-items:center;justify-content:center;flex:0 0 auto}
+.click-mark .line-icon{width:1rem;height:1rem}
+.hero .line-icon{width:1.05rem;height:1.05rem}
+.lc-icon .line-icon{width:1.35rem;height:1.35rem}
+.fn-title .line-icon{width:1rem;height:1rem;margin-right:.25rem;vertical-align:-.15rem}
 
 /* Defense Layers */
-.layers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}
-.layer-card{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:1.2rem;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
-.layer-card:hover{transform:translateY(-2px);border-color:var(--border-active);background:var(--bg-card-hover)}
-.layer-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--radius-lg) var(--radius-lg) 0 0}
-.layer-card .lc-head{display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem}
-.layer-card .lc-icon{font-size:1.5rem}
-.layer-card .lc-title{font-weight:600;font-size:.95rem;flex:1}
-.layer-card .lc-desc{font-size:.82rem;color:var(--text-secondary);margin-bottom:.6rem}
-.layer-card .lc-summary{font-size:.8rem;color:var(--text-muted);border-top:1px solid var(--border-subtle);padding-top:.5rem}
-.verdict-badge{font-size:.7rem;font-weight:600;padding:.15rem .5rem;border-radius:10px;text-transform:uppercase;letter-spacing:.5px}
-.verdict-PASS{background:rgba(16,185,129,0.15);color:#34d399;border:1px solid rgba(16,185,129,0.3)}
-.verdict-OBSERVE{background:rgba(245,158,11,0.15);color:#fbbf24;border:1px solid rgba(245,158,11,0.3)}
-.verdict-FAIL{background:rgba(239,68,68,0.15);color:#f87171;border:1px solid rgba(239,68,68,0.3)}
+.layers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:2.4rem 2.6rem;padding:12px 0}
+.layer-card{background:linear-gradient(var(--slip-gradient,180deg),rgb(255 255 255 / .44),var(--slip-bg));border:0;border-radius:0;padding:28px 24px 24px;cursor:pointer;transition:color .2s ease,transform .25s ease,box-shadow .25s ease;position:relative;overflow:hidden;box-shadow:0 12px 28px rgb(var(--shadow-rgb) / .08);transform:rotate(var(--tilt,0deg))}
+.layer-card:nth-child(1){--slip-bg:#fcf9f4;--tilt:-1.2deg}.layer-card:nth-child(2){--slip-bg:#f6f2ec;--tilt:.8deg}.layer-card:nth-child(3){--slip-bg:#f1ece5;--tilt:-.5deg}.layer-card:nth-child(4){--slip-bg:#ddd5c9;--tilt:1deg;--slip-gradient:0deg}.layer-card:nth-child(5){--slip-bg:#f6f2ec;--tilt:-.8deg}.layer-card:nth-child(6){--slip-bg:#fcf9f4;--tilt:.6deg}.layer-card:nth-child(7){--slip-bg:#f1ece5;--tilt:-1deg}.layer-card:nth-child(8){--slip-bg:#ddd5c9;--tilt:.9deg;--slip-gradient:0deg}
+.layer-card:hover{color:var(--print-accent);transform:translateY(-6px) rotate(var(--tilt,0deg));box-shadow:0 20px 36px rgb(var(--shadow-rgb) / .12)}
+.layer-card::before{content:"";position:absolute;left:24px;right:24px;top:20px;border-top:1px solid var(--draft-line);z-index:1}
+.layer-card .lc-head{display:flex;align-items:center;gap:.9rem;margin-bottom:.75rem;padding-top:16px}
+.layer-card .lc-icon{display:inline-flex}
+.layer-card .lc-title{font-family:var(--font-serif);font-weight:500;font-size:var(--step-1);letter-spacing:.03em;flex:1}
+.layer-card .lc-desc{font-size:var(--step-0);color:var(--text-secondary);margin-bottom:.9rem}
+.layer-card .lc-summary{font-size:var(--step-0);color:var(--text-secondary);border-top:1px solid rgb(var(--ink-rgb) / .22);padding-top:.75rem}
+.verdict-badge{font-family:var(--font-mono);font-size:10px;font-weight:500;padding:.14rem .45rem;border-radius:0;text-transform:uppercase;letter-spacing:.1em;background:transparent}
+.verdict-PASS,.verdict-OBSERVE,.verdict-FAIL{color:var(--print-accent);border:1px solid var(--print-accent)}
 
 /* Experiment Cards */
-.exp-list{display:flex;flex-direction:column;gap:.8rem}
-.exp-card{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius);overflow:hidden;transition:all .2s}
-.exp-card:hover{border-color:var(--border-active)}
-.exp-header{padding:1rem 1.2rem;cursor:pointer;display:flex;align-items:center;gap:.8rem}
-.exp-header .exp-id{font-family:'JetBrains Mono',monospace;font-size:.75rem;font-weight:600;background:rgba(59,130,246,0.12);color:var(--accent-blue);padding:.2rem .5rem;border-radius:6px;min-width:50px;text-align:center}
-.exp-header .exp-title{font-weight:600;font-size:.9rem;flex:1}
+.exp-list{display:flex;flex-direction:column;gap:1.2rem}
+.exp-card{background:transparent;border:0;border-top:1px solid var(--draft-line);border-radius:0;overflow:visible;transition:color .2s ease}
+.exp-card:hover{color:var(--print-accent)}
+.exp-header{padding:1.1rem 0;cursor:pointer;display:flex;align-items:center;gap:1rem}
+.exp-header .exp-id{font-family:var(--font-mono);font-size:11px;font-weight:500;background:transparent;color:var(--print-accent);padding:.22rem .55rem;border:1px solid var(--print-accent);border-radius:0;min-width:58px;text-align:center}
+.exp-header .exp-title{font-family:var(--font-serif);font-weight:500;font-size:var(--step-1);letter-spacing:.03em;flex:1}
 .exp-header .exp-verdict{margin-left:auto}
-.exp-header .chevron{color:var(--text-muted);transition:transform .2s;font-size:.8rem}
+.exp-header .chevron{color:var(--text-muted);transition:transform .2s}
 .exp-card.open .chevron{transform:rotate(90deg)}
-.exp-body{display:none;padding:0 1.2rem 1.2rem;animation:fadeIn .3s}
+.exp-body{display:none;padding:.45rem 0 1.4rem 4.4rem;animation:fadeIn .3s}
 .exp-card.open .exp-body{display:block}
 @keyframes fadeIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
 
-.exp-section{margin-bottom:1rem}
-.exp-section-title{font-size:.78rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:.4rem}
-.exp-prompt{background:rgba(0,0,0,0.3);border:1px solid var(--border-subtle);border-radius:8px;padding:.8rem;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--accent-cyan);white-space:pre-wrap;line-height:1.5;max-height:200px;overflow-y:auto;position:relative}
-.exp-prompt .copy-btn{position:absolute;top:.4rem;right:.4rem;background:rgba(59,130,246,0.2);border:none;color:var(--accent-blue);padding:.2rem .5rem;border-radius:4px;cursor:pointer;font-size:.7rem;font-family:inherit}
-.exp-prompt .copy-btn:hover{background:rgba(59,130,246,0.4)}
-.exp-result{font-size:.85rem;color:var(--text-secondary);line-height:1.6}
-.exp-annotation{background:rgba(139,92,246,0.08);border-left:3px solid var(--accent-purple);padding:.6rem .8rem;border-radius:0 8px 8px 0;font-size:.82rem;color:var(--text-secondary);line-height:1.5}
-.canary-list{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.3rem}
-.canary-tag{font-family:'JetBrains Mono',monospace;font-size:.68rem;padding:.15rem .4rem;border-radius:4px}
-.canary-found{background:rgba(16,185,129,0.12);color:#34d399;border:1px solid rgba(16,185,129,0.2)}
-.canary-not-found{background:rgba(100,116,139,0.12);color:var(--text-muted);border:1px solid rgba(100,116,139,0.2)}
-.evidence-badge{font-size:.7rem;padding:.15rem .4rem;border-radius:4px;background:rgba(6,182,212,0.12);color:var(--accent-cyan);border:1px solid rgba(6,182,212,0.2);font-weight:600}
+.exp-section{margin-bottom:1.1rem;display:grid;grid-template-columns:96px minmax(0,1fr);gap:16px;align-items:start}
+.exp-section-title{font-family:var(--font-mono);font-size:10px;font-weight:500;color:var(--print-accent);text-transform:uppercase;letter-spacing:.15em;margin-bottom:0}
+.exp-section-title::after{content:" :";color:var(--text-muted);letter-spacing:0}
+.exp-prompt{background:transparent;border:1px solid var(--draft-line-heavy);border-radius:0;padding:1.05rem 1.15rem;font-family:var(--font-mono);font-size:var(--step--1);color:var(--text-primary);white-space:pre-wrap;line-height:1.75;max-height:240px;overflow-y:auto;position:relative}
+.exp-prompt .copy-btn{position:absolute;top:.4rem;right:.4rem;background:transparent;border:1px solid var(--draft-line-heavy);color:var(--text-primary);padding:.2rem .5rem;border-radius:0;cursor:pointer;font-size:9px;font-family:var(--font-mono);letter-spacing:.08em}
+.exp-prompt .copy-btn{display:flex;align-items:center;gap:4px}
+.exp-prompt .copy-btn:hover{color:var(--print-accent);border-color:var(--print-accent)}
+.exp-result{font-size:var(--step-0);color:var(--text-secondary);line-height:1.85}
+.exp-annotation{background:transparent;border:0;border-left:2px solid var(--print-accent);padding:.2rem 0 .2rem 1rem;border-radius:0;font-size:var(--step-0);color:var(--text-secondary);line-height:1.8}
+.canary-list{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.45rem}
+.canary-tag{font-family:var(--font-mono);font-size:10px;padding:.12rem .35rem;border-radius:0;background:transparent}
+.canary-found{color:var(--print-accent);border:1px dotted var(--print-accent)}
+.canary-not-found{color:var(--text-muted);border:1px dotted var(--draft-line-heavy)}
+.evidence-badge{font-family:var(--font-mono);font-size:10px;padding:.12rem .35rem;border-radius:0;background:transparent;color:var(--print-accent);border:1px solid var(--print-accent);font-weight:500}
 
 /* Prompt Templates */
-.pt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1rem}
-.pt-card{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius);padding:1.2rem;transition:all .2s}
-.pt-card:hover{border-color:var(--border-active);background:var(--bg-card-hover)}
-.pt-card h3{font-size:.9rem;font-weight:600;margin-bottom:.3rem}
-.pt-card .pt-desc{font-size:.8rem;color:var(--text-secondary);margin-bottom:.6rem}
-.pt-card .pt-template{background:rgba(0,0,0,0.3);border-radius:6px;padding:.6rem;font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--accent-cyan);white-space:pre-wrap;margin-bottom:.5rem;max-height:120px;overflow-y:auto}
-.pt-card .pt-meta{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
-.risk-badge{font-size:.68rem;padding:.12rem .4rem;border-radius:4px;font-weight:600;text-transform:uppercase}
-.risk-low{background:rgba(16,185,129,0.12);color:#34d399}
-.risk-medium{background:rgba(245,158,11,0.12);color:#fbbf24}
-.risk-high{background:rgba(239,68,68,0.12);color:#f87171}
-.risk-none{background:rgba(100,116,139,0.12);color:var(--text-muted)}
+.pt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:2.2rem 2.6rem}
+.pt-card{background:transparent;border:0;border-top:1px solid var(--draft-line);border-radius:0;padding:1.15rem 0 0;transition:color .2s ease}
+.pt-card:hover{color:var(--print-accent)}
+.pt-card h3{font-family:var(--font-serif);font-size:var(--step-1);font-weight:500;letter-spacing:.03em;margin-bottom:.55rem}
+.pt-card .pt-desc{font-size:var(--step-0);color:var(--text-secondary);margin-bottom:.85rem}
+.pt-card .pt-template{background:transparent;border:1px solid var(--draft-line-heavy);border-radius:0;padding:.9rem 1rem;font-family:var(--font-mono);font-size:var(--step--1);color:var(--text-primary);white-space:pre-wrap;margin-bottom:.8rem;max-height:150px;overflow-y:auto;line-height:1.75}
+.pt-card .pt-meta{display:flex;gap:.65rem;align-items:center;flex-wrap:wrap}
+.risk-badge{font-family:var(--font-mono);font-size:10px;padding:.12rem .38rem;border-radius:0;font-weight:500;text-transform:uppercase;border:1px solid var(--print-accent);background:transparent}
+.risk-low,.risk-medium,.risk-high,.risk-none{color:var(--print-accent)}
 
 /* Triggers */
-.trigger-section{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.trigger-section{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
 @media(max-width:640px){.trigger-section{grid-template-columns:1fr}}
-.trigger-group{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius);padding:1rem}
-.trigger-group h3{font-size:.9rem;font-weight:600;margin-bottom:.6rem}
-.trigger-item{display:flex;align-items:center;gap:.6rem;padding:.4rem 0;border-bottom:1px solid var(--border-subtle);font-size:.82rem}
+.trigger-group{background:transparent;border:0;border-top:1px solid var(--draft-line);border-radius:0;padding:1.2rem 0 0}
+.trigger-group h3{font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:.1em;margin-bottom:1rem;padding-bottom:0;border-bottom:0}
+.trigger-item{display:flex;align-items:center;gap:.85rem;padding:.35rem 0;border-bottom:0;font-size:var(--step-0)}
 .trigger-item:last-child{border:none}
-.trigger-item .tt{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--accent-cyan)}
-.trigger-item .tz{color:var(--text-muted);font-size:.75rem}
+.trigger-item .tt{font-family:var(--font-mono);font-size:var(--step--1);color:var(--text-primary)}
+.trigger-item .tz{color:var(--text-muted);font-size:var(--step--1)}
 
 /* Conclusions */
-.conclusion-list{display:flex;flex-direction:column;gap:.5rem}
-.conclusion-item{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:8px;padding:.8rem 1rem;font-size:.85rem;display:flex;gap:.6rem;align-items:flex-start}
-.conclusion-item .ci-num{font-family:'JetBrains Mono',monospace;font-size:.75rem;font-weight:700;color:var(--accent-blue);min-width:1.5rem}
+.conclusion-list{display:flex;flex-direction:column;gap:1rem}
+.conclusion-item{background:transparent;border:0;border-top:1px solid var(--draft-line);border-radius:0;padding:1rem 0 0;font-size:var(--step-0);display:flex;gap:1rem;align-items:flex-start}
+.conclusion-item .ci-num{font-family:var(--font-mono);font-size:var(--step--1);font-weight:500;color:var(--print-accent);min-width:1.8rem}
 
 /* Flow Diagram */
-.flow-container{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:1.5rem;overflow-x:auto}
-.flow-chain{display:flex;align-items:center;gap:0;min-width:max-content;justify-content:center;flex-wrap:wrap;row-gap:1rem}
-.flow-node{background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.2);border-radius:10px;padding:.6rem 1rem;text-align:center;min-width:120px}
-.flow-node .fn-label{font-size:.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px}
-.flow-node .fn-title{font-size:.82rem;font-weight:600;margin-top:.2rem}
-.flow-arrow{color:var(--text-muted);font-size:1.2rem;padding:0 .3rem;flex-shrink:0}
-.flow-node.pass{border-color:rgba(16,185,129,0.3);background:rgba(16,185,129,0.08)}
-.flow-node.observe{border-color:rgba(245,158,11,0.3);background:rgba(245,158,11,0.08)}
+.flow-container{background:transparent;border:0;border-radius:0;padding:0;overflow:visible}
+.flow-sheets{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.flow-page{position:relative;overflow:hidden;background:linear-gradient(180deg,rgb(var(--paper-cool-rgb) / .82),rgb(var(--paper-cool-rgb) / .28));padding:32px 36px;box-shadow:none;transition:background-color .2s ease}
+.flow-page:nth-child(2){background:linear-gradient(180deg,rgb(241 236 229 / .82),rgb(241 236 229 / .28))}
+.flow-page-title{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;color:var(--print-accent);margin-bottom:18px;padding-bottom:0;border-bottom:0}
+.flow-chain{display:flex;align-items:stretch;gap:0;min-width:max-content;justify-content:flex-start;flex-wrap:nowrap;row-gap:1.6rem}
+.flow-node{background:transparent;border:0;border-radius:0;padding:0;text-align:left;min-width:140px}
+.flow-node .fn-label{font-family:var(--font-mono);font-size:10px;color:var(--print-accent);text-transform:uppercase;letter-spacing:.12em}
+.flow-node .fn-title{font-family:var(--font-serif);font-size:var(--step-0);font-weight:500;margin-top:.35rem}
+.flow-arrow{color:var(--print-accent);padding:0 .5rem;flex-shrink:0}
+.flow-arrow .line-icon,.chevron .line-icon{width:.9rem;height:.9rem}
+.flow-node.pass,.flow-node.observe{border-color:var(--draft-line);background:transparent}
+.flow-page .flow-arrow{align-self:flex-start;margin-top:28px}
+
+@media(max-width:960px){.flow-sheets{grid-template-columns:1fr}}
+@media(max-width:760px){section{padding:40px 28px;margin-bottom:56px}.exp-body{padding-left:0}.layers-grid,.pt-grid{grid-template-columns:1fr;gap:1.8rem}.trigger-section{gap:2rem}}
 
 /* Footer */
-footer{text-align:center;padding:2rem 1rem;color:var(--text-muted);font-size:.78rem;border-top:1px solid var(--border-subtle)}
-footer a{color:var(--accent-blue);text-decoration:none}
+footer{width:min(1400px,calc(100% - 100px));margin:0 auto;text-align:center;padding:2rem 1rem;color:var(--text-muted);font-size:var(--step--1);border-top:1px solid var(--border-subtle)}
+.home-mode footer{opacity:0;max-height:0;overflow:hidden;padding:0;border-top:0;pointer-events:none}
+.project-links{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-bottom:.5rem}
+.project-identity a{display:inline-flex;align-items:center;gap:6px;color:var(--text-muted);text-decoration:none}
+.project-identity a:hover{color:var(--print-accent)}
+.project-identity .line-icon{width:.85rem;height:.85rem}
+.project-note{margin-top:.3rem}
+@media(max-width:760px){footer{width:calc(100% - 24px)}.project-links{justify-content:flex-start;text-align:left}}
 
 /* Scrollbar */
 ::-webkit-scrollbar{width:6px;height:6px}
 ::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:3px}
-::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,0.2)}
+::-webkit-scrollbar-thumb{background:rgb(var(--ink-rgb) / .22);border-radius:1px}
+::-webkit-scrollbar-thumb:hover{background:rgb(var(--ink-rgb) / .36)}
 
 /* Hidden sections */
 .section-hidden{display:none}
 </style>
 </head>
-<body>
+<body class="home-mode">
+
+<div class="draft-edge-label">DOCUMENT NO. DGS-001 // DOCKER GORDON BOUNDARY MAP // PUBLIC ARCHIVE</div>
+<div class="decor-paper p1" aria-hidden="true"></div>
+<div class="decor-paper p2" aria-hidden="true"></div>
+<div class="decor-paper p3" aria-hidden="true"></div>
 
 <header class="hero">
-  <h1>🐳 Docker Gordon 操作邊界地圖</h1>
+  <h1><span class="mark" aria-hidden="true"></span>Docker Gordon 操作邊界地圖</h1>
   <p class="subtitle">記錄 Docker Desktop Gordon AI 的操作邊界、提示詞實驗結果與分層防護線設計</p>
+  <figure class="hero-banner" aria-label="Docker Gordon boundary atlas banner">
+    <img src="RADI0380.jpeg" alt="">
+  </figure>
+  <figure class="hero-whale" role="img" aria-label="描圖紙藍鯨剪紙，可在內容模式拖移">
+    <span class="hero-whale-art"><img src="docs/assets/blue-whale-cutout.png" alt=""></span>
+  </figure>
   <div class="meta" id="hero-meta"></div>
 </header>
 
 <nav class="nav" id="main-nav"></nav>
 
 <main class="container">
-  <section id="sec-flow">
-    <h2><span class="icon">🔗</span> 防護線傳遞流程</h2>
-    <div class="flow-container"><div class="flow-chain" id="flow-chain"></div></div>
+  <section id="sec-flow" class="section-hidden">
+    <h2><span class="icon" data-icon="flow"></span> 防護線傳遞流程</h2>
+    <div class="flow-container"><div id="flow-chain"></div></div>
   </section>
 
-  <section id="sec-layers">
-    <h2><span class="icon">🛡️</span> 分層防護線</h2>
+  <section id="sec-layers" class="section-hidden">
+    <h2><span class="icon" data-icon="layers"></span> 分層防護線</h2>
     <div class="layers-grid" id="layers-grid"></div>
   </section>
 
   <section id="sec-experiments" class="section-hidden">
-    <h2><span class="icon">🧪</span> 實驗記錄</h2>
+    <h2><span class="icon" data-icon="experiments"></span> 實驗記錄</h2>
     <div class="exp-list" id="exp-list"></div>
   </section>
 
   <section id="sec-prompts" class="section-hidden">
-    <h2><span class="icon">💬</span> 提示詞範本</h2>
+    <h2><span class="icon" data-icon="prompts"></span> 提示詞範本</h2>
     <div class="pt-grid" id="pt-grid"></div>
   </section>
 
   <section id="sec-triggers" class="section-hidden">
-    <h2><span class="icon">⚡</span> 觸發語義詞彙</h2>
+    <h2><span class="icon" data-icon="triggers"></span> 觸發語義詞彙</h2>
     <div class="trigger-section" id="trigger-section"></div>
   </section>
 
   <section id="sec-conclusions" class="section-hidden">
-    <h2><span class="icon">📋</span> 跨實驗結論</h2>
+    <h2><span class="icon" data-icon="conclusions"></span> 跨實驗結論</h2>
     <div class="conclusion-list" id="conclusion-list"></div>
   </section>
 </main>
 
-<footer>
-  <p>Docker Gordon Side Experiments · <a href="https://github.com/pingqLIN/Docker-Gordon-side" target="_blank">GitHub Repository</a></p>
-  <p style="margin-top:.3rem">資料來源：gordon-boundary-map.json · 所有機密字樣均為測試用假資料</p>
-</footer>
+<footer id="project-footer"></footer>
 
 <script>var GORDON_DATA = null;</script>
-<script src="gordon-boundary-map.js" onerror=""></script>
+<script src="gordon-boundary-map.js"></script>
 
 <script>
 // ── Data Loading ──
 let DATA = null;
+const PROJECT_INFO = {
+  owner: 'pingqLIN',
+  name: 'Docker-Gordon-side',
+  branch: 'main',
+  siteUrl: 'https://docker-gordon-side.colorgeek.co/',
+  repoUrl: 'https://github.com/pingqLIN/Docker-Gordon-side',
+  url: 'https://docker-gordon-side.colorgeek.co/',
+  readmeUrl: 'https://github.com/pingqLIN/Docker-Gordon-side#readme',
+  dataUrl: 'https://github.com/pingqLIN/Docker-Gordon-side/blob/main/gordon-boundary-map.json'
+};
 
 async function loadData() {
   // Method 1: Try fetch (works on HTTP servers)
@@ -200,10 +308,11 @@ async function loadData() {
     renderAll();
     return;
   }
-  document.querySelector('.container').innerHTML = '<p style="text-align:center;padding:3rem;color:#ef4444;">無法載入資料。請用 <code>npx serve</code> 或 Live Server 開啟，或執行 <code>node -e "const d=require(\'./gordon-boundary-map.json\');require(\'fs\').writeFileSync(\'gordon-boundary-map.js\',\'var GORDON_DATA = \'+JSON.stringify(d)+\';\')"</code> 產生 .js 檔案後重新整理。</p>';
+  document.querySelector('.container').innerHTML = '<p style="text-align:center;padding:3rem;color:#8b5d58;">無法載入資料。請用 <code>npx serve</code> 或 Live Server 開啟，或執行 <code>node -e "const d=require(\'./gordon-boundary-map.json\');require(\'fs\').writeFileSync(\'gordon-boundary-map.js\',\'var GORDON_DATA = \'+JSON.stringify(d)+\';\')"</code> 產生 .js 檔案後重新整理。</p>';
 }
 
 function renderAll() {
+  renderStaticIcons();
   renderMeta();
   renderNav();
   renderFlow();
@@ -212,18 +321,45 @@ function renderAll() {
   renderPrompts();
   renderTriggers();
   renderConclusions();
+  renderProjectFooter();
+  initDynamicPaper();
+  initWhaleDrag();
+}
+
+function renderStaticIcons() {
+  document.querySelector('.hero .mark').innerHTML = lineIcon('map');
+  document.querySelectorAll('[data-icon]').forEach(el => {
+    el.innerHTML = lineIcon(el.dataset.icon);
+  });
 }
 
 // ── Meta ──
 function renderMeta() {
   const m = DATA.meta;
   document.getElementById('hero-meta').innerHTML = [
+    `<a href="${PROJECT_INFO.siteUrl}" target="_blank" rel="noreferrer">${lineIcon('pointer')}<span>Official: docker-gordon-side.colorgeek.co</span></a>`,
+    `<a href="${PROJECT_INFO.repoUrl}" target="_blank" rel="noreferrer">${lineIcon('pointer')}<span>GitHub: ${PROJECT_INFO.owner}/${PROJECT_INFO.name}</span></a>`,
+    `Branch: ${PROJECT_INFO.branch}`,
     `Docker Desktop ${m.dockerDesktopVersion}`,
     `docker ai ${m.dockerAiVersion}`,
     `Agent ${m.dockerAgentVersion}`,
     `Model: ${m.defaultModel}`,
     `更新: ${m.lastUpdated}`
-  ].map(t => `<span class="meta-tag">${t}</span>`).join('');
+  ].map(t => `<span class="meta-tag">${t.includes('<a ') ? t : escapeHtml(t)}</span>`).join('');
+}
+
+function renderProjectFooter() {
+  const footer = document.getElementById('project-footer');
+  footer.innerHTML = `
+    <div class="project-links">
+      <a class="project-link" href="${PROJECT_INFO.siteUrl}" target="_blank" rel="noreferrer">${lineIcon('pointer')}<span>Official Site</span></a>
+      <a class="project-link" href="${PROJECT_INFO.repoUrl}" target="_blank" rel="noreferrer">${lineIcon('pointer')}<span>GitHub Repository</span></a>
+      <a class="project-link" href="${PROJECT_INFO.readmeUrl}" target="_blank" rel="noreferrer">${lineIcon('pointer')}<span>README</span></a>
+      <a class="project-link" href="${PROJECT_INFO.dataUrl}" target="_blank" rel="noreferrer">${lineIcon('pointer')}<span>Boundary Data JSON</span></a>
+    </div>
+    <p class="project-identity"><a href="${PROJECT_INFO.siteUrl}" target="_blank" rel="noreferrer">${lineIcon('pointer')}<span>Docker Gordon Side Experiments · ${PROJECT_INFO.siteUrl.replace(/\/$/, '')} · branch ${PROJECT_INFO.branch}</span></a></p>
+    <p class="project-note">資料來源：gordon-boundary-map.json · 所有機密字樣均為測試用假資料</p>
+  `;
 }
 
 // ── Nav ──
@@ -235,48 +371,82 @@ const SECTIONS = [
   {id:'sec-triggers',label:'觸發語義'},
   {id:'sec-conclusions',label:'結論'}
 ];
+let currentSectionId = null;
+let prepareContentWhale = () => {};
 
 function renderNav() {
   const nav = document.getElementById('main-nav');
   nav.innerHTML = SECTIONS.map(s =>
-    `<button data-sec="${s.id}" onclick="showSection('${s.id}')">${s.label}</button>`
+    `<button data-sec="${s.id}"><span class="click-mark">${lineIcon('pointer')}</span><span>${escapeHtml(s.label)}</span></button>`
   ).join('');
-  // Show all by default for layers and flow
-  showSection('sec-layers');
+  nav.querySelectorAll('button[data-sec]').forEach(button => {
+    button.addEventListener('click', () => showSection(button.dataset.sec));
+  });
+  SECTIONS.forEach(s => document.getElementById(s.id)?.classList.add('section-hidden'));
 }
 
 function showSection(id) {
+  const hasPrevious = currentSectionId !== null;
+  const previousSection = hasPrevious ? document.getElementById(currentSectionId) : null;
+  const activate = () => activateSection(id, hasPrevious);
+  document.body.classList.remove('home-mode');
+  document.body.classList.add('content-mode');
+  window.requestAnimationFrame(prepareContentWhale);
+  if (previousSection && currentSectionId !== id) {
+    previousSection.classList.remove('slide-from-right', 'slide-from-left');
+    previousSection.classList.add('section-fade-out');
+    window.setTimeout(activate, 240);
+    return;
+  }
+  activate();
+}
+
+function activateSection(id, hasPrevious) {
+  const previousIndex = Math.max(0, SECTIONS.findIndex(s => s.id === currentSectionId));
+  const nextIndex = Math.max(0, SECTIONS.findIndex(s => s.id === id));
+  const directionClass = nextIndex >= previousIndex ? 'slide-from-right' : 'slide-from-left';
   SECTIONS.forEach(s => {
     const el = document.getElementById(s.id);
     if (!el) return;
-    if (s.id === 'sec-flow' || s.id === 'sec-layers') {
-      el.classList.remove('section-hidden');
-    } else {
-      el.classList.toggle('section-hidden', s.id !== id);
+    el.classList.remove('section-active', 'section-fade-out', 'slide-from-right', 'slide-from-left');
+    const active = s.id === id;
+    el.classList.toggle('section-hidden', !active);
+    if (active) {
+      el.classList.add('section-active', directionClass);
+      el.addEventListener('animationend', () => el.classList.remove(directionClass), {once:true});
     }
-    if (s.id === id) el.classList.remove('section-hidden');
   });
   document.querySelectorAll('.nav button').forEach(b => {
     b.classList.toggle('active', b.dataset.sec === id);
   });
-  if (id !== 'sec-flow' && id !== 'sec-layers') {
-    document.getElementById(id)?.scrollIntoView({behavior:'smooth', block:'start'});
-  }
+  currentSectionId = id;
+  if (!hasPrevious) window.setTimeout(() => window.scrollTo({top:0, behavior:'smooth'}), 80);
 }
 
 // ── Flow ──
 function renderFlow() {
   const chain = document.getElementById('flow-chain');
   const layers = DATA.defenseLayers;
-  chain.innerHTML = layers.map((l, i) => {
-    const cls = l.verdict === 'PASS' ? 'pass' : 'observe';
-    return (i > 0 ? '<span class="flow-arrow">→</span>' : '') +
-      `<div class="flow-node ${cls}">
-        <div class="fn-label">${l.id}</div>
-        <div class="fn-title">${l.icon} ${l.name}</div>
-        <span class="verdict-badge verdict-${l.verdict}">${l.verdict}</span>
-      </div>`;
-  }).join('');
+  const groups = [
+    {label:'Sheet 01 / Context Boundary', items: layers.slice(0, 4)},
+    {label:'Sheet 02 / Governance Boundary', items: layers.slice(4)}
+  ];
+  chain.innerHTML = `<div class="flow-sheets">${groups.map(group => `
+    <div class="flow-page">
+      <div class="flow-page-title">${escapeHtml(group.label)}</div>
+      <div class="flow-chain">
+        ${group.items.map((l, i) => {
+          const cls = l.verdict === 'PASS' ? 'pass' : 'observe';
+          return (i > 0 ? `<span class="flow-arrow">${lineIcon('arrow')}</span>` : '') +
+            `<div class="flow-node ${cls}">
+              <div class="fn-label">${escapeHtml(l.id)}</div>
+              <div class="fn-title">${lineIcon(l.id)}${escapeHtml(l.name)}</div>
+              <span class="verdict-badge verdict-${safeToken(l.verdict)}">${escapeHtml(l.verdict)}</span>
+            </div>`;
+        }).join('')}
+      </div>
+    </div>
+  `).join('')}</div>`;
 }
 
 // ── Layers ──
@@ -284,18 +454,22 @@ function renderLayers() {
   const grid = document.getElementById('layers-grid');
   grid.innerHTML = DATA.defenseLayers.map(l => {
     const relatedExps = DATA.experiments.filter(e => e.layer === l.id);
-    return `<div class="layer-card" style="--lc:${l.color}" onclick="filterExperiments('${l.id}')">
-      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:${l.color};border-radius:16px 16px 0 0"></div>
+    const layerId = safeToken(l.id);
+    return `<div class="layer-card" data-layer-id="${layerId}">
       <div class="lc-head">
-        <span class="lc-icon">${l.icon}</span>
-        <span class="lc-title">${l.name}</span>
-        <span class="verdict-badge verdict-${l.verdict}">${l.verdict}</span>
+        <span class="click-mark">${lineIcon('pointer')}</span>
+        <span class="lc-icon">${lineIcon(l.id)}</span>
+        <span class="lc-title">${escapeHtml(l.name)}</span>
+        <span class="verdict-badge verdict-${safeToken(l.verdict)}">${escapeHtml(l.verdict)}</span>
       </div>
-      <div class="lc-desc">${l.description}</div>
-      <div class="lc-summary">${l.summary}</div>
-      ${relatedExps.length ? `<div style="margin-top:.5rem;font-size:.72rem;color:var(--text-muted)">相關實驗：${relatedExps.map(e=>e.id).join(', ')}</div>` : ''}
+      <div class="lc-desc">${escapeHtml(l.description)}</div>
+      <div class="lc-summary">${escapeHtml(l.summary)}</div>
+      ${relatedExps.length ? `<div style="margin-top:.5rem;font-size:var(--step--1);color:var(--text-muted)">相關實驗：${relatedExps.map(e=>escapeHtml(e.id)).join(', ')}</div>` : ''}
     </div>`;
   }).join('');
+  grid.querySelectorAll('.layer-card[data-layer-id]').forEach(card => {
+    card.addEventListener('click', () => filterExperiments(card.dataset.layerId));
+  });
 }
 
 function filterExperiments(layerId) {
@@ -315,46 +489,56 @@ function filterExperiments(layerId) {
 function renderExperiments() {
   const list = document.getElementById('exp-list');
   list.innerHTML = DATA.experiments.map(exp => `
-    <div class="exp-card" data-layer="${exp.layer}" data-id="${exp.id}">
-      <div class="exp-header" onclick="this.parentElement.classList.toggle('open')">
-        <span class="exp-id">${exp.id}</span>
-        <span class="exp-title">${exp.title}</span>
-        <span class="evidence-badge">證據 ${exp.evidenceLevel}</span>
-        <span class="exp-verdict verdict-badge verdict-${exp.verdict}">${exp.verdict}</span>
-        <span class="chevron">▶</span>
+    <div class="exp-card" data-layer="${safeToken(exp.layer)}" data-id="${safeToken(exp.id)}">
+      <div class="exp-header">
+        <span class="click-mark">${lineIcon('pointer')}</span>
+        <span class="exp-id">${escapeHtml(exp.id)}</span>
+        <span class="exp-title">${escapeHtml(exp.title)}</span>
+        <span class="evidence-badge">證據 ${escapeHtml(exp.evidenceLevel)}</span>
+        <span class="exp-verdict verdict-badge verdict-${safeToken(exp.verdict)}">${escapeHtml(exp.verdict)}</span>
+        <span class="chevron">${lineIcon('chevron')}</span>
       </div>
       <div class="exp-body">
         <div class="exp-section">
           <div class="exp-section-title">目的</div>
-          <div class="exp-result">${exp.purpose}</div>
+          <div class="exp-result">${escapeHtml(exp.purpose)}</div>
         </div>
         <div class="exp-section">
           <div class="exp-section-title">提示詞</div>
-          <div class="exp-prompt"><button class="copy-btn" onclick="copyPrompt(event,'${exp.id}')">複製</button><span id="prompt-${exp.id}">${escapeHtml(exp.prompt)}</span></div>
+          <div class="exp-prompt"><button class="copy-btn" data-prompt-id="${safeToken(exp.id)}">${lineIcon('pointer')}<span>複製</span></button><span id="prompt-${safeToken(exp.id)}">${escapeHtml(exp.prompt)}</span></div>
         </div>
         <div class="exp-section">
           <div class="exp-section-title">結果摘要</div>
-          <div class="exp-result">${exp.resultSummary}</div>
+          <div class="exp-result">${escapeHtml(exp.resultSummary)}</div>
         </div>
         ${exp.canaryFound.length ? `<div class="exp-section">
           <div class="exp-section-title">找到的 CANARY</div>
-          <div class="canary-list">${exp.canaryFound.map(c=>`<span class="canary-tag canary-found">${c}</span>`).join('')}</div>
+          <div class="canary-list">${exp.canaryFound.map(c=>`<span class="canary-tag canary-found">${escapeHtml(c)}</span>`).join('')}</div>
         </div>` : ''}
         ${exp.canaryNotFound.length ? `<div class="exp-section">
           <div class="exp-section-title">未找到的 CANARY</div>
-          <div class="canary-list">${exp.canaryNotFound.map(c=>`<span class="canary-tag canary-not-found">${c}</span>`).join('')}</div>
+          <div class="canary-list">${exp.canaryNotFound.map(c=>`<span class="canary-tag canary-not-found">${escapeHtml(c)}</span>`).join('')}</div>
         </div>` : ''}
         <div class="exp-section">
           <div class="exp-section-title">防護線註釋</div>
-          <div class="exp-annotation">${exp.annotations}</div>
+          <div class="exp-annotation">${escapeHtml(exp.annotations)}</div>
         </div>
-        <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.5rem;font-size:.75rem;color:var(--text-muted)">
-          <span>工具呼叫：${exp.toolCalls ? '✅ 有' : '❌ 無'}</span>
-          ${exp.sessionId ? `<span>Session：<code>${exp.sessionId}</code></span>` : ''}
+        <div class="exp-section" style="font-size:var(--step--1);color:var(--text-muted)">
+          <div class="exp-section-title">工具呼叫</div>
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <span>${exp.toolCalls ? '有' : '無'}</span>
+          ${exp.sessionId ? `<span>Session：<code>${escapeHtml(exp.sessionId)}</code></span>` : ''}
+          </div>
         </div>
       </div>
     </div>
   `).join('');
+  list.querySelectorAll('.exp-header').forEach(header => {
+    header.addEventListener('click', () => header.parentElement.classList.toggle('open'));
+  });
+  list.querySelectorAll('.copy-btn[data-prompt-id]').forEach(button => {
+    button.addEventListener('click', event => copyPrompt(event, button.dataset.promptId));
+  });
 }
 
 // ── Prompts ──
@@ -362,12 +546,12 @@ function renderPrompts() {
   const grid = document.getElementById('pt-grid');
   grid.innerHTML = DATA.promptTemplates.map(pt => `
     <div class="pt-card">
-      <h3>${pt.name}</h3>
-      <div class="pt-desc">${pt.description}</div>
+      <h3>${escapeHtml(pt.name)}</h3>
+      <div class="pt-desc">${escapeHtml(pt.description)}</div>
       <div class="pt-template">${escapeHtml(pt.template)}</div>
       <div class="pt-meta">
-        <span class="risk-badge risk-${pt.riskLevel}">${pt.riskLevel === 'low' ? '低風險' : pt.riskLevel === 'medium' ? '中風險' : pt.riskLevel === 'high' ? '高風險' : '無風險'}</span>
-        <span style="font-size:.75rem;color:var(--text-muted)">${pt.expectedBehavior}</span>
+        <span class="risk-badge risk-${safeToken(pt.riskLevel)}">${pt.riskLevel === 'low' ? '低風險' : pt.riskLevel === 'medium' ? '中風險' : pt.riskLevel === 'high' ? '高風險' : '無風險'}</span>
+        <span style="font-size:var(--step--1);color:var(--text-muted)">${escapeHtml(pt.expectedBehavior)}</span>
       </div>
     </div>
   `).join('');
@@ -379,20 +563,20 @@ function renderTriggers() {
   const ts = DATA.triggerSemantics;
   sec.innerHTML = `
     <div class="trigger-group">
-      <h3 style="color:var(--accent-green)">💪 強觸發詞</h3>
+      <h3 style="color:var(--accent-green)">${lineIcon('strong')} 強觸發詞</h3>
       ${ts.strongTriggers.map(t => `
         <div class="trigger-item">
-          <span class="tt">${t.term}</span>
-          <span class="tz">${t.zhTerm}</span>
+          <span class="tt">${escapeHtml(t.term)}</span>
+          <span class="tz">${escapeHtml(t.zhTerm)}</span>
         </div>
       `).join('')}
     </div>
     <div class="trigger-group">
-      <h3 style="color:var(--accent-amber)">🤏 弱觸發詞</h3>
+      <h3 style="color:var(--accent-amber)">${lineIcon('weak')} 弱觸發詞</h3>
       ${ts.weakTriggers.map(t => `
         <div class="trigger-item">
-          <span class="tt">${t.term}</span>
-          <span class="tz">${t.zhTerm}</span>
+          <span class="tt">${escapeHtml(t.term)}</span>
+          <span class="tz">${escapeHtml(t.zhTerm)}</span>
         </div>
       `).join('')}
     </div>
@@ -405,7 +589,7 @@ function renderConclusions() {
   list.innerHTML = DATA.conclusions.map((c, i) => `
     <div class="conclusion-item">
       <span class="ci-num">${i + 1}.</span>
-      <span>${c}</span>
+      <span>${escapeHtml(c)}</span>
     </div>
   `).join('');
 }
@@ -417,13 +601,188 @@ function escapeHtml(str) {
   return div.innerHTML;
 }
 
+function safeToken(value) {
+  return String(value).replace(/[^A-Za-z0-9_-]/g, '_');
+}
+
+function safeColor(value) {
+  const color = String(value);
+  return /^#[0-9A-Fa-f]{6}$/.test(color) ? color : '#748295';
+}
+
+function clamp(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+}
+
+function applyDynamicPaper(panel, normalizedX, normalizedY) {
+  panel.style.setProperty('--dynamic-light-x', `${40 + normalizedX * 34}%`);
+  panel.style.setProperty('--dynamic-light-y', `${14 + normalizedY * 18}%`);
+  panel.style.setProperty('--tilt-x', `${((normalizedX - 0.5) * 1.4).toFixed(2)}deg`);
+  panel.style.setProperty('--tilt-y', `${((0.5 - normalizedY) * 1.1).toFixed(2)}deg`);
+}
+
+function resetDynamicPaper(panel) {
+  panel.style.setProperty('--dynamic-light-x', '68%');
+  panel.style.setProperty('--dynamic-light-y', '22%');
+  panel.style.setProperty('--tilt-x', '0deg');
+  panel.style.setProperty('--tilt-y', '0deg');
+}
+
+function initDynamicPaper() {
+  document.querySelectorAll('.hero, main section').forEach(panel => {
+    if (panel.dataset.dynamicBound === 'true') return;
+    panel.dataset.dynamicBound = 'true';
+    panel.classList.add('dynamic-paper');
+    panel.addEventListener('pointermove', event => {
+      const rect = panel.getBoundingClientRect();
+      const normalizedX = clamp((event.clientX - rect.left) / rect.width, 0, 1);
+      const normalizedY = clamp((event.clientY - rect.top) / rect.height, 0, 1);
+      applyDynamicPaper(panel, normalizedX, normalizedY);
+    });
+    panel.addEventListener('pointerleave', event => {
+      if (event.pointerType === 'mouse') resetDynamicPaper(panel);
+    });
+    panel.addEventListener('pointercancel', () => resetDynamicPaper(panel));
+  });
+}
+
+function initWhaleDrag() {
+  const whale = document.querySelector('.hero-whale');
+  if (!whale || whale.dataset.dragBound === 'true') return;
+  whale.dataset.dragBound = 'true';
+  let dragOffsetX = 0;
+  let dragOffsetY = 0;
+  let roamFrame = 0;
+  let roamStart = 0;
+  let roamBaseLeft = 0;
+  let roamBaseTop = 0;
+
+  const setWhalePosition = (left, top) => {
+    const rect = whale.getBoundingClientRect();
+    const nextLeft = clamp(left, 12, window.innerWidth - rect.width - 12);
+    const nextTop = clamp(top, 12, window.innerHeight - rect.height - 12);
+    whale.style.setProperty('--whale-left', `${nextLeft}px`);
+    whale.style.setProperty('--whale-top', `${nextTop}px`);
+    return {left: nextLeft, top: nextTop};
+  };
+
+  const readWhalePosition = () => {
+    const rect = whale.getBoundingClientRect();
+    const leftValue = Number.parseFloat(whale.style.getPropertyValue('--whale-left'));
+    const topValue = Number.parseFloat(whale.style.getPropertyValue('--whale-top'));
+    return {
+      left: Number.isFinite(leftValue) ? leftValue : rect.left,
+      top: Number.isFinite(topValue) ? topValue : rect.top
+    };
+  };
+
+  const resetRoamClock = () => {
+    roamStart = performance.now();
+  };
+
+  const roamWhale = time => {
+    if (!document.body.classList.contains('content-mode')) {
+      roamFrame = 0;
+      return;
+    }
+
+    if (!whale.classList.contains('dragging')) {
+      const elapsed = (time - roamStart) / 1000;
+      const positioned = whale.classList.contains('user-positioned');
+      const rangeX = positioned ? 9 : Math.min(130, Math.max(52, window.innerWidth * 0.07));
+      const rangeY = positioned ? 7 : 24;
+      setWhalePosition(
+        roamBaseLeft + Math.sin(elapsed * 0.38) * rangeX + Math.sin(elapsed * 0.17) * rangeX * 0.28,
+        roamBaseTop + Math.sin(elapsed * 0.53) * rangeY
+      );
+    }
+
+    roamFrame = window.requestAnimationFrame(roamWhale);
+  };
+
+  prepareContentWhale = () => {
+    if (!document.body.classList.contains('content-mode')) return;
+    if (whale.dataset.contentReady !== 'true') {
+      const rect = whale.getBoundingClientRect();
+      const position = setWhalePosition(window.innerWidth * 0.42, Math.min(138, window.innerHeight - rect.height - 12));
+      roamBaseLeft = position.left;
+      roamBaseTop = position.top;
+      whale.dataset.contentReady = 'true';
+    } else if (!whale.classList.contains('dragging')) {
+      const position = readWhalePosition();
+      roamBaseLeft = position.left;
+      roamBaseTop = position.top;
+    }
+    resetRoamClock();
+    if (!roamFrame) roamFrame = window.requestAnimationFrame(roamWhale);
+  };
+
+  whale.addEventListener('pointerdown', event => {
+    if (!document.body.classList.contains('content-mode')) return;
+    const rect = whale.getBoundingClientRect();
+    dragOffsetX = event.clientX - rect.left;
+    dragOffsetY = event.clientY - rect.top;
+    whale.style.setProperty('--whale-left', `${rect.left}px`);
+    whale.style.setProperty('--whale-top', `${rect.top}px`);
+    whale.classList.remove('user-positioned');
+    whale.classList.add('dragging');
+    whale.setPointerCapture(event.pointerId);
+    event.preventDefault();
+  });
+
+  whale.addEventListener('pointermove', event => {
+    if (!whale.classList.contains('dragging')) return;
+    setWhalePosition(event.clientX - dragOffsetX, event.clientY - dragOffsetY);
+  });
+
+  const releaseWhale = event => {
+    if (!whale.classList.contains('dragging')) return;
+    whale.classList.remove('dragging');
+    whale.classList.add('user-positioned');
+    const position = readWhalePosition();
+    roamBaseLeft = position.left;
+    roamBaseTop = position.top;
+    resetRoamClock();
+    if (whale.hasPointerCapture(event.pointerId)) whale.releasePointerCapture(event.pointerId);
+  };
+
+  whale.addEventListener('pointerup', releaseWhale);
+  whale.addEventListener('pointercancel', releaseWhale);
+}
+
+function lineIcon(name) {
+  const icons = {
+    pointer: '<path d="M3 12h9"/><path d="m9 9 3 3-3 3"/><path d="M12 8h5a3 3 0 0 1 0 6h-5"/><path d="M7 15v2a3 3 0 0 0 3 3h5a4 4 0 0 0 4-4v-2"/>',
+    map: '<path d="M4 5.5 8 4l4 1.5 4-1.5 4 1.5v13l-4-1.5-4 1.5L8 17l-4 1.5z"/><path d="M8 4v13"/><path d="M12 5.5v13"/><path d="M16 4v13"/>',
+    flow: '<path d="M4 7h5"/><path d="m7 4 3 3-3 3"/><path d="M14 7h2a3 3 0 0 1 0 6h-5"/><path d="m13 10-3 3 3 3"/>',
+    layers: '<path d="m12 3 8 4-8 4-8-4z"/><path d="m4 12 8 4 8-4"/><path d="m4 17 8 4 8-4"/>',
+    experiments: '<path d="M9 3h6"/><path d="M10 3v5l-5 9a3 3 0 0 0 2.6 4h8.8a3 3 0 0 0 2.6-4l-5-9V3"/><path d="M8 14h8"/>',
+    prompts: '<path d="M5 5h14v10H8l-3 3z"/><path d="M8 9h8"/><path d="M8 12h5"/>',
+    triggers: '<path d="M13 2 5 13h6l-2 9 8-12h-6z"/>',
+    conclusions: '<path d="M8 4h11v16H5V7z"/><path d="M8 4v3H5"/><path d="M9 12h6"/><path d="M9 16h6"/>',
+    strong: '<path d="M4 14c3-7 9-9 16-10-1 7-4 13-12 16"/><path d="M9 15c1-3 3-5 6-6"/>',
+    weak: '<path d="M4 12h16"/><path d="M7 8h10"/><path d="M10 16h4"/>',
+    L1: '<path d="M12 3 5 6v5c0 5 3 8 7 10 4-2 7-5 7-10V6z"/><path d="M9.5 12.5 11.5 14.5 15.5 10.5"/>',
+    L2: '<path d="M4 12h16"/><path d="M6 12v4h12v-4"/><path d="M8 12V8h8v4"/><path d="M10 8V5h4v3"/>',
+    L3: '<circle cx="10.5" cy="10.5" r="5.5"/><path d="m15 15 5 5"/><path d="M8 10.5h5"/>',
+    L4: '<path d="M4 18V6h16v12z"/><path d="M8 9h8"/><path d="M8 13h5"/><path d="M4 6l4-3h8l4 3"/>',
+    L5: '<rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><path d="M12 14v2"/>',
+    L6: '<circle cx="12" cy="12" r="8"/><path d="M8.5 8.5 15.5 15.5"/>',
+    L7: '<path d="M4 18 10 6l4 8 2-4 4 8z"/><path d="M10 6v12"/>',
+    L8: '<path d="M12 3v18"/><path d="M6 7h12"/><path d="M7 7l-4 7h8z"/><path d="M17 7l-4 7h8z"/>',
+    arrow: '<path d="M5 12h14"/><path d="m13 6 6 6-6 6"/>',
+    chevron: '<path d="m9 6 6 6-6 6"/>'
+  };
+  return `<span class="line-icon" aria-hidden="true"><svg viewBox="0 0 24 24">${icons[name] || icons.map}</svg></span>`;
+}
+
 function copyPrompt(e, id) {
   e.stopPropagation();
   const el = document.getElementById('prompt-' + id);
   navigator.clipboard.writeText(el.textContent).then(() => {
-    const btn = e.target;
-    btn.textContent = '已複製 ✓';
-    setTimeout(() => btn.textContent = '複製', 1500);
+    const btn = e.currentTarget || e.target.closest('button');
+    btn.innerHTML = `${lineIcon('pointer')}<span>已複製</span>`;
+    setTimeout(() => { btn.innerHTML = `${lineIcon('pointer')}<span>複製</span>`; }, 1500);
   });
 }
 
@@ -432,4 +791,3 @@ loadData();
 </script>
 </body>
 </html>
-

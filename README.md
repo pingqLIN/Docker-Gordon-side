@@ -1,4 +1,4 @@
-[![Docker Gordon Side Experiments banner](docs/assets/gordon-research-banner.svg)](docs/assets/gordon-research-banner.svg)
+[![Docker Gordon Side Experiments banner](RADI0380.jpeg)](RADI0380.jpeg)
 
 # Docker Gordon Side Experiments
 
@@ -8,7 +8,7 @@ Research evidence for Docker Gordon / Docker AI boundary behavior, prompt wrappe
 
 ![Status](https://img.shields.io/badge/status-research%20archive-blue) ![Platform](https://img.shields.io/badge/platform-Docker%20AI%20%2F%20Windows-informational) ![License](https://img.shields.io/badge/license-MIT-green)
 
-[Full Report](docs/PROJECT_EXPERIMENT_REPORT.zh-TW.md) · [Public Release Review](docs/PUBLIC_RELEASE_REVIEW.zh-TW.md) · [Context Audit](GORDON_CONTEXT_AUDIT_REPORT.md) · [繁體中文](README.zh-TW.md)
+[Official Site](https://docker-gordon-side.colorgeek.co/) · [Full Report](docs/PROJECT_EXPERIMENT_REPORT.zh-TW.md) · [Public Release Review](docs/PUBLIC_RELEASE_REVIEW.zh-TW.md) · [Context Audit](GORDON_CONTEXT_AUDIT_REPORT.md) · [繁體中文](README.zh-TW.md)
 
 ---
 
@@ -39,7 +39,7 @@ The repository is a research archive, not a runnable product. It keeps prompts, 
 
 | Goal | Start here |
 |---|---|
-| **Interactive boundary dashboard** | **`index.html`** (open locally or via `npx serve .`) |
+| Interactive boundary map | `index.html` (open locally, or serve the folder with `npx serve .`) |
 | Project synthesis | `docs/PROJECT_EXPERIMENT_REPORT.zh-TW.md` |
 | Research synthesis subreport | `docs/gordon-research-synthesis.zh-TW.md` |
 | Public release review | `docs/PUBLIC_RELEASE_REVIEW.zh-TW.md` |
@@ -86,8 +86,12 @@ Get-Content test-results\gordon-final-governance-experiment\RESULTS.md
 
 | File | Description |
 |---|---|
-| `index.html` | Interactive boundary dashboard (single-page, zero dependencies) |
+| `index.html` | Interactive boundary map for defense layers, experiments, prompt templates, trigger semantics, and conclusions |
+| `CNAME` | GitHub Pages custom domain: `docker-gordon-side.colorgeek.co` |
 | `gordon-boundary-map.json` | Dashboard data source (defense layers, experiments, prompt templates) |
+| `gordon-boundary-map.js` | Local `file://` fallback generated from the JSON data source |
+| `RADI0380.jpeg` | README banner image, referenced directly without conversion |
+| `docs/assets/blue-whale-cutout.png` | Tracing-paper blue whale cutout used by the interactive boundary map |
 | `docs/PROJECT_EXPERIMENT_REPORT.zh-TW.md` | Complete project experiment synthesis |
 | `docs/gordon-research-synthesis.zh-TW.md` | Unit synthesis report over experiment goals, evidence, and limitations |
 | `docs/PUBLIC_RELEASE_REVIEW.zh-TW.md` | GitHub public-release check and normalized external audit report |
@@ -112,7 +116,8 @@ This project was developed with AI assistance.
 - Experiment claims are grounded in existing raw results, audit logs, reports, and transcripts.
 - README and synthesis report preserve limitations instead of overstating small-sample results.
 - Public-release review scans for fake secret markers, planning content, and local path exposure.
-- Git changes are limited to documentation, banner, and license files.
+- Public-facing changes are limited to documentation, the boundary dashboard, generated dashboard data, banner assets, and license files.
+- The README banner references the original `RADI0380.jpeg` file directly and is decorative, so it can be replaced later without changing the evidence archive.
 
 > Disclaimer: While the author has made every effort to review and validate the AI-generated code and documentation, no guarantee can be made regarding correctness, security, or fitness for any particular purpose. Use at your own risk.
 

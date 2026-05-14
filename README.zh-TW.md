@@ -1,4 +1,4 @@
-[![Docker Gordon Side Experiments banner](docs/assets/gordon-research-banner.svg)](docs/assets/gordon-research-banner.svg)
+[![Docker Gordon Side Experiments banner](RADI0380.jpeg)](RADI0380.jpeg)
 
 # Docker Gordon Side Experiments
 
@@ -8,7 +8,7 @@ Docker Gordon / Docker AI 邊界、提示詞包裝、上下文讀取與治理層
 
 ![Status](https://img.shields.io/badge/status-research%20archive-blue) ![Platform](https://img.shields.io/badge/platform-Docker%20AI%20%2F%20Windows-informational) ![License](https://img.shields.io/badge/license-MIT-green)
 
-[總報告](docs/PROJECT_EXPERIMENT_REPORT.zh-TW.md) · [公開檢查](docs/PUBLIC_RELEASE_REVIEW.zh-TW.md) · [上下文稽核](GORDON_CONTEXT_AUDIT_REPORT.md) · [English](README.md)
+[正式網站](https://docker-gordon-side.colorgeek.co/) · [總報告](docs/PROJECT_EXPERIMENT_REPORT.zh-TW.md) · [公開檢查](docs/PUBLIC_RELEASE_REVIEW.zh-TW.md) · [上下文稽核](GORDON_CONTEXT_AUDIT_REPORT.md) · [English](README.md)
 
 ---
 
@@ -39,6 +39,7 @@ Docker Gordon / Docker AI 邊界、提示詞包裝、上下文讀取與治理層
 
 | 目的 | 入口 |
 |---|---|
+| 互動式邊界地圖 | `index.html`（可直接本機開啟，或用 `npx serve .` 服務整個資料夾） |
 | 專案總覽 | `docs/PROJECT_EXPERIMENT_REPORT.zh-TW.md` |
 | 研究單元統整 | `docs/gordon-research-synthesis.zh-TW.md` |
 | 公開發布檢查 | `docs/PUBLIC_RELEASE_REVIEW.zh-TW.md` |
@@ -85,6 +86,12 @@ Get-Content test-results\gordon-final-governance-experiment\RESULTS.md
 
 | 檔案 | 說明 |
 |---|---|
+| `index.html` | 互動式邊界地圖，整合防護線、實驗紀錄、提示詞範本、觸發語義與結論 |
+| `CNAME` | GitHub Pages 自訂網域：`docker-gordon-side.colorgeek.co` |
+| `gordon-boundary-map.json` | 儀表板資料源，包含防護線、實驗與提示詞資料 |
+| `gordon-boundary-map.js` | 由 JSON 產生的本機 `file://` fallback |
+| `RADI0380.jpeg` | README 橫幅圖，直接引用原始檔案，不轉檔 |
+| `docs/assets/blue-whale-cutout.png` | 互動式邊界地圖使用的描圖紙藍鯨剪紙 |
 | `docs/PROJECT_EXPERIMENT_REPORT.zh-TW.md` | 完整專案實驗總報告 |
 | `docs/gordon-research-synthesis.zh-TW.md` | 實驗目標、證據與限制的單元統整報告 |
 | `docs/PUBLIC_RELEASE_REVIEW.zh-TW.md` | GitHub 公開前檢查與外部稽核標準化報告 |
@@ -109,7 +116,8 @@ Get-Content test-results\gordon-final-governance-experiment\RESULTS.md
 - 實驗資料以既有原始結果、稽核日誌、報告與逐字稿為來源。
 - README 與總報告保留限制，不將小樣本結果誇大成統計保證。
 - 公開發布前掃描假機密、規劃內容與本機路徑風險。
-- Git 變更僅限文件、橫幅圖與授權檔。
+- 對外呈現的變更限於文件、互動式邊界地圖、由 JSON 產生的儀表板資料、橫幅素材與授權檔。
+- README 橫幅直接引用原始 `RADI0380.jpeg`，屬於裝飾素材，後續可替換，不影響實驗證據與結論。
 
 > 免責聲明：作者已盡力審查與驗證 AI 生成的程式碼與文件，但不保證其正確性、安全性或適用於任何特定目的。請自行承擔使用風險。
 
