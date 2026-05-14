@@ -39,6 +39,7 @@ The repository is a research archive, not a runnable product. It keeps prompts, 
 
 | Goal | Start here |
 |---|---|
+| **Interactive boundary dashboard** | **`index.html`** (open locally or via `npx serve .`) |
 | Project synthesis | `docs/PROJECT_EXPERIMENT_REPORT.zh-TW.md` |
 | Research synthesis subreport | `docs/gordon-research-synthesis.zh-TW.md` |
 | Public release review | `docs/PUBLIC_RELEASE_REVIEW.zh-TW.md` |
@@ -85,6 +86,8 @@ Get-Content test-results\gordon-final-governance-experiment\RESULTS.md
 
 | File | Description |
 |---|---|
+| `index.html` | Interactive boundary dashboard (single-page, zero dependencies) |
+| `gordon-boundary-map.json` | Dashboard data source (defense layers, experiments, prompt templates) |
 | `docs/PROJECT_EXPERIMENT_REPORT.zh-TW.md` | Complete project experiment synthesis |
 | `docs/gordon-research-synthesis.zh-TW.md` | Unit synthesis report over experiment goals, evidence, and limitations |
 | `docs/PUBLIC_RELEASE_REVIEW.zh-TW.md` | GitHub public-release check and normalized external audit report |

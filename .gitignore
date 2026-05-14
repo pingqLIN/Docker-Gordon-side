@@ -30,3 +30,8 @@ Thumbs.db
 desktop.ini
 .vscode/
 .idea/
+*.code-workspace
+
+# JVM crash dumps
+hs_err_pid*.log
+replay_pid*.log

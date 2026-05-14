@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Docker Gordon 操作邊界地圖</title>
+<meta name="description" content="Docker Desktop Gordon AI 服務的操作邊界實驗記錄與分層防護線視覺化">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg-primary:#0a0e1a;--bg-secondary:#111827;--bg-card:#1a2035;--bg-card-hover:#1e2642;
+  --text-primary:#e2e8f0;--text-secondary:#94a3b8;--text-muted:#64748b;
+  --accent-blue:#3b82f6;--accent-cyan:#06b6d4;--accent-green:#10b981;--accent-amber:#f59e0b;
+  --accent-red:#ef4444;--accent-purple:#8b5cf6;--accent-pink:#ec4899;--accent-teal:#14b8a6;
+  --border-subtle:rgba(255,255,255,0.06);--border-active:rgba(255,255,255,0.12);
+  --glass:rgba(17,24,39,0.7);--radius:12px;--radius-lg:16px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg-primary);color:var(--text-primary);line-height:1.6;min-height:100vh}
+code,.mono{font-family:'JetBrains Mono',monospace}
+
+/* Header */
+.hero{position:relative;padding:3rem 2rem 2rem;text-align:center;overflow:hidden;border-bottom:1px solid var(--border-subtle)}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 50% -20%,rgba(59,130,246,0.15),transparent),radial-gradient(ellipse 60% 40% at 80% 100%,rgba(139,92,246,0.1),transparent);pointer-events:none}
+.hero h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;background:linear-gradient(135deg,#60a5fa,#a78bfa,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.5rem;position:relative}
+.hero .subtitle{color:var(--text-secondary);font-size:.95rem;max-width:640px;margin:0 auto .8rem}
+.hero .meta{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;font-size:.78rem;color:var(--text-muted)}
+.meta-tag{background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.2);padding:.2rem .6rem;border-radius:20px}
+
+/* Nav */
+.nav{position:sticky;top:0;z-index:100;background:rgba(10,14,26,0.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border-subtle);padding:.6rem 1rem;display:flex;gap:.5rem;overflow-x:auto;justify-content:center;flex-wrap:wrap}
+.nav button{background:var(--bg-card);border:1px solid var(--border-subtle);color:var(--text-secondary);padding:.4rem 1rem;border-radius:20px;cursor:pointer;font-size:.8rem;font-family:inherit;transition:all .2s;white-space:nowrap}
+.nav button:hover,.nav button.active{background:rgba(59,130,246,0.15);border-color:var(--accent-blue);color:var(--text-primary)}
+
+/* Layout */
+.container{max-width:1200px;margin:0 auto;padding:1.5rem 1rem}
+section{margin-bottom:2rem}
+section h2{font-size:1.3rem;font-weight:700;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+section h2 .icon{font-size:1.4rem}
+
+/* Defense Layers */
+.layers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}
+.layer-card{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:1.2rem;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
+.layer-card:hover{transform:translateY(-2px);border-color:var(--border-active);background:var(--bg-card-hover)}
+.layer-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--radius-lg) var(--radius-lg) 0 0}
+.layer-card .lc-head{display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem}
+.layer-card .lc-icon{font-size:1.5rem}
+.layer-card .lc-title{font-weight:600;font-size:.95rem;flex:1}
+.layer-card .lc-desc{font-size:.82rem;color:var(--text-secondary);margin-bottom:.6rem}
+.layer-card .lc-summary{font-size:.8rem;color:var(--text-muted);border-top:1px solid var(--border-subtle);padding-top:.5rem}
+.verdict-badge{font-size:.7rem;font-weight:600;padding:.15rem .5rem;border-radius:10px;text-transform:uppercase;letter-spacing:.5px}
+.verdict-PASS{background:rgba(16,185,129,0.15);color:#34d399;border:1px solid rgba(16,185,129,0.3)}
+.verdict-OBSERVE{background:rgba(245,158,11,0.15);color:#fbbf24;border:1px solid rgba(245,158,11,0.3)}
+.verdict-FAIL{background:rgba(239,68,68,0.15);color:#f87171;border:1px solid rgba(239,68,68,0.3)}
+
+/* Experiment Cards */
+.exp-list{display:flex;flex-direction:column;gap:.8rem}
+.exp-card{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius);overflow:hidden;transition:all .2s}
+.exp-card:hover{border-color:var(--border-active)}
+.exp-header{padding:1rem 1.2rem;cursor:pointer;display:flex;align-items:center;gap:.8rem}
+.exp-header .exp-id{font-family:'JetBrains Mono',monospace;font-size:.75rem;font-weight:600;background:rgba(59,130,246,0.12);color:var(--accent-blue);padding:.2rem .5rem;border-radius:6px;min-width:50px;text-align:center}
+.exp-header .exp-title{font-weight:600;font-size:.9rem;flex:1}
+.exp-header .exp-verdict{margin-left:auto}
+.exp-header .chevron{color:var(--text-muted);transition:transform .2s;font-size:.8rem}
+.exp-card.open .chevron{transform:rotate(90deg)}
+.exp-body{display:none;padding:0 1.2rem 1.2rem;animation:fadeIn .3s}
+.exp-card.open .exp-body{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+
+.exp-section{margin-bottom:1rem}
+.exp-section-title{font-size:.78rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:.4rem}
+.exp-prompt{background:rgba(0,0,0,0.3);border:1px solid var(--border-subtle);border-radius:8px;padding:.8rem;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--accent-cyan);white-space:pre-wrap;line-height:1.5;max-height:200px;overflow-y:auto;position:relative}
+.exp-prompt .copy-btn{position:absolute;top:.4rem;right:.4rem;background:rgba(59,130,246,0.2);border:none;color:var(--accent-blue);padding:.2rem .5rem;border-radius:4px;cursor:pointer;font-size:.7rem;font-family:inherit}
+.exp-prompt .copy-btn:hover{background:rgba(59,130,246,0.4)}
+.exp-result{font-size:.85rem;color:var(--text-secondary);line-height:1.6}
+.exp-annotation{background:rgba(139,92,246,0.08);border-left:3px solid var(--accent-purple);padding:.6rem .8rem;border-radius:0 8px 8px 0;font-size:.82rem;color:var(--text-secondary);line-height:1.5}
+.canary-list{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.3rem}
+.canary-tag{font-family:'JetBrains Mono',monospace;font-size:.68rem;padding:.15rem .4rem;border-radius:4px}
+.canary-found{background:rgba(16,185,129,0.12);color:#34d399;border:1px solid rgba(16,185,129,0.2)}
+.canary-not-found{background:rgba(100,116,139,0.12);color:var(--text-muted);border:1px solid rgba(100,116,139,0.2)}
+.evidence-badge{font-size:.7rem;padding:.15rem .4rem;border-radius:4px;background:rgba(6,182,212,0.12);color:var(--accent-cyan);border:1px solid rgba(6,182,212,0.2);font-weight:600}
+
+/* Prompt Templates */
+.pt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1rem}
+.pt-card{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius);padding:1.2rem;transition:all .2s}
+.pt-card:hover{border-color:var(--border-active);background:var(--bg-card-hover)}
+.pt-card h3{font-size:.9rem;font-weight:600;margin-bottom:.3rem}
+.pt-card .pt-desc{font-size:.8rem;color:var(--text-secondary);margin-bottom:.6rem}
+.pt-card .pt-template{background:rgba(0,0,0,0.3);border-radius:6px;padding:.6rem;font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--accent-cyan);white-space:pre-wrap;margin-bottom:.5rem;max-height:120px;overflow-y:auto}
+.pt-card .pt-meta{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
+.risk-badge{font-size:.68rem;padding:.12rem .4rem;border-radius:4px;font-weight:600;text-transform:uppercase}
+.risk-low{background:rgba(16,185,129,0.12);color:#34d399}
+.risk-medium{background:rgba(245,158,11,0.12);color:#fbbf24}
+.risk-high{background:rgba(239,68,68,0.12);color:#f87171}
+.risk-none{background:rgba(100,116,139,0.12);color:var(--text-muted)}
+
+/* Triggers */
+.trigger-section{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:640px){.trigger-section{grid-template-columns:1fr}}
+.trigger-group{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius);padding:1rem}
+.trigger-group h3{font-size:.9rem;font-weight:600;margin-bottom:.6rem}
+.trigger-item{display:flex;align-items:center;gap:.6rem;padding:.4rem 0;border-bottom:1px solid var(--border-subtle);font-size:.82rem}
+.trigger-item:last-child{border:none}
+.trigger-item .tt{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--accent-cyan)}
+.trigger-item .tz{color:var(--text-muted);font-size:.75rem}
+
+/* Conclusions */
+.conclusion-list{display:flex;flex-direction:column;gap:.5rem}
+.conclusion-item{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:8px;padding:.8rem 1rem;font-size:.85rem;display:flex;gap:.6rem;align-items:flex-start}
+.conclusion-item .ci-num{font-family:'JetBrains Mono',monospace;font-size:.75rem;font-weight:700;color:var(--accent-blue);min-width:1.5rem}
+
+/* Flow Diagram */
+.flow-container{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:1.5rem;overflow-x:auto}
+.flow-chain{display:flex;align-items:center;gap:0;min-width:max-content;justify-content:center;flex-wrap:wrap;row-gap:1rem}
+.flow-node{background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.2);border-radius:10px;padding:.6rem 1rem;text-align:center;min-width:120px}
+.flow-node .fn-label{font-size:.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px}
+.flow-node .fn-title{font-size:.82rem;font-weight:600;margin-top:.2rem}
+.flow-arrow{color:var(--text-muted);font-size:1.2rem;padding:0 .3rem;flex-shrink:0}
+.flow-node.pass{border-color:rgba(16,185,129,0.3);background:rgba(16,185,129,0.08)}
+.flow-node.observe{border-color:rgba(245,158,11,0.3);background:rgba(245,158,11,0.08)}
+
+/* Footer */
+footer{text-align:center;padding:2rem 1rem;color:var(--text-muted);font-size:.78rem;border-top:1px solid var(--border-subtle)}
+footer a{color:var(--accent-blue);text-decoration:none}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,0.2)}
+
+/* Hidden sections */
+.section-hidden{display:none}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>🐳 Docker Gordon 操作邊界地圖</h1>
+  <p class="subtitle">記錄 Docker Desktop Gordon AI 的操作邊界、提示詞實驗結果與分層防護線設計</p>
+  <div class="meta" id="hero-meta"></div>
+</header>
+
+<nav class="nav" id="main-nav"></nav>
+
+<main class="container">
+  <section id="sec-flow">
+    <h2><span class="icon">🔗</span> 防護線傳遞流程</h2>
+    <div class="flow-container"><div class="flow-chain" id="flow-chain"></div></div>
+  </section>
+
+  <section id="sec-layers">
+    <h2><span class="icon">🛡️</span> 分層防護線</h2>
+    <div class="layers-grid" id="layers-grid"></div>
+  </section>
+
+  <section id="sec-experiments" class="section-hidden">
+    <h2><span class="icon">🧪</span> 實驗記錄</h2>
+    <div class="exp-list" id="exp-list"></div>
+  </section>
+
+  <section id="sec-prompts" class="section-hidden">
+    <h2><span class="icon">💬</span> 提示詞範本</h2>
+    <div class="pt-grid" id="pt-grid"></div>
+  </section>
+
+  <section id="sec-triggers" class="section-hidden">
+    <h2><span class="icon">⚡</span> 觸發語義詞彙</h2>
+    <div class="trigger-section" id="trigger-section"></div>
+  </section>
+
+  <section id="sec-conclusions" class="section-hidden">
+    <h2><span class="icon">📋</span> 跨實驗結論</h2>
+    <div class="conclusion-list" id="conclusion-list"></div>
+  </section>
+</main>
+
+<footer>
+  <p>Docker Gordon Side Experiments · <a href="https://github.com/pingqLIN/Docker-Gordon-side" target="_blank">GitHub Repository</a></p>
+  <p style="margin-top:.3rem">資料來源：gordon-boundary-map.json · 所有機密字樣均為測試用假資料</p>
+</footer>
+
+<script>var GORDON_DATA = null;</script>
+<script src="gordon-boundary-map.js" onerror=""></script>
+
+<script>
+// ── Data Loading ──
+let DATA = null;
+
+async function loadData() {
+  // Method 1: Try fetch (works on HTTP servers)
+  try {
+    const resp = await fetch('gordon-boundary-map.json');
+    if (resp.ok) { DATA = await resp.json(); renderAll(); return; }
+  } catch(e) { /* fall through */ }
+  // Method 2: Try inline GORDON_DATA from .js file
+  if (typeof GORDON_DATA !== 'undefined' && GORDON_DATA !== null) {
+    DATA = GORDON_DATA;
+    renderAll();
+    return;
+  }
+  document.querySelector('.container').innerHTML = '<p style="text-align:center;padding:3rem;color:#ef4444;">無法載入資料。請用 <code>npx serve</code> 或 Live Server 開啟，或執行 <code>node -e "const d=require(\'./gordon-boundary-map.json\');require(\'fs\').writeFileSync(\'gordon-boundary-map.js\',\'var GORDON_DATA = \'+JSON.stringify(d)+\';\')"</code> 產生 .js 檔案後重新整理。</p>';
+}
+
+function renderAll() {
+  renderMeta();
+  renderNav();
+  renderFlow();
+  renderLayers();
+  renderExperiments();
+  renderPrompts();
+  renderTriggers();
+  renderConclusions();
+}
+
+// ── Meta ──
+function renderMeta() {
+  const m = DATA.meta;
+  document.getElementById('hero-meta').innerHTML = [
+    `Docker Desktop ${m.dockerDesktopVersion}`,
+    `docker ai ${m.dockerAiVersion}`,
+    `Agent ${m.dockerAgentVersion}`,
+    `Model: ${m.defaultModel}`,
+    `更新: ${m.lastUpdated}`
+  ].map(t => `<span class="meta-tag">${t}</span>`).join('');
+}
+
+// ── Nav ──
+const SECTIONS = [
+  {id:'sec-flow',label:'防護流程'},
+  {id:'sec-layers',label:'防護線'},
+  {id:'sec-experiments',label:'實驗記錄'},
+  {id:'sec-prompts',label:'提示詞範本'},
+  {id:'sec-triggers',label:'觸發語義'},
+  {id:'sec-conclusions',label:'結論'}
+];
+
+function renderNav() {
+  const nav = document.getElementById('main-nav');
+  nav.innerHTML = SECTIONS.map(s =>
+    `<button data-sec="${s.id}" onclick="showSection('${s.id}')">${s.label}</button>`
+  ).join('');
+  // Show all by default for layers and flow
+  showSection('sec-layers');
+}
+
+function showSection(id) {
+  SECTIONS.forEach(s => {
+    const el = document.getElementById(s.id);
+    if (!el) return;
+    if (s.id === 'sec-flow' || s.id === 'sec-layers') {
+      el.classList.remove('section-hidden');
+    } else {
+      el.classList.toggle('section-hidden', s.id !== id);
+    }
+    if (s.id === id) el.classList.remove('section-hidden');
+  });
+  document.querySelectorAll('.nav button').forEach(b => {
+    b.classList.toggle('active', b.dataset.sec === id);
+  });
+  if (id !== 'sec-flow' && id !== 'sec-layers') {
+    document.getElementById(id)?.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+}
+
+// ── Flow ──
+function renderFlow() {
+  const chain = document.getElementById('flow-chain');
+  const layers = DATA.defenseLayers;
+  chain.innerHTML = layers.map((l, i) => {
+    const cls = l.verdict === 'PASS' ? 'pass' : 'observe';
+    return (i > 0 ? '<span class="flow-arrow">→</span>' : '') +
+      `<div class="flow-node ${cls}">
+        <div class="fn-label">${l.id}</div>
+        <div class="fn-title">${l.icon} ${l.name}</div>
+        <span class="verdict-badge verdict-${l.verdict}">${l.verdict}</span>
+      </div>`;
+  }).join('');
+}
+
+// ── Layers ──
+function renderLayers() {
+  const grid = document.getElementById('layers-grid');
+  grid.innerHTML = DATA.defenseLayers.map(l => {
+    const relatedExps = DATA.experiments.filter(e => e.layer === l.id);
+    return `<div class="layer-card" style="--lc:${l.color}" onclick="filterExperiments('${l.id}')">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:${l.color};border-radius:16px 16px 0 0"></div>
+      <div class="lc-head">
+        <span class="lc-icon">${l.icon}</span>
+        <span class="lc-title">${l.name}</span>
+        <span class="verdict-badge verdict-${l.verdict}">${l.verdict}</span>
+      </div>
+      <div class="lc-desc">${l.description}</div>
+      <div class="lc-summary">${l.summary}</div>
+      ${relatedExps.length ? `<div style="margin-top:.5rem;font-size:.72rem;color:var(--text-muted)">相關實驗：${relatedExps.map(e=>e.id).join(', ')}</div>` : ''}
+    </div>`;
+  }).join('');
+}
+
+function filterExperiments(layerId) {
+  showSection('sec-experiments');
+  // Open matching experiments
+  setTimeout(() => {
+    document.querySelectorAll('.exp-card').forEach(card => {
+      const match = card.dataset.layer === layerId;
+      card.classList.toggle('open', match);
+      if (match) card.style.order = '-1';
+      else card.style.order = '0';
+    });
+  }, 100);
+}
+
+// ── Experiments ──
+function renderExperiments() {
+  const list = document.getElementById('exp-list');
+  list.innerHTML = DATA.experiments.map(exp => `
+    <div class="exp-card" data-layer="${exp.layer}" data-id="${exp.id}">
+      <div class="exp-header" onclick="this.parentElement.classList.toggle('open')">
+        <span class="exp-id">${exp.id}</span>
+        <span class="exp-title">${exp.title}</span>
+        <span class="evidence-badge">證據 ${exp.evidenceLevel}</span>
+        <span class="exp-verdict verdict-badge verdict-${exp.verdict}">${exp.verdict}</span>
+        <span class="chevron">▶</span>
+      </div>
+      <div class="exp-body">
+        <div class="exp-section">
+          <div class="exp-section-title">目的</div>
+          <div class="exp-result">${exp.purpose}</div>
+        </div>
+        <div class="exp-section">
+          <div class="exp-section-title">提示詞</div>
+          <div class="exp-prompt"><button class="copy-btn" onclick="copyPrompt(event,'${exp.id}')">複製</button><span id="prompt-${exp.id}">${escapeHtml(exp.prompt)}</span></div>
+        </div>
+        <div class="exp-section">
+          <div class="exp-section-title">結果摘要</div>
+          <div class="exp-result">${exp.resultSummary}</div>
+        </div>
+        ${exp.canaryFound.length ? `<div class="exp-section">
+          <div class="exp-section-title">找到的 CANARY</div>
+          <div class="canary-list">${exp.canaryFound.map(c=>`<span class="canary-tag canary-found">${c}</span>`).join('')}</div>
+        </div>` : ''}
+        ${exp.canaryNotFound.length ? `<div class="exp-section">
+          <div class="exp-section-title">未找到的 CANARY</div>
+          <div class="canary-list">${exp.canaryNotFound.map(c=>`<span class="canary-tag canary-not-found">${c}</span>`).join('')}</div>
+        </div>` : ''}
+        <div class="exp-section">
+          <div class="exp-section-title">防護線註釋</div>
+          <div class="exp-annotation">${exp.annotations}</div>
+        </div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.5rem;font-size:.75rem;color:var(--text-muted)">
+          <span>工具呼叫：${exp.toolCalls ? '✅ 有' : '❌ 無'}</span>
+          ${exp.sessionId ? `<span>Session：<code>${exp.sessionId}</code></span>` : ''}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ── Prompts ──
+function renderPrompts() {
+  const grid = document.getElementById('pt-grid');
+  grid.innerHTML = DATA.promptTemplates.map(pt => `
+    <div class="pt-card">
+      <h3>${pt.name}</h3>
+      <div class="pt-desc">${pt.description}</div>
+      <div class="pt-template">${escapeHtml(pt.template)}</div>
+      <div class="pt-meta">
+        <span class="risk-badge risk-${pt.riskLevel}">${pt.riskLevel === 'low' ? '低風險' : pt.riskLevel === 'medium' ? '中風險' : pt.riskLevel === 'high' ? '高風險' : '無風險'}</span>
+        <span style="font-size:.75rem;color:var(--text-muted)">${pt.expectedBehavior}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ── Triggers ──
+function renderTriggers() {
+  const sec = document.getElementById('trigger-section');
+  const ts = DATA.triggerSemantics;
+  sec.innerHTML = `
+    <div class="trigger-group">
+      <h3 style="color:var(--accent-green)">💪 強觸發詞</h3>
+      ${ts.strongTriggers.map(t => `
+        <div class="trigger-item">
+          <span class="tt">${t.term}</span>
+          <span class="tz">${t.zhTerm}</span>
+        </div>
+      `).join('')}
+    </div>
+    <div class="trigger-group">
+      <h3 style="color:var(--accent-amber)">🤏 弱觸發詞</h3>
+      ${ts.weakTriggers.map(t => `
+        <div class="trigger-item">
+          <span class="tt">${t.term}</span>
+          <span class="tz">${t.zhTerm}</span>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+// ── Conclusions ──
+function renderConclusions() {
+  const list = document.getElementById('conclusion-list');
+  list.innerHTML = DATA.conclusions.map((c, i) => `
+    <div class="conclusion-item">
+      <span class="ci-num">${i + 1}.</span>
+      <span>${c}</span>
+    </div>
+  `).join('');
+}
+
+// ── Helpers ──
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function copyPrompt(e, id) {
+  e.stopPropagation();
+  const el = document.getElementById('prompt-' + id);
+  navigator.clipboard.writeText(el.textContent).then(() => {
+    const btn = e.target;
+    btn.textContent = '已複製 ✓';
+    setTimeout(() => btn.textContent = '複製', 1500);
+  });
+}
+
+// ── Init ──
+loadData();
+</script>
+</body>
+</html>
+
